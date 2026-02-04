@@ -1,0 +1,1545 @@
+{
+  "total_count": 127,
+  "categories": {
+    "时间特征": [
+      {
+        "name": "hour_sin",
+        "category": "时间特征",
+        "description": "小时正弦编码",
+        "formula": null
+      },
+      {
+        "name": "hour_cos",
+        "category": "时间特征",
+        "description": "小时余弦编码",
+        "formula": null
+      },
+      {
+        "name": "month_sin",
+        "category": "时间特征",
+        "description": "月份正弦编码",
+        "formula": null
+      },
+      {
+        "name": "month_cos",
+        "category": "时间特征",
+        "description": "月份余弦编码",
+        "formula": null
+      },
+      {
+        "name": "dow_sin",
+        "category": "时间特征",
+        "description": "星期正弦编码",
+        "formula": null
+      },
+      {
+        "name": "dow_cos",
+        "category": "时间特征",
+        "description": "星期余弦编码",
+        "formula": null
+      },
+      {
+        "name": "time_period",
+        "category": "时间特征",
+        "description": "时段 (1=早高峰,2=上午,3=午间,4=下午,5=晚高峰,6=晚间,7=夜间)",
+        "formula": null
+      },
+      {
+        "name": "is_work_hour",
+        "category": "时间特征",
+        "description": "是否工作时间 (8:00-18:00)",
+        "formula": null
+      },
+      {
+        "name": "is_commute_hour",
+        "category": "时间特征",
+        "description": "是否通勤时间",
+        "formula": null
+      }
+    ],
+    "滞后特征": [
+      {
+        "name": "AQI_lag_1h",
+        "category": "滞后特征",
+        "description": "AQI 的 1 小时滞后值",
+        "formula": "shift(1)"
+      },
+      {
+        "name": "AQI_lag_3h",
+        "category": "滞后特征",
+        "description": "AQI 的 3 小时滞后值",
+        "formula": "shift(3)"
+      },
+      {
+        "name": "AQI_lag_6h",
+        "category": "滞后特征",
+        "description": "AQI 的 6 小时滞后值",
+        "formula": "shift(6)"
+      },
+      {
+        "name": "AQI_lag_12h",
+        "category": "滞后特征",
+        "description": "AQI 的 12 小时滞后值",
+        "formula": "shift(12)"
+      },
+      {
+        "name": "AQI_lag_24h",
+        "category": "滞后特征",
+        "description": "AQI 的 24 小时滞后值",
+        "formula": "shift(24)"
+      },
+      {
+        "name": "AQI_lag_48h",
+        "category": "滞后特征",
+        "description": "AQI 的 48 小时滞后值",
+        "formula": "shift(48)"
+      },
+      {
+        "name": "PM2.5_lag_1h",
+        "category": "滞后特征",
+        "description": "PM2.5 的 1 小时滞后值",
+        "formula": "shift(1)"
+      },
+      {
+        "name": "PM2.5_lag_3h",
+        "category": "滞后特征",
+        "description": "PM2.5 的 3 小时滞后值",
+        "formula": "shift(3)"
+      },
+      {
+        "name": "PM2.5_lag_6h",
+        "category": "滞后特征",
+        "description": "PM2.5 的 6 小时滞后值",
+        "formula": "shift(6)"
+      },
+      {
+        "name": "PM2.5_lag_12h",
+        "category": "滞后特征",
+        "description": "PM2.5 的 12 小时滞后值",
+        "formula": "shift(12)"
+      },
+      {
+        "name": "PM2.5_lag_24h",
+        "category": "滞后特征",
+        "description": "PM2.5 的 24 小时滞后值",
+        "formula": "shift(24)"
+      },
+      {
+        "name": "PM2.5_lag_48h",
+        "category": "滞后特征",
+        "description": "PM2.5 的 48 小时滞后值",
+        "formula": "shift(48)"
+      },
+      {
+        "name": "PM10_lag_1h",
+        "category": "滞后特征",
+        "description": "PM10 的 1 小时滞后值",
+        "formula": "shift(1)"
+      },
+      {
+        "name": "PM10_lag_3h",
+        "category": "滞后特征",
+        "description": "PM10 的 3 小时滞后值",
+        "formula": "shift(3)"
+      },
+      {
+        "name": "PM10_lag_6h",
+        "category": "滞后特征",
+        "description": "PM10 的 6 小时滞后值",
+        "formula": "shift(6)"
+      },
+      {
+        "name": "PM10_lag_12h",
+        "category": "滞后特征",
+        "description": "PM10 的 12 小时滞后值",
+        "formula": "shift(12)"
+      },
+      {
+        "name": "PM10_lag_24h",
+        "category": "滞后特征",
+        "description": "PM10 的 24 小时滞后值",
+        "formula": "shift(24)"
+      },
+      {
+        "name": "PM10_lag_48h",
+        "category": "滞后特征",
+        "description": "PM10 的 48 小时滞后值",
+        "formula": "shift(48)"
+      },
+      {
+        "name": "temperature_2m_lag_1h",
+        "category": "滞后特征",
+        "description": "temperature_2m 的 1 小时滞后值",
+        "formula": "shift(1)"
+      },
+      {
+        "name": "temperature_2m_lag_3h",
+        "category": "滞后特征",
+        "description": "temperature_2m 的 3 小时滞后值",
+        "formula": "shift(3)"
+      },
+      {
+        "name": "temperature_2m_lag_6h",
+        "category": "滞后特征",
+        "description": "temperature_2m 的 6 小时滞后值",
+        "formula": "shift(6)"
+      },
+      {
+        "name": "relative_humidity_2m_lag_1h",
+        "category": "滞后特征",
+        "description": "relative_humidity_2m 的 1 小时滞后值",
+        "formula": "shift(1)"
+      },
+      {
+        "name": "relative_humidity_2m_lag_3h",
+        "category": "滞后特征",
+        "description": "relative_humidity_2m 的 3 小时滞后值",
+        "formula": "shift(3)"
+      },
+      {
+        "name": "relative_humidity_2m_lag_6h",
+        "category": "滞后特征",
+        "description": "relative_humidity_2m 的 6 小时滞后值",
+        "formula": "shift(6)"
+      },
+      {
+        "name": "wind_speed_10m_lag_1h",
+        "category": "滞后特征",
+        "description": "wind_speed_10m 的 1 小时滞后值",
+        "formula": "shift(1)"
+      },
+      {
+        "name": "wind_speed_10m_lag_3h",
+        "category": "滞后特征",
+        "description": "wind_speed_10m 的 3 小时滞后值",
+        "formula": "shift(3)"
+      },
+      {
+        "name": "wind_speed_10m_lag_6h",
+        "category": "滞后特征",
+        "description": "wind_speed_10m 的 6 小时滞后值",
+        "formula": "shift(6)"
+      },
+      {
+        "name": "surface_pressure_lag_1h",
+        "category": "滞后特征",
+        "description": "surface_pressure 的 1 小时滞后值",
+        "formula": "shift(1)"
+      },
+      {
+        "name": "surface_pressure_lag_3h",
+        "category": "滞后特征",
+        "description": "surface_pressure 的 3 小时滞后值",
+        "formula": "shift(3)"
+      },
+      {
+        "name": "surface_pressure_lag_6h",
+        "category": "滞后特征",
+        "description": "surface_pressure 的 6 小时滞后值",
+        "formula": "shift(6)"
+      }
+    ],
+    "滚动统计": [
+      {
+        "name": "AQI_rolling_mean_6h",
+        "category": "滚动统计",
+        "description": "AQI 的 6 小时滚动均值",
+        "formula": null
+      },
+      {
+        "name": "AQI_rolling_std_6h",
+        "category": "滚动统计",
+        "description": "AQI 的 6 小时滚动标准差",
+        "formula": null
+      },
+      {
+        "name": "AQI_rolling_max_6h",
+        "category": "滚动统计",
+        "description": "AQI 的 6 小时滚动最大值",
+        "formula": null
+      },
+      {
+        "name": "AQI_rolling_min_6h",
+        "category": "滚动统计",
+        "description": "AQI 的 6 小时滚动最小值",
+        "formula": null
+      },
+      {
+        "name": "AQI_rolling_mean_12h",
+        "category": "滚动统计",
+        "description": "AQI 的 12 小时滚动均值",
+        "formula": null
+      },
+      {
+        "name": "AQI_rolling_std_12h",
+        "category": "滚动统计",
+        "description": "AQI 的 12 小时滚动标准差",
+        "formula": null
+      },
+      {
+        "name": "AQI_rolling_max_12h",
+        "category": "滚动统计",
+        "description": "AQI 的 12 小时滚动最大值",
+        "formula": null
+      },
+      {
+        "name": "AQI_rolling_min_12h",
+        "category": "滚动统计",
+        "description": "AQI 的 12 小时滚动最小值",
+        "formula": null
+      },
+      {
+        "name": "AQI_rolling_mean_24h",
+        "category": "滚动统计",
+        "description": "AQI 的 24 小时滚动均值",
+        "formula": null
+      },
+      {
+        "name": "AQI_rolling_std_24h",
+        "category": "滚动统计",
+        "description": "AQI 的 24 小时滚动标准差",
+        "formula": null
+      },
+      {
+        "name": "AQI_rolling_max_24h",
+        "category": "滚动统计",
+        "description": "AQI 的 24 小时滚动最大值",
+        "formula": null
+      },
+      {
+        "name": "AQI_rolling_min_24h",
+        "category": "滚动统计",
+        "description": "AQI 的 24 小时滚动最小值",
+        "formula": null
+      },
+      {
+        "name": "AQI_rolling_mean_48h",
+        "category": "滚动统计",
+        "description": "AQI 的 48 小时滚动均值",
+        "formula": null
+      },
+      {
+        "name": "AQI_rolling_std_48h",
+        "category": "滚动统计",
+        "description": "AQI 的 48 小时滚动标准差",
+        "formula": null
+      },
+      {
+        "name": "AQI_rolling_max_48h",
+        "category": "滚动统计",
+        "description": "AQI 的 48 小时滚动最大值",
+        "formula": null
+      },
+      {
+        "name": "AQI_rolling_min_48h",
+        "category": "滚动统计",
+        "description": "AQI 的 48 小时滚动最小值",
+        "formula": null
+      },
+      {
+        "name": "PM2.5_rolling_mean_6h",
+        "category": "滚动统计",
+        "description": "PM2.5 的 6 小时滚动均值",
+        "formula": null
+      },
+      {
+        "name": "PM2.5_rolling_std_6h",
+        "category": "滚动统计",
+        "description": "PM2.5 的 6 小时滚动标准差",
+        "formula": null
+      },
+      {
+        "name": "PM2.5_rolling_max_6h",
+        "category": "滚动统计",
+        "description": "PM2.5 的 6 小时滚动最大值",
+        "formula": null
+      },
+      {
+        "name": "PM2.5_rolling_min_6h",
+        "category": "滚动统计",
+        "description": "PM2.5 的 6 小时滚动最小值",
+        "formula": null
+      },
+      {
+        "name": "PM2.5_rolling_mean_12h",
+        "category": "滚动统计",
+        "description": "PM2.5 的 12 小时滚动均值",
+        "formula": null
+      },
+      {
+        "name": "PM2.5_rolling_std_12h",
+        "category": "滚动统计",
+        "description": "PM2.5 的 12 小时滚动标准差",
+        "formula": null
+      },
+      {
+        "name": "PM2.5_rolling_max_12h",
+        "category": "滚动统计",
+        "description": "PM2.5 的 12 小时滚动最大值",
+        "formula": null
+      },
+      {
+        "name": "PM2.5_rolling_min_12h",
+        "category": "滚动统计",
+        "description": "PM2.5 的 12 小时滚动最小值",
+        "formula": null
+      },
+      {
+        "name": "PM2.5_rolling_mean_24h",
+        "category": "滚动统计",
+        "description": "PM2.5 的 24 小时滚动均值",
+        "formula": null
+      },
+      {
+        "name": "PM2.5_rolling_std_24h",
+        "category": "滚动统计",
+        "description": "PM2.5 的 24 小时滚动标准差",
+        "formula": null
+      },
+      {
+        "name": "PM2.5_rolling_max_24h",
+        "category": "滚动统计",
+        "description": "PM2.5 的 24 小时滚动最大值",
+        "formula": null
+      },
+      {
+        "name": "PM2.5_rolling_min_24h",
+        "category": "滚动统计",
+        "description": "PM2.5 的 24 小时滚动最小值",
+        "formula": null
+      },
+      {
+        "name": "PM2.5_rolling_mean_48h",
+        "category": "滚动统计",
+        "description": "PM2.5 的 48 小时滚动均值",
+        "formula": null
+      },
+      {
+        "name": "PM2.5_rolling_std_48h",
+        "category": "滚动统计",
+        "description": "PM2.5 的 48 小时滚动标准差",
+        "formula": null
+      },
+      {
+        "name": "PM2.5_rolling_max_48h",
+        "category": "滚动统计",
+        "description": "PM2.5 的 48 小时滚动最大值",
+        "formula": null
+      },
+      {
+        "name": "PM2.5_rolling_min_48h",
+        "category": "滚动统计",
+        "description": "PM2.5 的 48 小时滚动最小值",
+        "formula": null
+      }
+    ],
+    "变化率": [
+      {
+        "name": "AQI_change_1h",
+        "category": "变化率",
+        "description": "AQI 的 1 小时变化量",
+        "formula": null
+      },
+      {
+        "name": "AQI_pct_change_1h",
+        "category": "变化率",
+        "description": "AQI 的 1 小时变化百分比",
+        "formula": null
+      },
+      {
+        "name": "AQI_change_3h",
+        "category": "变化率",
+        "description": "AQI 的 3 小时变化量",
+        "formula": null
+      },
+      {
+        "name": "AQI_pct_change_3h",
+        "category": "变化率",
+        "description": "AQI 的 3 小时变化百分比",
+        "formula": null
+      },
+      {
+        "name": "AQI_change_6h",
+        "category": "变化率",
+        "description": "AQI 的 6 小时变化量",
+        "formula": null
+      },
+      {
+        "name": "AQI_pct_change_6h",
+        "category": "变化率",
+        "description": "AQI 的 6 小时变化百分比",
+        "formula": null
+      },
+      {
+        "name": "AQI_change_24h",
+        "category": "变化率",
+        "description": "AQI 的 24 小时变化量",
+        "formula": null
+      },
+      {
+        "name": "AQI_pct_change_24h",
+        "category": "变化率",
+        "description": "AQI 的 24 小时变化百分比",
+        "formula": null
+      },
+      {
+        "name": "PM2.5_change_1h",
+        "category": "变化率",
+        "description": "PM2.5 的 1 小时变化量",
+        "formula": null
+      },
+      {
+        "name": "PM2.5_pct_change_1h",
+        "category": "变化率",
+        "description": "PM2.5 的 1 小时变化百分比",
+        "formula": null
+      },
+      {
+        "name": "PM2.5_change_3h",
+        "category": "变化率",
+        "description": "PM2.5 的 3 小时变化量",
+        "formula": null
+      },
+      {
+        "name": "PM2.5_pct_change_3h",
+        "category": "变化率",
+        "description": "PM2.5 的 3 小时变化百分比",
+        "formula": null
+      },
+      {
+        "name": "PM2.5_change_6h",
+        "category": "变化率",
+        "description": "PM2.5 的 6 小时变化量",
+        "formula": null
+      },
+      {
+        "name": "PM2.5_pct_change_6h",
+        "category": "变化率",
+        "description": "PM2.5 的 6 小时变化百分比",
+        "formula": null
+      },
+      {
+        "name": "PM2.5_change_24h",
+        "category": "变化率",
+        "description": "PM2.5 的 24 小时变化量",
+        "formula": null
+      },
+      {
+        "name": "PM2.5_pct_change_24h",
+        "category": "变化率",
+        "description": "PM2.5 的 24 小时变化百分比",
+        "formula": null
+      },
+      {
+        "name": "temperature_2m_change_1h",
+        "category": "变化率",
+        "description": "temperature_2m 的 1 小时变化量",
+        "formula": null
+      },
+      {
+        "name": "temperature_2m_pct_change_1h",
+        "category": "变化率",
+        "description": "temperature_2m 的 1 小时变化百分比",
+        "formula": null
+      },
+      {
+        "name": "temperature_2m_change_3h",
+        "category": "变化率",
+        "description": "temperature_2m 的 3 小时变化量",
+        "formula": null
+      },
+      {
+        "name": "temperature_2m_pct_change_3h",
+        "category": "变化率",
+        "description": "temperature_2m 的 3 小时变化百分比",
+        "formula": null
+      },
+      {
+        "name": "temperature_2m_change_6h",
+        "category": "变化率",
+        "description": "temperature_2m 的 6 小时变化量",
+        "formula": null
+      },
+      {
+        "name": "temperature_2m_pct_change_6h",
+        "category": "变化率",
+        "description": "temperature_2m 的 6 小时变化百分比",
+        "formula": null
+      },
+      {
+        "name": "temperature_2m_change_24h",
+        "category": "变化率",
+        "description": "temperature_2m 的 24 小时变化量",
+        "formula": null
+      },
+      {
+        "name": "temperature_2m_pct_change_24h",
+        "category": "变化率",
+        "description": "temperature_2m 的 24 小时变化百分比",
+        "formula": null
+      },
+      {
+        "name": "relative_humidity_2m_change_1h",
+        "category": "变化率",
+        "description": "relative_humidity_2m 的 1 小时变化量",
+        "formula": null
+      },
+      {
+        "name": "relative_humidity_2m_pct_change_1h",
+        "category": "变化率",
+        "description": "relative_humidity_2m 的 1 小时变化百分比",
+        "formula": null
+      },
+      {
+        "name": "relative_humidity_2m_change_3h",
+        "category": "变化率",
+        "description": "relative_humidity_2m 的 3 小时变化量",
+        "formula": null
+      },
+      {
+        "name": "relative_humidity_2m_pct_change_3h",
+        "category": "变化率",
+        "description": "relative_humidity_2m 的 3 小时变化百分比",
+        "formula": null
+      },
+      {
+        "name": "relative_humidity_2m_change_6h",
+        "category": "变化率",
+        "description": "relative_humidity_2m 的 6 小时变化量",
+        "formula": null
+      },
+      {
+        "name": "relative_humidity_2m_pct_change_6h",
+        "category": "变化率",
+        "description": "relative_humidity_2m 的 6 小时变化百分比",
+        "formula": null
+      },
+      {
+        "name": "relative_humidity_2m_change_24h",
+        "category": "变化率",
+        "description": "relative_humidity_2m 的 24 小时变化量",
+        "formula": null
+      },
+      {
+        "name": "relative_humidity_2m_pct_change_24h",
+        "category": "变化率",
+        "description": "relative_humidity_2m 的 24 小时变化百分比",
+        "formula": null
+      }
+    ],
+    "气象交互": [
+      {
+        "name": "apparent_temp",
+        "category": "气象交互",
+        "description": "体感温度",
+        "formula": null
+      },
+      {
+        "name": "temp_humidity_product",
+        "category": "气象交互",
+        "description": "温度×湿度",
+        "formula": null
+      },
+      {
+        "name": "wind_u",
+        "category": "气象交互",
+        "description": "东西风分量 (正=东风)",
+        "formula": null
+      },
+      {
+        "name": "wind_v",
+        "category": "气象交互",
+        "description": "南北风分量 (正=北风)",
+        "formula": null
+      },
+      {
+        "name": "pressure_change_3h",
+        "category": "气象交互",
+        "description": "3小时气压变化",
+        "formula": null
+      },
+      {
+        "name": "pressure_change_6h",
+        "category": "气象交互",
+        "description": "6小时气压变化",
+        "formula": null
+      },
+      {
+        "name": "is_raining",
+        "category": "气象交互",
+        "description": "是否降雨",
+        "formula": null
+      },
+      {
+        "name": "rain_intensity",
+        "category": "气象交互",
+        "description": "降雨强度等级",
+        "formula": null
+      }
+    ],
+    "代理变量": [
+      {
+        "name": "temp_inversion_proxy",
+        "category": "代理变量",
+        "description": "逆温层代理 (日温差)",
+        "formula": null
+      },
+      {
+        "name": "straw_burning_proxy",
+        "category": "代理变量",
+        "description": "秸秆焚烧代理 (秋收季节)",
+        "formula": null
+      },
+      {
+        "name": "spring_festival_proxy",
+        "category": "代理变量",
+        "description": "春节烟花代理",
+        "formula": null
+      },
+      {
+        "name": "heating_season",
+        "category": "代理变量",
+        "description": "供暖季标记",
+        "formula": null
+      }
+    ],
+    "上风向城市": [
+      {
+        "name": "南京_aqi_lag_3h",
+        "category": "上风向城市",
+        "description": "南京 AQI 的 3 小时滞后",
+        "formula": null
+      },
+      {
+        "name": "南京_aqi_lag_6h",
+        "category": "上风向城市",
+        "description": "南京 AQI 的 6 小时滞后",
+        "formula": null
+      },
+      {
+        "name": "南京_aqi_lag_12h",
+        "category": "上风向城市",
+        "description": "南京 AQI 的 12 小时滞后",
+        "formula": null
+      },
+      {
+        "name": "镇江_aqi_lag_3h",
+        "category": "上风向城市",
+        "description": "镇江 AQI 的 3 小时滞后",
+        "formula": null
+      },
+      {
+        "name": "镇江_aqi_lag_6h",
+        "category": "上风向城市",
+        "description": "镇江 AQI 的 6 小时滞后",
+        "formula": null
+      },
+      {
+        "name": "镇江_aqi_lag_12h",
+        "category": "上风向城市",
+        "description": "镇江 AQI 的 12 小时滞后",
+        "formula": null
+      },
+      {
+        "name": "泰州_aqi_lag_3h",
+        "category": "上风向城市",
+        "description": "泰州 AQI 的 3 小时滞后",
+        "formula": null
+      },
+      {
+        "name": "泰州_aqi_lag_6h",
+        "category": "上风向城市",
+        "description": "泰州 AQI 的 6 小时滞后",
+        "formula": null
+      },
+      {
+        "name": "泰州_aqi_lag_12h",
+        "category": "上风向城市",
+        "description": "泰州 AQI 的 12 小时滞后",
+        "formula": null
+      },
+      {
+        "name": "南通_aqi_lag_3h",
+        "category": "上风向城市",
+        "description": "南通 AQI 的 3 小时滞后",
+        "formula": null
+      },
+      {
+        "name": "南通_aqi_lag_6h",
+        "category": "上风向城市",
+        "description": "南通 AQI 的 6 小时滞后",
+        "formula": null
+      },
+      {
+        "name": "南通_aqi_lag_12h",
+        "category": "上风向城市",
+        "description": "南通 AQI 的 12 小时滞后",
+        "formula": null
+      }
+    ]
+  },
+  "features": [
+    {
+      "name": "hour_sin",
+      "category": "时间特征",
+      "description": "小时正弦编码",
+      "formula": null
+    },
+    {
+      "name": "hour_cos",
+      "category": "时间特征",
+      "description": "小时余弦编码",
+      "formula": null
+    },
+    {
+      "name": "month_sin",
+      "category": "时间特征",
+      "description": "月份正弦编码",
+      "formula": null
+    },
+    {
+      "name": "month_cos",
+      "category": "时间特征",
+      "description": "月份余弦编码",
+      "formula": null
+    },
+    {
+      "name": "dow_sin",
+      "category": "时间特征",
+      "description": "星期正弦编码",
+      "formula": null
+    },
+    {
+      "name": "dow_cos",
+      "category": "时间特征",
+      "description": "星期余弦编码",
+      "formula": null
+    },
+    {
+      "name": "time_period",
+      "category": "时间特征",
+      "description": "时段 (1=早高峰,2=上午,3=午间,4=下午,5=晚高峰,6=晚间,7=夜间)",
+      "formula": null
+    },
+    {
+      "name": "is_work_hour",
+      "category": "时间特征",
+      "description": "是否工作时间 (8:00-18:00)",
+      "formula": null
+    },
+    {
+      "name": "is_commute_hour",
+      "category": "时间特征",
+      "description": "是否通勤时间",
+      "formula": null
+    },
+    {
+      "name": "AQI_lag_1h",
+      "category": "滞后特征",
+      "description": "AQI 的 1 小时滞后值",
+      "formula": "shift(1)"
+    },
+    {
+      "name": "AQI_lag_3h",
+      "category": "滞后特征",
+      "description": "AQI 的 3 小时滞后值",
+      "formula": "shift(3)"
+    },
+    {
+      "name": "AQI_lag_6h",
+      "category": "滞后特征",
+      "description": "AQI 的 6 小时滞后值",
+      "formula": "shift(6)"
+    },
+    {
+      "name": "AQI_lag_12h",
+      "category": "滞后特征",
+      "description": "AQI 的 12 小时滞后值",
+      "formula": "shift(12)"
+    },
+    {
+      "name": "AQI_lag_24h",
+      "category": "滞后特征",
+      "description": "AQI 的 24 小时滞后值",
+      "formula": "shift(24)"
+    },
+    {
+      "name": "AQI_lag_48h",
+      "category": "滞后特征",
+      "description": "AQI 的 48 小时滞后值",
+      "formula": "shift(48)"
+    },
+    {
+      "name": "PM2.5_lag_1h",
+      "category": "滞后特征",
+      "description": "PM2.5 的 1 小时滞后值",
+      "formula": "shift(1)"
+    },
+    {
+      "name": "PM2.5_lag_3h",
+      "category": "滞后特征",
+      "description": "PM2.5 的 3 小时滞后值",
+      "formula": "shift(3)"
+    },
+    {
+      "name": "PM2.5_lag_6h",
+      "category": "滞后特征",
+      "description": "PM2.5 的 6 小时滞后值",
+      "formula": "shift(6)"
+    },
+    {
+      "name": "PM2.5_lag_12h",
+      "category": "滞后特征",
+      "description": "PM2.5 的 12 小时滞后值",
+      "formula": "shift(12)"
+    },
+    {
+      "name": "PM2.5_lag_24h",
+      "category": "滞后特征",
+      "description": "PM2.5 的 24 小时滞后值",
+      "formula": "shift(24)"
+    },
+    {
+      "name": "PM2.5_lag_48h",
+      "category": "滞后特征",
+      "description": "PM2.5 的 48 小时滞后值",
+      "formula": "shift(48)"
+    },
+    {
+      "name": "PM10_lag_1h",
+      "category": "滞后特征",
+      "description": "PM10 的 1 小时滞后值",
+      "formula": "shift(1)"
+    },
+    {
+      "name": "PM10_lag_3h",
+      "category": "滞后特征",
+      "description": "PM10 的 3 小时滞后值",
+      "formula": "shift(3)"
+    },
+    {
+      "name": "PM10_lag_6h",
+      "category": "滞后特征",
+      "description": "PM10 的 6 小时滞后值",
+      "formula": "shift(6)"
+    },
+    {
+      "name": "PM10_lag_12h",
+      "category": "滞后特征",
+      "description": "PM10 的 12 小时滞后值",
+      "formula": "shift(12)"
+    },
+    {
+      "name": "PM10_lag_24h",
+      "category": "滞后特征",
+      "description": "PM10 的 24 小时滞后值",
+      "formula": "shift(24)"
+    },
+    {
+      "name": "PM10_lag_48h",
+      "category": "滞后特征",
+      "description": "PM10 的 48 小时滞后值",
+      "formula": "shift(48)"
+    },
+    {
+      "name": "temperature_2m_lag_1h",
+      "category": "滞后特征",
+      "description": "temperature_2m 的 1 小时滞后值",
+      "formula": "shift(1)"
+    },
+    {
+      "name": "temperature_2m_lag_3h",
+      "category": "滞后特征",
+      "description": "temperature_2m 的 3 小时滞后值",
+      "formula": "shift(3)"
+    },
+    {
+      "name": "temperature_2m_lag_6h",
+      "category": "滞后特征",
+      "description": "temperature_2m 的 6 小时滞后值",
+      "formula": "shift(6)"
+    },
+    {
+      "name": "relative_humidity_2m_lag_1h",
+      "category": "滞后特征",
+      "description": "relative_humidity_2m 的 1 小时滞后值",
+      "formula": "shift(1)"
+    },
+    {
+      "name": "relative_humidity_2m_lag_3h",
+      "category": "滞后特征",
+      "description": "relative_humidity_2m 的 3 小时滞后值",
+      "formula": "shift(3)"
+    },
+    {
+      "name": "relative_humidity_2m_lag_6h",
+      "category": "滞后特征",
+      "description": "relative_humidity_2m 的 6 小时滞后值",
+      "formula": "shift(6)"
+    },
+    {
+      "name": "wind_speed_10m_lag_1h",
+      "category": "滞后特征",
+      "description": "wind_speed_10m 的 1 小时滞后值",
+      "formula": "shift(1)"
+    },
+    {
+      "name": "wind_speed_10m_lag_3h",
+      "category": "滞后特征",
+      "description": "wind_speed_10m 的 3 小时滞后值",
+      "formula": "shift(3)"
+    },
+    {
+      "name": "wind_speed_10m_lag_6h",
+      "category": "滞后特征",
+      "description": "wind_speed_10m 的 6 小时滞后值",
+      "formula": "shift(6)"
+    },
+    {
+      "name": "surface_pressure_lag_1h",
+      "category": "滞后特征",
+      "description": "surface_pressure 的 1 小时滞后值",
+      "formula": "shift(1)"
+    },
+    {
+      "name": "surface_pressure_lag_3h",
+      "category": "滞后特征",
+      "description": "surface_pressure 的 3 小时滞后值",
+      "formula": "shift(3)"
+    },
+    {
+      "name": "surface_pressure_lag_6h",
+      "category": "滞后特征",
+      "description": "surface_pressure 的 6 小时滞后值",
+      "formula": "shift(6)"
+    },
+    {
+      "name": "AQI_rolling_mean_6h",
+      "category": "滚动统计",
+      "description": "AQI 的 6 小时滚动均值",
+      "formula": null
+    },
+    {
+      "name": "AQI_rolling_std_6h",
+      "category": "滚动统计",
+      "description": "AQI 的 6 小时滚动标准差",
+      "formula": null
+    },
+    {
+      "name": "AQI_rolling_max_6h",
+      "category": "滚动统计",
+      "description": "AQI 的 6 小时滚动最大值",
+      "formula": null
+    },
+    {
+      "name": "AQI_rolling_min_6h",
+      "category": "滚动统计",
+      "description": "AQI 的 6 小时滚动最小值",
+      "formula": null
+    },
+    {
+      "name": "AQI_rolling_mean_12h",
+      "category": "滚动统计",
+      "description": "AQI 的 12 小时滚动均值",
+      "formula": null
+    },
+    {
+      "name": "AQI_rolling_std_12h",
+      "category": "滚动统计",
+      "description": "AQI 的 12 小时滚动标准差",
+      "formula": null
+    },
+    {
+      "name": "AQI_rolling_max_12h",
+      "category": "滚动统计",
+      "description": "AQI 的 12 小时滚动最大值",
+      "formula": null
+    },
+    {
+      "name": "AQI_rolling_min_12h",
+      "category": "滚动统计",
+      "description": "AQI 的 12 小时滚动最小值",
+      "formula": null
+    },
+    {
+      "name": "AQI_rolling_mean_24h",
+      "category": "滚动统计",
+      "description": "AQI 的 24 小时滚动均值",
+      "formula": null
+    },
+    {
+      "name": "AQI_rolling_std_24h",
+      "category": "滚动统计",
+      "description": "AQI 的 24 小时滚动标准差",
+      "formula": null
+    },
+    {
+      "name": "AQI_rolling_max_24h",
+      "category": "滚动统计",
+      "description": "AQI 的 24 小时滚动最大值",
+      "formula": null
+    },
+    {
+      "name": "AQI_rolling_min_24h",
+      "category": "滚动统计",
+      "description": "AQI 的 24 小时滚动最小值",
+      "formula": null
+    },
+    {
+      "name": "AQI_rolling_mean_48h",
+      "category": "滚动统计",
+      "description": "AQI 的 48 小时滚动均值",
+      "formula": null
+    },
+    {
+      "name": "AQI_rolling_std_48h",
+      "category": "滚动统计",
+      "description": "AQI 的 48 小时滚动标准差",
+      "formula": null
+    },
+    {
+      "name": "AQI_rolling_max_48h",
+      "category": "滚动统计",
+      "description": "AQI 的 48 小时滚动最大值",
+      "formula": null
+    },
+    {
+      "name": "AQI_rolling_min_48h",
+      "category": "滚动统计",
+      "description": "AQI 的 48 小时滚动最小值",
+      "formula": null
+    },
+    {
+      "name": "PM2.5_rolling_mean_6h",
+      "category": "滚动统计",
+      "description": "PM2.5 的 6 小时滚动均值",
+      "formula": null
+    },
+    {
+      "name": "PM2.5_rolling_std_6h",
+      "category": "滚动统计",
+      "description": "PM2.5 的 6 小时滚动标准差",
+      "formula": null
+    },
+    {
+      "name": "PM2.5_rolling_max_6h",
+      "category": "滚动统计",
+      "description": "PM2.5 的 6 小时滚动最大值",
+      "formula": null
+    },
+    {
+      "name": "PM2.5_rolling_min_6h",
+      "category": "滚动统计",
+      "description": "PM2.5 的 6 小时滚动最小值",
+      "formula": null
+    },
+    {
+      "name": "PM2.5_rolling_mean_12h",
+      "category": "滚动统计",
+      "description": "PM2.5 的 12 小时滚动均值",
+      "formula": null
+    },
+    {
+      "name": "PM2.5_rolling_std_12h",
+      "category": "滚动统计",
+      "description": "PM2.5 的 12 小时滚动标准差",
+      "formula": null
+    },
+    {
+      "name": "PM2.5_rolling_max_12h",
+      "category": "滚动统计",
+      "description": "PM2.5 的 12 小时滚动最大值",
+      "formula": null
+    },
+    {
+      "name": "PM2.5_rolling_min_12h",
+      "category": "滚动统计",
+      "description": "PM2.5 的 12 小时滚动最小值",
+      "formula": null
+    },
+    {
+      "name": "PM2.5_rolling_mean_24h",
+      "category": "滚动统计",
+      "description": "PM2.5 的 24 小时滚动均值",
+      "formula": null
+    },
+    {
+      "name": "PM2.5_rolling_std_24h",
+      "category": "滚动统计",
+      "description": "PM2.5 的 24 小时滚动标准差",
+      "formula": null
+    },
+    {
+      "name": "PM2.5_rolling_max_24h",
+      "category": "滚动统计",
+      "description": "PM2.5 的 24 小时滚动最大值",
+      "formula": null
+    },
+    {
+      "name": "PM2.5_rolling_min_24h",
+      "category": "滚动统计",
+      "description": "PM2.5 的 24 小时滚动最小值",
+      "formula": null
+    },
+    {
+      "name": "PM2.5_rolling_mean_48h",
+      "category": "滚动统计",
+      "description": "PM2.5 的 48 小时滚动均值",
+      "formula": null
+    },
+    {
+      "name": "PM2.5_rolling_std_48h",
+      "category": "滚动统计",
+      "description": "PM2.5 的 48 小时滚动标准差",
+      "formula": null
+    },
+    {
+      "name": "PM2.5_rolling_max_48h",
+      "category": "滚动统计",
+      "description": "PM2.5 的 48 小时滚动最大值",
+      "formula": null
+    },
+    {
+      "name": "PM2.5_rolling_min_48h",
+      "category": "滚动统计",
+      "description": "PM2.5 的 48 小时滚动最小值",
+      "formula": null
+    },
+    {
+      "name": "AQI_change_1h",
+      "category": "变化率",
+      "description": "AQI 的 1 小时变化量",
+      "formula": null
+    },
+    {
+      "name": "AQI_pct_change_1h",
+      "category": "变化率",
+      "description": "AQI 的 1 小时变化百分比",
+      "formula": null
+    },
+    {
+      "name": "AQI_change_3h",
+      "category": "变化率",
+      "description": "AQI 的 3 小时变化量",
+      "formula": null
+    },
+    {
+      "name": "AQI_pct_change_3h",
+      "category": "变化率",
+      "description": "AQI 的 3 小时变化百分比",
+      "formula": null
+    },
+    {
+      "name": "AQI_change_6h",
+      "category": "变化率",
+      "description": "AQI 的 6 小时变化量",
+      "formula": null
+    },
+    {
+      "name": "AQI_pct_change_6h",
+      "category": "变化率",
+      "description": "AQI 的 6 小时变化百分比",
+      "formula": null
+    },
+    {
+      "name": "AQI_change_24h",
+      "category": "变化率",
+      "description": "AQI 的 24 小时变化量",
+      "formula": null
+    },
+    {
+      "name": "AQI_pct_change_24h",
+      "category": "变化率",
+      "description": "AQI 的 24 小时变化百分比",
+      "formula": null
+    },
+    {
+      "name": "PM2.5_change_1h",
+      "category": "变化率",
+      "description": "PM2.5 的 1 小时变化量",
+      "formula": null
+    },
+    {
+      "name": "PM2.5_pct_change_1h",
+      "category": "变化率",
+      "description": "PM2.5 的 1 小时变化百分比",
+      "formula": null
+    },
+    {
+      "name": "PM2.5_change_3h",
+      "category": "变化率",
+      "description": "PM2.5 的 3 小时变化量",
+      "formula": null
+    },
+    {
+      "name": "PM2.5_pct_change_3h",
+      "category": "变化率",
+      "description": "PM2.5 的 3 小时变化百分比",
+      "formula": null
+    },
+    {
+      "name": "PM2.5_change_6h",
+      "category": "变化率",
+      "description": "PM2.5 的 6 小时变化量",
+      "formula": null
+    },
+    {
+      "name": "PM2.5_pct_change_6h",
+      "category": "变化率",
+      "description": "PM2.5 的 6 小时变化百分比",
+      "formula": null
+    },
+    {
+      "name": "PM2.5_change_24h",
+      "category": "变化率",
+      "description": "PM2.5 的 24 小时变化量",
+      "formula": null
+    },
+    {
+      "name": "PM2.5_pct_change_24h",
+      "category": "变化率",
+      "description": "PM2.5 的 24 小时变化百分比",
+      "formula": null
+    },
+    {
+      "name": "temperature_2m_change_1h",
+      "category": "变化率",
+      "description": "temperature_2m 的 1 小时变化量",
+      "formula": null
+    },
+    {
+      "name": "temperature_2m_pct_change_1h",
+      "category": "变化率",
+      "description": "temperature_2m 的 1 小时变化百分比",
+      "formula": null
+    },
+    {
+      "name": "temperature_2m_change_3h",
+      "category": "变化率",
+      "description": "temperature_2m 的 3 小时变化量",
+      "formula": null
+    },
+    {
+      "name": "temperature_2m_pct_change_3h",
+      "category": "变化率",
+      "description": "temperature_2m 的 3 小时变化百分比",
+      "formula": null
+    },
+    {
+      "name": "temperature_2m_change_6h",
+      "category": "变化率",
+      "description": "temperature_2m 的 6 小时变化量",
+      "formula": null
+    },
+    {
+      "name": "temperature_2m_pct_change_6h",
+      "category": "变化率",
+      "description": "temperature_2m 的 6 小时变化百分比",
+      "formula": null
+    },
+    {
+      "name": "temperature_2m_change_24h",
+      "category": "变化率",
+      "description": "temperature_2m 的 24 小时变化量",
+      "formula": null
+    },
+    {
+      "name": "temperature_2m_pct_change_24h",
+      "category": "变化率",
+      "description": "temperature_2m 的 24 小时变化百分比",
+      "formula": null
+    },
+    {
+      "name": "relative_humidity_2m_change_1h",
+      "category": "变化率",
+      "description": "relative_humidity_2m 的 1 小时变化量",
+      "formula": null
+    },
+    {
+      "name": "relative_humidity_2m_pct_change_1h",
+      "category": "变化率",
+      "description": "relative_humidity_2m 的 1 小时变化百分比",
+      "formula": null
+    },
+    {
+      "name": "relative_humidity_2m_change_3h",
+      "category": "变化率",
+      "description": "relative_humidity_2m 的 3 小时变化量",
+      "formula": null
+    },
+    {
+      "name": "relative_humidity_2m_pct_change_3h",
+      "category": "变化率",
+      "description": "relative_humidity_2m 的 3 小时变化百分比",
+      "formula": null
+    },
+    {
+      "name": "relative_humidity_2m_change_6h",
+      "category": "变化率",
+      "description": "relative_humidity_2m 的 6 小时变化量",
+      "formula": null
+    },
+    {
+      "name": "relative_humidity_2m_pct_change_6h",
+      "category": "变化率",
+      "description": "relative_humidity_2m 的 6 小时变化百分比",
+      "formula": null
+    },
+    {
+      "name": "relative_humidity_2m_change_24h",
+      "category": "变化率",
+      "description": "relative_humidity_2m 的 24 小时变化量",
+      "formula": null
+    },
+    {
+      "name": "relative_humidity_2m_pct_change_24h",
+      "category": "变化率",
+      "description": "relative_humidity_2m 的 24 小时变化百分比",
+      "formula": null
+    },
+    {
+      "name": "apparent_temp",
+      "category": "气象交互",
+      "description": "体感温度",
+      "formula": null
+    },
+    {
+      "name": "temp_humidity_product",
+      "category": "气象交互",
+      "description": "温度×湿度",
+      "formula": null
+    },
+    {
+      "name": "wind_u",
+      "category": "气象交互",
+      "description": "东西风分量 (正=东风)",
+      "formula": null
+    },
+    {
+      "name": "wind_v",
+      "category": "气象交互",
+      "description": "南北风分量 (正=北风)",
+      "formula": null
+    },
+    {
+      "name": "pressure_change_3h",
+      "category": "气象交互",
+      "description": "3小时气压变化",
+      "formula": null
+    },
+    {
+      "name": "pressure_change_6h",
+      "category": "气象交互",
+      "description": "6小时气压变化",
+      "formula": null
+    },
+    {
+      "name": "is_raining",
+      "category": "气象交互",
+      "description": "是否降雨",
+      "formula": null
+    },
+    {
+      "name": "rain_intensity",
+      "category": "气象交互",
+      "description": "降雨强度等级",
+      "formula": null
+    },
+    {
+      "name": "temp_inversion_proxy",
+      "category": "代理变量",
+      "description": "逆温层代理 (日温差)",
+      "formula": null
+    },
+    {
+      "name": "straw_burning_proxy",
+      "category": "代理变量",
+      "description": "秸秆焚烧代理 (秋收季节)",
+      "formula": null
+    },
+    {
+      "name": "spring_festival_proxy",
+      "category": "代理变量",
+      "description": "春节烟花代理",
+      "formula": null
+    },
+    {
+      "name": "heating_season",
+      "category": "代理变量",
+      "description": "供暖季标记",
+      "formula": null
+    },
+    {
+      "name": "南京_aqi_lag_3h",
+      "category": "上风向城市",
+      "description": "南京 AQI 的 3 小时滞后",
+      "formula": null
+    },
+    {
+      "name": "南京_aqi_lag_6h",
+      "category": "上风向城市",
+      "description": "南京 AQI 的 6 小时滞后",
+      "formula": null
+    },
+    {
+      "name": "南京_aqi_lag_12h",
+      "category": "上风向城市",
+      "description": "南京 AQI 的 12 小时滞后",
+      "formula": null
+    },
+    {
+      "name": "镇江_aqi_lag_3h",
+      "category": "上风向城市",
+      "description": "镇江 AQI 的 3 小时滞后",
+      "formula": null
+    },
+    {
+      "name": "镇江_aqi_lag_6h",
+      "category": "上风向城市",
+      "description": "镇江 AQI 的 6 小时滞后",
+      "formula": null
+    },
+    {
+      "name": "镇江_aqi_lag_12h",
+      "category": "上风向城市",
+      "description": "镇江 AQI 的 12 小时滞后",
+      "formula": null
+    },
+    {
+      "name": "泰州_aqi_lag_3h",
+      "category": "上风向城市",
+      "description": "泰州 AQI 的 3 小时滞后",
+      "formula": null
+    },
+    {
+      "name": "泰州_aqi_lag_6h",
+      "category": "上风向城市",
+      "description": "泰州 AQI 的 6 小时滞后",
+      "formula": null
+    },
+    {
+      "name": "泰州_aqi_lag_12h",
+      "category": "上风向城市",
+      "description": "泰州 AQI 的 12 小时滞后",
+      "formula": null
+    },
+    {
+      "name": "南通_aqi_lag_3h",
+      "category": "上风向城市",
+      "description": "南通 AQI 的 3 小时滞后",
+      "formula": null
+    },
+    {
+      "name": "南通_aqi_lag_6h",
+      "category": "上风向城市",
+      "description": "南通 AQI 的 6 小时滞后",
+      "formula": null
+    },
+    {
+      "name": "南通_aqi_lag_12h",
+      "category": "上风向城市",
+      "description": "南通 AQI 的 12 小时滞后",
+      "formula": null
+    }
+  ]
+}

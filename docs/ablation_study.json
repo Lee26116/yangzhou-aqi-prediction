@@ -1,0 +1,40 @@
+{
+  "完整模型": {
+    "features_used": 20,
+    "MAE": 7.6,
+    "RMSE": 10.1,
+    "R2": 0.8388
+  },
+  "去除滞后特征": {
+    "features_removed": 2,
+    "features_used": 18,
+    "MAE": 7.92,
+    "RMSE": 10.55,
+    "R2": 0.8232,
+    "MAE_increase": 0.32
+  },
+  "去除滚动特征": {
+    "features_removed": 4,
+    "features_used": 16,
+    "MAE": 8.78,
+    "RMSE": 11.35,
+    "R2": 0.7823,
+    "MAE_increase": 1.18
+  },
+  "去除气象特征": {
+    "features_removed": 4,
+    "features_used": 16,
+    "MAE": 7.36,
+    "RMSE": 9.98,
+    "R2": 0.8443,
+    "MAE_increase": -0.24
+  },
+  "去除变化率特征": {
+    "features_removed": 9,
+    "features_used": 11,
+    "MAE": 12.56,
+    "RMSE": 16.56,
+    "R2": 0.5399,
+    "MAE_increase": 4.96
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "baseline_models": {
+    "Naive_24h": {
+      "MAE": 23.03,
+      "RMSE": 33.09,
+      "R2": 0.04,
+      "MAPE": 45.56
+    },
+    "MovingAvg_24h": {
+      "MAE": 15.59,
+      "RMSE": 22.01,
+      "R2": 0.5757,
+      "MAPE": 29.99
+    },
+    "ExpSmoothing": {
+      "MAE": 10.5,
+      "RMSE": 15.54,
+      "R2": 0.7884,
+      "MAPE": 19.36
+    }
+  },
+  "main_model": {
+    "MAE": 7.64,
+    "RMSE": 10.33,
+    "R2": 0.8186,
+    "MAPE": 16.65
+  },
+  "improvement": {
+    "vs_naive": 15.39,
+    "vs_moving_avg": 7.95
+  }
+}

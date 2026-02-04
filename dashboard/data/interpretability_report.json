@@ -1,0 +1,834 @@
+{
+  "1": {
+    "horizon_hours": 1,
+    "features": [
+      {
+        "name": "AQI_lag_1h",
+        "display_name": "1h前AQI",
+        "importance": 0.6461736559867859,
+        "correlation": 0.96807864813953,
+        "direction": "+",
+        "interpretation": "1小时前的AQI值，空气质量具有时间惯性",
+        "category": "AQI历史"
+      },
+      {
+        "name": "PM10_current",
+        "display_name": "PM10浓度",
+        "importance": 0.2041795402765274,
+        "correlation": 0.9031670580287546,
+        "direction": "+",
+        "interpretation": "PM10包含粗颗粒物，是AQI的重要组成部分",
+        "category": "污染物"
+      },
+      {
+        "name": "PM2.5_current",
+        "display_name": "PM2.5浓度",
+        "importance": 0.02680157870054245,
+        "correlation": 0.8854503225702347,
+        "direction": "+",
+        "interpretation": "PM2.5是AQI的主要组成部分，直接影响空气质量等级",
+        "category": "污染物"
+      },
+      {
+        "name": "AQI_trend_24h",
+        "display_name": "AQI变化趋势",
+        "importance": 0.01761402003467083,
+        "correlation": 0.45688282750117293,
+        "direction": "+",
+        "interpretation": "正值表示污染加重趋势，负值表示改善趋势",
+        "category": "AQI历史"
+      },
+      {
+        "name": "AQI_rolling_mean_24h",
+        "display_name": "24小时平均AQI",
+        "importance": 0.012291789054870605,
+        "correlation": 0.7706960288706965,
+        "direction": "+",
+        "interpretation": "反映近期整体污染水平，消除短期波动",
+        "category": "AQI历史"
+      },
+      {
+        "name": "temp_daily_range",
+        "display_name": "日温差",
+        "importance": 0.00790430884808302,
+        "correlation": 0.4588666650297276,
+        "direction": "+",
+        "interpretation": "扬州实际规律：日温差大=晴朗天气=高压控制=不利扩散",
+        "category": "气象-扩散"
+      },
+      {
+        "name": "dew_point",
+        "display_name": "露点温度",
+        "importance": 0.007380328606814146,
+        "correlation": -0.38660305889011976,
+        "direction": "-",
+        "interpretation": "高露点反映大气湿润，通常伴随降水天气",
+        "category": "气象-化学"
+      },
+      {
+        "name": "hour_cos",
+        "display_name": "小时周期(cos)",
+        "importance": 0.00704411044716835,
+        "correlation": -0.002767685159259096,
+        "direction": "-",
+        "interpretation": "与hour_sin配合完整表示24小时周期",
+        "category": "时间-周期"
+      },
+      {
+        "name": "month_sin",
+        "display_name": "月份周期(sin)",
+        "importance": 0.006960797589272261,
+        "correlation": 0.3949444748421273,
+        "direction": "+",
+        "interpretation": "捕捉季节性变化",
+        "category": "时间-周期"
+      },
+      {
+        "name": "is_heating_season",
+        "display_name": "供暖季",
+        "importance": 0.00656583346426487,
+        "correlation": 0.4165063515687411,
+        "direction": "+",
+        "interpretation": "11月至3月为供暖季，燃煤排放增加",
+        "category": "时间-排放"
+      },
+      {
+        "name": "humidity",
+        "display_name": "相对湿度",
+        "importance": 0.005926791112869978,
+        "correlation": -0.20768206888448057,
+        "direction": "-",
+        "interpretation": "扬州实际规律：高湿度通常伴随降雨/海洋气团，有利于污染物清除",
+        "category": "气象-化学"
+      },
+      {
+        "name": "month_cos",
+        "display_name": "月份周期(cos)",
+        "importance": 0.005836730357259512,
+        "correlation": 0.3058299457477133,
+        "direction": "+",
+        "interpretation": "与month_sin配合完整表示年周期",
+        "category": "时间-周期"
+      },
+      {
+        "name": "pressure",
+        "display_name": "气压",
+        "importance": 0.005681161768734455,
+        "correlation": 0.21973789005639957,
+        "direction": "+",
+        "interpretation": "高气压通常伴随下沉气流和稳定层结，不利于扩散",
+        "category": "气象-扩散"
+      },
+      {
+        "name": "temperature",
+        "display_name": "温度",
+        "importance": 0.005606521386653185,
+        "correlation": -0.3342460637123205,
+        "direction": "-",
+        "interpretation": "温度影响复杂：高温加速光化学反应，但也促进对流",
+        "category": "气象-化学"
+      },
+      {
+        "name": "wind_speed",
+        "display_name": "风速",
+        "importance": 0.005603230092674494,
+        "correlation": -0.12548063574354562,
+        "direction": "-",
+        "interpretation": "高风速促进污染物扩散，降低AQI（负相关）",
+        "category": "气象-扩散"
+      },
+      {
+        "name": "hour_sin",
+        "display_name": "小时周期(sin)",
+        "importance": 0.005492813419550657,
+        "correlation": 0.021324265892749883,
+        "direction": "+",
+        "interpretation": "捕捉一天中的周期性变化",
+        "category": "时间-周期"
+      },
+      {
+        "name": "pressure_change_24h",
+        "display_name": "气压变化",
+        "importance": 0.005205475725233555,
+        "correlation": -0.1251955336824131,
+        "direction": "-",
+        "interpretation": "气压下降通常意味着天气系统过境，有利于污染物清除",
+        "category": "气象-扩散"
+      },
+      {
+        "name": "is_weekend",
+        "display_name": "周末",
+        "importance": 0.004479225724935532,
+        "correlation": 0.023970830903006373,
+        "direction": "+",
+        "interpretation": "周末工业和交通活动减少，排放降低",
+        "category": "时间-排放"
+      },
+      {
+        "name": "is_high_humidity",
+        "display_name": "高湿度标记",
+        "importance": 0.004252310376614332,
+        "correlation": -0.19713573629872216,
+        "direction": "-",
+        "interpretation": "湿度>80%时通常伴随降雨，冲刷污染物",
+        "category": "气象-化学"
+      },
+      {
+        "name": "AQI_yesterday_same_hour",
+        "display_name": "昨日同期AQI",
+        "importance": 0.0036611584946513176,
+        "correlation": 0.508271921812503,
+        "direction": "+",
+        "interpretation": "空气质量存在日周期性，昨天同一时刻的情况有参考价值",
+        "category": "AQI历史"
+      },
+      {
+        "name": "is_rush_hour",
+        "display_name": "早晚高峰",
+        "importance": 0.0028624716214835644,
+        "correlation": -0.0013466090043278568,
+        "direction": "-",
+        "interpretation": "7-9点和17-19点交通排放增加",
+        "category": "时间-排放"
+      },
+      {
+        "name": "is_low_wind",
+        "display_name": "低风速标记",
+        "importance": 0.002476104535162449,
+        "correlation": 0.015204045958977232,
+        "direction": "+",
+        "interpretation": "风速<2m/s时大气扩散能力弱，污染物容易累积",
+        "category": "气象-扩散"
+      }
+    ],
+    "metrics": {
+      "MAE": 6.025085576587888,
+      "RMSE": 9.22955840589793,
+      "R2": 0.8555881882642996
+    }
+  },
+  "6": {
+    "horizon_hours": 6,
+    "features": [
+      {
+        "name": "AQI_lag_6h",
+        "display_name": "6h前AQI",
+        "importance": 0.2644290030002594,
+        "correlation": 0.7628324339903563,
+        "direction": "+",
+        "interpretation": "6小时前的AQI值，用于6h预测",
+        "category": "AQI历史"
+      },
+      {
+        "name": "PM10_current",
+        "display_name": "PM10浓度",
+        "importance": 0.253868043422699,
+        "correlation": 0.7451612460854409,
+        "direction": "+",
+        "interpretation": "PM10包含粗颗粒物，是AQI的重要组成部分",
+        "category": "污染物"
+      },
+      {
+        "name": "is_heating_season",
+        "display_name": "供暖季",
+        "importance": 0.06179025396704674,
+        "correlation": 0.4165063515687411,
+        "direction": "+",
+        "interpretation": "11月至3月为供暖季，燃煤排放增加",
+        "category": "时间-排放"
+      },
+      {
+        "name": "PM2.5_current",
+        "display_name": "PM2.5浓度",
+        "importance": 0.04376136139035225,
+        "correlation": 0.7375603083845133,
+        "direction": "+",
+        "interpretation": "PM2.5是AQI的主要组成部分，直接影响空气质量等级",
+        "category": "污染物"
+      },
+      {
+        "name": "temp_daily_range",
+        "display_name": "日温差",
+        "importance": 0.031366314738988876,
+        "correlation": 0.47057319256287633,
+        "direction": "+",
+        "interpretation": "扬州实际规律：日温差大=晴朗天气=高压控制=不利扩散",
+        "category": "气象-扩散"
+      },
+      {
+        "name": "hour_sin",
+        "display_name": "小时周期(sin)",
+        "importance": 0.02831832505762577,
+        "correlation": 0.021324265892749883,
+        "direction": "+",
+        "interpretation": "捕捉一天中的周期性变化",
+        "category": "时间-周期"
+      },
+      {
+        "name": "dew_point",
+        "display_name": "露点温度",
+        "importance": 0.027986697852611542,
+        "correlation": -0.39496009690117206,
+        "direction": "-",
+        "interpretation": "高露点反映大气湿润，通常伴随降水天气",
+        "category": "气象-化学"
+      },
+      {
+        "name": "hour_cos",
+        "display_name": "小时周期(cos)",
+        "importance": 0.02675599791109562,
+        "correlation": -0.002767685159259096,
+        "direction": "-",
+        "interpretation": "与hour_sin配合完整表示24小时周期",
+        "category": "时间-周期"
+      },
+      {
+        "name": "month_cos",
+        "display_name": "月份周期(cos)",
+        "importance": 0.02519390545785427,
+        "correlation": 0.3058299457477133,
+        "direction": "+",
+        "interpretation": "与month_sin配合完整表示年周期",
+        "category": "时间-周期"
+      },
+      {
+        "name": "pressure",
+        "display_name": "气压",
+        "importance": 0.024866821244359016,
+        "correlation": 0.21931129208318564,
+        "direction": "+",
+        "interpretation": "高气压通常伴随下沉气流和稳定层结，不利于扩散",
+        "category": "气象-扩散"
+      },
+      {
+        "name": "wind_speed",
+        "display_name": "风速",
+        "importance": 0.02454572170972824,
+        "correlation": -0.17120113571328455,
+        "direction": "-",
+        "interpretation": "高风速促进污染物扩散，降低AQI（负相关）",
+        "category": "气象-扩散"
+      },
+      {
+        "name": "pressure_change_24h",
+        "display_name": "气压变化",
+        "importance": 0.02413901872932911,
+        "correlation": -0.16747334359744034,
+        "direction": "-",
+        "interpretation": "气压下降通常意味着天气系统过境，有利于污染物清除",
+        "category": "气象-扩散"
+      },
+      {
+        "name": "is_high_humidity",
+        "display_name": "高湿度标记",
+        "importance": 0.022240517660975456,
+        "correlation": -0.21179992447747487,
+        "direction": "-",
+        "interpretation": "湿度>80%时通常伴随降雨，冲刷污染物",
+        "category": "气象-化学"
+      },
+      {
+        "name": "month_sin",
+        "display_name": "月份周期(sin)",
+        "importance": 0.021952280774712563,
+        "correlation": 0.3949444748421273,
+        "direction": "+",
+        "interpretation": "捕捉季节性变化",
+        "category": "时间-周期"
+      },
+      {
+        "name": "AQI_rolling_mean_24h",
+        "display_name": "24小时平均AQI",
+        "importance": 0.02090698480606079,
+        "correlation": 0.6717789253869981,
+        "direction": "+",
+        "interpretation": "反映近期整体污染水平，消除短期波动",
+        "category": "AQI历史"
+      },
+      {
+        "name": "is_weekend",
+        "display_name": "周末",
+        "importance": 0.020621225237846375,
+        "correlation": 0.023970830903006373,
+        "direction": "+",
+        "interpretation": "周末工业和交通活动减少，排放降低",
+        "category": "时间-排放"
+      },
+      {
+        "name": "AQI_trend_24h",
+        "display_name": "AQI变化趋势",
+        "importance": 0.01945534721016884,
+        "correlation": 0.322967463846293,
+        "direction": "+",
+        "interpretation": "正值表示污染加重趋势，负值表示改善趋势",
+        "category": "AQI历史"
+      },
+      {
+        "name": "humidity",
+        "display_name": "相对湿度",
+        "importance": 0.015548638068139553,
+        "correlation": -0.22663545221536768,
+        "direction": "-",
+        "interpretation": "扬州实际规律：高湿度通常伴随降雨/海洋气团，有利于污染物清除",
+        "category": "气象-化学"
+      },
+      {
+        "name": "is_rush_hour",
+        "display_name": "早晚高峰",
+        "importance": 0.01464422419667244,
+        "correlation": -0.0013466090043278568,
+        "direction": "-",
+        "interpretation": "7-9点和17-19点交通排放增加",
+        "category": "时间-排放"
+      },
+      {
+        "name": "temperature",
+        "display_name": "温度",
+        "importance": 0.013553899712860584,
+        "correlation": -0.33446615323009027,
+        "direction": "-",
+        "interpretation": "温度影响复杂：高温加速光化学反应，但也促进对流",
+        "category": "气象-化学"
+      },
+      {
+        "name": "AQI_yesterday_same_hour",
+        "display_name": "昨日同期AQI",
+        "importance": 0.012628084979951382,
+        "correlation": 0.4405077787718608,
+        "direction": "+",
+        "interpretation": "空气质量存在日周期性，昨天同一时刻的情况有参考价值",
+        "category": "AQI历史"
+      },
+      {
+        "name": "is_low_wind",
+        "display_name": "低风速标记",
+        "importance": 0.001427319017238915,
+        "correlation": 0.023918305211874605,
+        "direction": "+",
+        "interpretation": "风速<2m/s时大气扩散能力弱，污染物容易累积",
+        "category": "气象-扩散"
+      }
+    ],
+    "metrics": {
+      "MAE": 14.444744514674415,
+      "RMSE": 19.81250245194829,
+      "R2": 0.4066581714846317
+    }
+  },
+  "12": {
+    "horizon_hours": 12,
+    "features": [
+      {
+        "name": "PM10_current",
+        "display_name": "PM10浓度",
+        "importance": 0.3561852276325226,
+        "correlation": 0.6009284883394292,
+        "direction": "+",
+        "interpretation": "PM10包含粗颗粒物，是AQI的重要组成部分",
+        "category": "污染物"
+      },
+      {
+        "name": "PM2.5_current",
+        "display_name": "PM2.5浓度",
+        "importance": 0.07798001170158386,
+        "correlation": 0.6163921738662137,
+        "direction": "+",
+        "interpretation": "PM2.5是AQI的主要组成部分，直接影响空气质量等级",
+        "category": "污染物"
+      },
+      {
+        "name": "is_heating_season",
+        "display_name": "供暖季",
+        "importance": 0.07567550241947174,
+        "correlation": 0.4165063515687411,
+        "direction": "+",
+        "interpretation": "11月至3月为供暖季，燃煤排放增加",
+        "category": "时间-排放"
+      },
+      {
+        "name": "AQI_lag_12h",
+        "display_name": "12h前AQI",
+        "importance": 0.05102754384279251,
+        "correlation": 0.6112946234569897,
+        "direction": "+",
+        "interpretation": "12小时前的AQI值，用于12h预测",
+        "category": "AQI历史"
+      },
+      {
+        "name": "month_cos",
+        "display_name": "月份周期(cos)",
+        "importance": 0.043749887496232986,
+        "correlation": 0.3058299457477133,
+        "direction": "+",
+        "interpretation": "与month_sin配合完整表示年周期",
+        "category": "时间-周期"
+      },
+      {
+        "name": "temp_daily_range",
+        "display_name": "日温差",
+        "importance": 0.042153242975473404,
+        "correlation": 0.4688445805572004,
+        "direction": "+",
+        "interpretation": "扬州实际规律：日温差大=晴朗天气=高压控制=不利扩散",
+        "category": "气象-扩散"
+      },
+      {
+        "name": "hour_sin",
+        "display_name": "小时周期(sin)",
+        "importance": 0.0345815010368824,
+        "correlation": 0.021324265892749883,
+        "direction": "+",
+        "interpretation": "捕捉一天中的周期性变化",
+        "category": "时间-周期"
+      },
+      {
+        "name": "dew_point",
+        "display_name": "露点温度",
+        "importance": 0.03452619910240173,
+        "correlation": -0.4044383224718409,
+        "direction": "-",
+        "interpretation": "高露点反映大气湿润，通常伴随降水天气",
+        "category": "气象-化学"
+      },
+      {
+        "name": "wind_speed",
+        "display_name": "风速",
+        "importance": 0.03392177075147629,
+        "correlation": -0.20849617807026607,
+        "direction": "-",
+        "interpretation": "高风速促进污染物扩散，降低AQI（负相关）",
+        "category": "气象-扩散"
+      },
+      {
+        "name": "AQI_rolling_mean_24h",
+        "display_name": "24小时平均AQI",
+        "importance": 0.032652899622917175,
+        "correlation": 0.591310789153954,
+        "direction": "+",
+        "interpretation": "反映近期整体污染水平，消除短期波动",
+        "category": "AQI历史"
+      },
+      {
+        "name": "pressure_change_24h",
+        "display_name": "气压变化",
+        "importance": 0.03232547268271446,
+        "correlation": -0.20669151211625125,
+        "direction": "-",
+        "interpretation": "气压下降通常意味着天气系统过境，有利于污染物清除",
+        "category": "气象-扩散"
+      },
+      {
+        "name": "month_sin",
+        "display_name": "月份周期(sin)",
+        "importance": 0.030422667041420937,
+        "correlation": 0.3949444748421273,
+        "direction": "+",
+        "interpretation": "捕捉季节性变化",
+        "category": "时间-周期"
+      },
+      {
+        "name": "pressure",
+        "display_name": "气压",
+        "importance": 0.021640928462147713,
+        "correlation": 0.22410514461822825,
+        "direction": "+",
+        "interpretation": "高气压通常伴随下沉气流和稳定层结，不利于扩散",
+        "category": "气象-扩散"
+      },
+      {
+        "name": "temperature",
+        "display_name": "温度",
+        "importance": 0.021524008363485336,
+        "correlation": -0.33086400875332683,
+        "direction": "-",
+        "interpretation": "温度影响复杂：高温加速光化学反应，但也促进对流",
+        "category": "气象-化学"
+      },
+      {
+        "name": "humidity",
+        "display_name": "相对湿度",
+        "importance": 0.021061310544610023,
+        "correlation": -0.25125668698974196,
+        "direction": "-",
+        "interpretation": "扬州实际规律：高湿度通常伴随降雨/海洋气团，有利于污染物清除",
+        "category": "气象-化学"
+      },
+      {
+        "name": "is_weekend",
+        "display_name": "周末",
+        "importance": 0.0205391813069582,
+        "correlation": 0.023970830903006373,
+        "direction": "+",
+        "interpretation": "周末工业和交通活动减少，排放降低",
+        "category": "时间-排放"
+      },
+      {
+        "name": "AQI_trend_24h",
+        "display_name": "AQI变化趋势",
+        "importance": 0.02006806805729866,
+        "correlation": 0.2253397260672034,
+        "direction": "+",
+        "interpretation": "正值表示污染加重趋势，负值表示改善趋势",
+        "category": "AQI历史"
+      },
+      {
+        "name": "AQI_yesterday_same_hour",
+        "display_name": "昨日同期AQI",
+        "importance": 0.019978825002908707,
+        "correlation": 0.38608147146413163,
+        "direction": "+",
+        "interpretation": "空气质量存在日周期性，昨天同一时刻的情况有参考价值",
+        "category": "AQI历史"
+      },
+      {
+        "name": "hour_cos",
+        "display_name": "小时周期(cos)",
+        "importance": 0.012700317427515984,
+        "correlation": -0.002767685159259096,
+        "direction": "-",
+        "interpretation": "与hour_sin配合完整表示24小时周期",
+        "category": "时间-周期"
+      },
+      {
+        "name": "is_high_humidity",
+        "display_name": "高湿度标记",
+        "importance": 0.007966766133904457,
+        "correlation": -0.20978531857937077,
+        "direction": "-",
+        "interpretation": "湿度>80%时通常伴随降雨，冲刷污染物",
+        "category": "气象-化学"
+      },
+      {
+        "name": "is_low_wind",
+        "display_name": "低风速标记",
+        "importance": 0.006168799474835396,
+        "correlation": 0.03207284333895503,
+        "direction": "+",
+        "interpretation": "风速<2m/s时大气扩散能力弱，污染物容易累积",
+        "category": "气象-扩散"
+      },
+      {
+        "name": "is_rush_hour",
+        "display_name": "早晚高峰",
+        "importance": 0.003149923402816057,
+        "correlation": -0.0013466090043278568,
+        "direction": "-",
+        "interpretation": "7-9点和17-19点交通排放增加",
+        "category": "时间-排放"
+      }
+    ],
+    "metrics": {
+      "MAE": 18.229153575024593,
+      "RMSE": 24.045387889085088,
+      "R2": 0.13704437192637833
+    }
+  },
+  "24": {
+    "horizon_hours": 24,
+    "features": [
+      {
+        "name": "PM2.5_current",
+        "display_name": "PM2.5浓度",
+        "importance": 0.1664203554391861,
+        "correlation": 0.5143891797676668,
+        "direction": "+",
+        "interpretation": "PM2.5是AQI的主要组成部分，直接影响空气质量等级",
+        "category": "污染物"
+      },
+      {
+        "name": "month_cos",
+        "display_name": "月份周期(cos)",
+        "importance": 0.08861111104488373,
+        "correlation": 0.3058299457477133,
+        "direction": "+",
+        "interpretation": "与month_sin配合完整表示年周期",
+        "category": "时间-周期"
+      },
+      {
+        "name": "month_sin",
+        "display_name": "月份周期(sin)",
+        "importance": 0.08815931528806686,
+        "correlation": 0.3949444748421273,
+        "direction": "+",
+        "interpretation": "捕捉季节性变化",
+        "category": "时间-周期"
+      },
+      {
+        "name": "is_heating_season",
+        "display_name": "供暖季",
+        "importance": 0.08320052921772003,
+        "correlation": 0.4165063515687411,
+        "direction": "+",
+        "interpretation": "11月至3月为供暖季，燃煤排放增加",
+        "category": "时间-排放"
+      },
+      {
+        "name": "AQI_lag_24h",
+        "display_name": "24h前AQI",
+        "importance": 0.07977516949176788,
+        "correlation": 0.5202706658670895,
+        "direction": "+",
+        "interpretation": "24小时前的AQI值，用于24h预测",
+        "category": "AQI历史"
+      },
+      {
+        "name": "temp_daily_range",
+        "display_name": "日温差",
+        "importance": 0.07309173792600632,
+        "correlation": 0.44752962367950483,
+        "direction": "+",
+        "interpretation": "扬州实际规律：日温差大=晴朗天气=高压控制=不利扩散",
+        "category": "气象-扩散"
+      },
+      {
+        "name": "dew_point",
+        "display_name": "露点温度",
+        "importance": 0.06706690043210983,
+        "correlation": -0.4362232850295692,
+        "direction": "-",
+        "interpretation": "高露点反映大气湿润，通常伴随降水天气",
+        "category": "气象-化学"
+      },
+      {
+        "name": "pressure_change_24h",
+        "display_name": "气压变化",
+        "importance": 0.045937299728393555,
+        "correlation": -0.21146513832121683,
+        "direction": "-",
+        "interpretation": "气压下降通常意味着天气系统过境，有利于污染物清除",
+        "category": "气象-扩散"
+      },
+      {
+        "name": "wind_speed",
+        "display_name": "风速",
+        "importance": 0.0397842675447464,
+        "correlation": -0.20141853934819148,
+        "direction": "-",
+        "interpretation": "高风速促进污染物扩散，降低AQI（负相关）",
+        "category": "气象-扩散"
+      },
+      {
+        "name": "pressure",
+        "display_name": "气压",
+        "importance": 0.03468121215701103,
+        "correlation": 0.2643811651140198,
+        "direction": "+",
+        "interpretation": "高气压通常伴随下沉气流和稳定层结，不利于扩散",
+        "category": "气象-扩散"
+      },
+      {
+        "name": "is_weekend",
+        "display_name": "周末",
+        "importance": 0.03418752923607826,
+        "correlation": 0.023970830903006373,
+        "direction": "+",
+        "interpretation": "周末工业和交通活动减少，排放降低",
+        "category": "时间-排放"
+      },
+      {
+        "name": "temperature",
+        "display_name": "温度",
+        "importance": 0.030401045456528664,
+        "correlation": -0.37851794439809633,
+        "direction": "-",
+        "interpretation": "温度影响复杂：高温加速光化学反应，但也促进对流",
+        "category": "气象-化学"
+      },
+      {
+        "name": "PM10_current",
+        "display_name": "PM10浓度",
+        "importance": 0.029879169538617134,
+        "correlation": 0.49539518419656176,
+        "direction": "+",
+        "interpretation": "PM10包含粗颗粒物，是AQI的重要组成部分",
+        "category": "污染物"
+      },
+      {
+        "name": "AQI_trend_24h",
+        "display_name": "AQI变化趋势",
+        "importance": 0.025266502052545547,
+        "correlation": 0.1774775967707327,
+        "direction": "+",
+        "interpretation": "正值表示污染加重趋势，负值表示改善趋势",
+        "category": "AQI历史"
+      },
+      {
+        "name": "AQI_rolling_mean_24h",
+        "display_name": "24小时平均AQI",
+        "importance": 0.024582793936133385,
+        "correlation": 0.4727189029150323,
+        "direction": "+",
+        "interpretation": "反映近期整体污染水平，消除短期波动",
+        "category": "AQI历史"
+      },
+      {
+        "name": "humidity",
+        "display_name": "相对湿度",
+        "importance": 0.02433513104915619,
+        "correlation": -0.2310994659055614,
+        "direction": "-",
+        "interpretation": "扬州实际规律：高湿度通常伴随降雨/海洋气团，有利于污染物清除",
+        "category": "气象-化学"
+      },
+      {
+        "name": "hour_sin",
+        "display_name": "小时周期(sin)",
+        "importance": 0.01996360532939434,
+        "correlation": 0.021324265892749883,
+        "direction": "+",
+        "interpretation": "捕捉一天中的周期性变化",
+        "category": "时间-周期"
+      },
+      {
+        "name": "AQI_yesterday_same_hour",
+        "display_name": "昨日同期AQI",
+        "importance": 0.017406748607754707,
+        "correlation": 0.3467751942876378,
+        "direction": "+",
+        "interpretation": "空气质量存在日周期性，昨天同一时刻的情况有参考价值",
+        "category": "AQI历史"
+      },
+      {
+        "name": "is_high_humidity",
+        "display_name": "高湿度标记",
+        "importance": 0.011174650862812996,
+        "correlation": -0.20959350433279736,
+        "direction": "-",
+        "interpretation": "湿度>80%时通常伴随降雨，冲刷污染物",
+        "category": "气象-化学"
+      },
+      {
+        "name": "hour_cos",
+        "display_name": "小时周期(cos)",
+        "importance": 0.009602339006960392,
+        "correlation": -0.002767685159259096,
+        "direction": "-",
+        "interpretation": "与hour_sin配合完整表示24小时周期",
+        "category": "时间-周期"
+      },
+      {
+        "name": "is_rush_hour",
+        "display_name": "早晚高峰",
+        "importance": 0.006472554989159107,
+        "correlation": -0.0013466090043278568,
+        "direction": "-",
+        "interpretation": "7-9点和17-19点交通排放增加",
+        "category": "时间-排放"
+      },
+      {
+        "name": "is_low_wind",
+        "display_name": "低风速标记",
+        "importance": 0.0,
+        "correlation": 0.0343696660120564,
+        "direction": "+",
+        "interpretation": "风速<2m/s时大气扩散能力弱，污染物容易累积",
+        "category": "气象-扩散"
+      }
+    ],
+    "metrics": {
+      "MAE": 23.236000173691618,
+      "RMSE": 29.70942974811735,
+      "R2": -0.3542006530420396
+    }
+  }
+}

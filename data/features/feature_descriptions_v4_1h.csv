@@ -1,0 +1,21 @@
+feature,category,meaning,expected_sign,importance
+AQI_lag_1h,AQI历史,1小时前的AQI值（预测时刻可知的最新历史值，不是目标变量！）,+,高
+AQI_yesterday_same_hour,AQI历史,昨天同一时刻的AQI，反映日周期性,+,中
+AQI_rolling_mean_24h,AQI历史,过去24小时平均AQI，反映整体污染水平,+,高
+AQI_trend_24h,AQI历史,过去24小时AQI变化量，正值表示恶化趋势,+,中
+PM2.5_current,污染物,PM2.5 是 AQI 的主要组成部分,+,高
+PM10_current,污染物,PM10 包含粗颗粒物，也是 AQI 成分,+,高
+wind_speed,气象-扩散,风速：高风速促进污染物扩散，降低AQI,-,高
+is_low_wind,气象-扩散,低风速标记：风速<2m/s时不利于扩散,+,中
+pressure,气象-扩散,气压：高压伴随稳定天气，不利于扩散,+,中
+pressure_change_24h,气象-扩散,气压变化：气压下降通常伴随天气系统过境,-,中
+temperature,气象-化学,温度：高温加速光化学反应，但也促进对流,+/-,中
+temp_daily_range,气象-扩散,日温差：温差小表示大气稳定，可能有逆温层,-,中
+humidity,气象-化学,相对湿度：高湿度促进二次颗粒物生成,+,高
+is_high_humidity,气象-化学,高湿度标记：湿度>80%时二次颗粒物生成加速,+,中
+dew_point,气象-化学,露点温度：反映大气绝对湿度,+,中
+hour,时间-排放,一天中的小时：反映人类活动周期,非线性,中
+is_rush_hour,时间-排放,早晚高峰：7-9点和17-19点交通排放增加,+,中
+is_weekend,时间-排放,周末：工业和交通活动减少,-,低
+is_heating_season,时间-排放,供暖季（11-3月）：北方燃煤供暖增加排放,+,高
+month_sin/cos,时间-季节,季节周期：捕捉季节性变化,周期性,中

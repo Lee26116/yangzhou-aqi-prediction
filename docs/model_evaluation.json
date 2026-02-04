@@ -1,0 +1,107 @@
+{
+  "timestamp": "2026-02-03T17:13:52.261814",
+  "data_rows": 9164,
+  "feature_count": 20,
+  "baseline_results": {
+    "Naive_24h": {
+      "MAE": 23.03,
+      "RMSE": 33.09,
+      "R2": 0.04,
+      "MAPE": 45.56
+    },
+    "MovingAvg_24h": {
+      "MAE": 15.59,
+      "RMSE": 22.01,
+      "R2": 0.5757,
+      "MAPE": 29.99
+    },
+    "ExpSmoothing": {
+      "MAE": 10.5,
+      "RMSE": 15.54,
+      "R2": 0.7884,
+      "MAPE": 19.36
+    }
+  },
+  "main_model": {
+    "type": "XGBoost",
+    "cv_folds": 5,
+    "metrics": {
+      "MAE": 7.64,
+      "RMSE": 10.33,
+      "R2": 0.8186,
+      "MAPE": 16.65
+    },
+    "cv_results": [
+      {
+        "MAE": 9.89,
+        "RMSE": 13.09,
+        "R2": 0.8054,
+        "MAPE": 14.7
+      },
+      {
+        "MAE": 11.19,
+        "RMSE": 13.83,
+        "R2": 0.5974,
+        "MAPE": 31.94
+      },
+      {
+        "MAE": 4.8,
+        "RMSE": 6.65,
+        "R2": 0.8682,
+        "MAPE": 14.39
+      },
+      {
+        "MAE": 4.62,
+        "RMSE": 6.77,
+        "R2": 0.9034,
+        "MAPE": 11.83
+      },
+      {
+        "MAE": 7.69,
+        "RMSE": 11.32,
+        "R2": 0.9188,
+        "MAPE": 10.39
+      }
+    ]
+  },
+  "ablation_study": {
+    "完整模型": {
+      "features_used": 20,
+      "MAE": 7.6,
+      "RMSE": 10.1,
+      "R2": 0.8388
+    },
+    "去除滞后特征": {
+      "features_removed": 2,
+      "features_used": 18,
+      "MAE": 7.92,
+      "RMSE": 10.55,
+      "R2": 0.8232,
+      "MAE_increase": 0.32
+    },
+    "去除滚动特征": {
+      "features_removed": 4,
+      "features_used": 16,
+      "MAE": 8.78,
+      "RMSE": 11.35,
+      "R2": 0.7823,
+      "MAE_increase": 1.18
+    },
+    "去除气象特征": {
+      "features_removed": 4,
+      "features_used": 16,
+      "MAE": 7.36,
+      "RMSE": 9.98,
+      "R2": 0.8443,
+      "MAE_increase": -0.24
+    },
+    "去除变化率特征": {
+      "features_removed": 9,
+      "features_used": 11,
+      "MAE": 12.56,
+      "RMSE": 16.56,
+      "R2": 0.5399,
+      "MAE_increase": 4.96
+    }
+  }
+}

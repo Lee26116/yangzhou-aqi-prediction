@@ -1,0 +1,82 @@
+[
+  {
+    "feature": "dew_point_2m",
+    "correlation": -0.386
+  },
+  {
+    "feature": "南京_AQI",
+    "correlation": 0.8219
+  },
+  {
+    "feature": "南通_AQI",
+    "correlation": 0.7643
+  },
+  {
+    "feature": "PM10_lag_48h",
+    "correlation": 0.3623
+  },
+  {
+    "feature": "wind_speed_10m_lag_3h",
+    "correlation": -0.1494
+  },
+  {
+    "feature": "AQI_rolling_std_6h",
+    "correlation": 0.4043
+  },
+  {
+    "feature": "AQI_rolling_std_12h",
+    "correlation": 0.4825
+  },
+  {
+    "feature": "PM2.5_rolling_std_6h",
+    "correlation": 0.3817
+  },
+  {
+    "feature": "PM2.5_rolling_std_24h",
+    "correlation": 0.446
+  },
+  {
+    "feature": "AQI_change_1h",
+    "correlation": 0.1061
+  },
+  {
+    "feature": "AQI_pct_change_3h",
+    "correlation": 0.1805
+  },
+  {
+    "feature": "AQI_change_6h",
+    "correlation": 0.338
+  },
+  {
+    "feature": "AQI_pct_change_6h",
+    "correlation": 0.2799
+  },
+  {
+    "feature": "AQI_change_24h",
+    "correlation": 0.4824
+  },
+  {
+    "feature": "AQI_pct_change_24h",
+    "correlation": 0.3976
+  },
+  {
+    "feature": "PM2.5_change_3h",
+    "correlation": 0.1674
+  },
+  {
+    "feature": "PM2.5_change_6h",
+    "correlation": 0.255
+  },
+  {
+    "feature": "temperature_2m_change_24h",
+    "correlation": 0.172
+  },
+  {
+    "feature": "wind_u",
+    "correlation": -0.1761
+  },
+  {
+    "feature": "wind_v",
+    "correlation": -0.1274
+  }
+]

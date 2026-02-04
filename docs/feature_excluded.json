@@ -1,0 +1,606 @@
+[
+  {
+    "feature": "O3_24h",
+    "reason": "缺失率过高: 88.3% > 20%"
+  },
+  {
+    "feature": "visibility",
+    "reason": "缺失率过高: 100.0% > 20%"
+  },
+  {
+    "feature": "soil_temperature_0cm",
+    "reason": "缺失率过高: 100.0% > 20%"
+  },
+  {
+    "feature": "holiday_name",
+    "reason": "缺失率过高: 100.0% > 20%"
+  },
+  {
+    "feature": "PM2.5_pct_change_6h",
+    "reason": "相关性过低: 0.076"
+  },
+  {
+    "feature": "AQI_pct_change_1h",
+    "reason": "相关性过低: 0.072"
+  },
+  {
+    "feature": "PM2.5_change_1h",
+    "reason": "相关性过低: 0.065"
+  },
+  {
+    "feature": "relative_humidity_2m_pct_change_6h",
+    "reason": "相关性过低: 0.064"
+  },
+  {
+    "feature": "snowfall",
+    "reason": "相关性过低: -0.048"
+  },
+  {
+    "feature": "O3_8h_24h",
+    "reason": "相关性过低: -0.047"
+  },
+  {
+    "feature": "relative_humidity_2m_pct_change_24h",
+    "reason": "相关性过低: 0.045"
+  },
+  {
+    "feature": "PM2.5_pct_change_3h",
+    "reason": "相关性过低: 0.037"
+  },
+  {
+    "feature": "temperature_2m_change_1h",
+    "reason": "相关性过低: 0.037"
+  },
+  {
+    "feature": "relative_humidity_2m_change_24h",
+    "reason": "相关性过低: 0.029"
+  },
+  {
+    "feature": "temperature_2m_change_3h",
+    "reason": "相关性过低: 0.027"
+  },
+  {
+    "feature": "O3_8h",
+    "reason": "相关性过低: -0.027"
+  },
+  {
+    "feature": "O3",
+    "reason": "相关性过低: -0.027"
+  },
+  {
+    "feature": "day_of_week",
+    "reason": "相关性过低: 0.024"
+  },
+  {
+    "feature": "relative_humidity_2m_pct_change_3h",
+    "reason": "相关性过低: 0.021"
+  },
+  {
+    "feature": "hour_sin",
+    "reason": "相关性过低: 0.021"
+  },
+  {
+    "feature": "relative_humidity_2m_change_1h",
+    "reason": "相关性过低: -0.019"
+  },
+  {
+    "feature": "day",
+    "reason": "相关性过低: 0.019"
+  },
+  {
+    "feature": "hour",
+    "reason": "相关性过低: -0.016"
+  },
+  {
+    "feature": "relative_humidity_2m_change_6h",
+    "reason": "相关性过低: 0.015"
+  },
+  {
+    "feature": "dow_cos",
+    "reason": "相关性过低: -0.015"
+  },
+  {
+    "feature": "day_of_week_cos",
+    "reason": "相关性过低: -0.015"
+  },
+  {
+    "feature": "relative_humidity_2m_pct_change_1h",
+    "reason": "相关性过低: -0.011"
+  },
+  {
+    "feature": "temperature_2m_change_6h",
+    "reason": "相关性过低: 0.010"
+  },
+  {
+    "feature": "dow_sin",
+    "reason": "相关性过低: -0.008"
+  },
+  {
+    "feature": "day_of_week_sin",
+    "reason": "相关性过低: -0.008"
+  },
+  {
+    "feature": "relative_humidity_2m_change_3h",
+    "reason": "相关性过低: -0.007"
+  },
+  {
+    "feature": "time_period",
+    "reason": "相关性过低: -0.007"
+  },
+  {
+    "feature": "hour_cos",
+    "reason": "相关性过低: -0.003"
+  },
+  {
+    "feature": "is_commute_hour",
+    "reason": "相关性过低: -0.001"
+  },
+  {
+    "feature": "PM2.5_pct_change_1h",
+    "reason": "相关性过低: -0.001"
+  },
+  {
+    "feature": "is_work_hour",
+    "reason": "相关性过低: -0.001"
+  },
+  {
+    "feature": "pressure_change_6h",
+    "reason": "相关性过低: 0.001"
+  },
+  {
+    "feature": "pressure_change_3h",
+    "reason": "相关性过低: 0.000"
+  },
+  {
+    "feature": "wind_direction_10m",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "temperature_2m_pct_change_6h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "wind_speed_10m_lag_1h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "AQI_lag_6h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "PM2.5_rolling_min_6h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "AQI_rolling_std_24h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "temperature_2m_pct_change_3h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "wind_speed_10m_lag_6h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "NO2",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "relative_humidity_2m",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "AQI_rolling_std_48h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "AQI_lag_48h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "PM10_lag_6h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "PM10_24h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "PM2.5_rolling_std_48h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "PM2.5_rolling_min_12h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "temperature_2m_pct_change_1h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "PM2.5_lag_48h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "南京_aqi_lag_3h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "CO",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "PM2.5_rolling_mean_6h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "泰州_aqi_lag_3h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "relative_humidity_2m_lag_6h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "PM10_lag_24h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "CO_24h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "PM10_lag_12h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "temperature_2m_lag_3h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "temp_humidity_product",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "泰州_aqi_lag_6h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "surface_pressure_lag_6h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "PM2.5_lag_24h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "relative_humidity_2m_lag_1h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "PM2.5_lag_6h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "AQI_rolling_max_48h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "relative_humidity_2m_lag_3h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "南京_aqi_lag_12h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "surface_pressure_lag_3h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "temp_inversion_proxy",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "镇江_aqi_lag_6h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "PM2.5_rolling_max_48h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "SO2",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "AQI_rolling_mean_12h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "镇江_aqi_lag_12h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "PM2.5_rolling_mean_24h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "南京_aqi_lag_6h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "AQI_lag_24h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "AQI_rolling_min_48h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "南通_aqi_lag_6h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "week_of_year",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "PM2.5_pct_change_24h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "PM2.5_lag_12h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "南通_aqi_lag_3h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "PM2.5_change_24h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "泰州_aqi_lag_12h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "AQI_rolling_min_24h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "temperature_2m_pct_change_24h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "AQI_rolling_mean_24h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "NO2_24h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "南通_aqi_lag_12h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "AQI_rolling_mean_48h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "PM2.5_rolling_max_12h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "PM2.5_rolling_mean_48h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "cloud_cover",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "day_of_year",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "SO2_24h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "temperature_2m_lag_6h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "PM2.5_rolling_min_48h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "AQI_lag_12h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "PM2.5_24h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "month_sin",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "PM2.5_rolling_min_24h",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "weather_code",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "season",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "month_cos",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "month",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "rain",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "precipitation",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "heating_season",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "rain_intensity",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "is_raining",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "year",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "spring_festival_proxy",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "straw_burning_proxy",
+    "reason": "重要性较低: 0.0000"
+  },
+  {
+    "feature": "PM2.5",
+    "reason": "VIF 过高: inf > 10"
+  },
+  {
+    "feature": "AQI_change_3h",
+    "reason": "VIF 过高: inf > 10"
+  },
+  {
+    "feature": "surface_pressure",
+    "reason": "VIF 过高: 4817128.5 > 10"
+  },
+  {
+    "feature": "AQI_rolling_mean_6h",
+    "reason": "VIF 过高: 3728.5 > 10"
+  },
+  {
+    "feature": "AQI_rolling_max_6h",
+    "reason": "VIF 过高: 2968.9 > 10"
+  },
+  {
+    "feature": "PM2.5_lag_3h",
+    "reason": "VIF 过高: 1137.3 > 10"
+  },
+  {
+    "feature": "temperature_2m",
+    "reason": "VIF 过高: 1026.9 > 10"
+  },
+  {
+    "feature": "AQI_lag_1h",
+    "reason": "VIF 过高: 749.9 > 10"
+  },
+  {
+    "feature": "AQI_rolling_max_12h",
+    "reason": "VIF 过高: 511.4 > 10"
+  },
+  {
+    "feature": "apparent_temperature",
+    "reason": "VIF 过高: 508.9 > 10"
+  },
+  {
+    "feature": "PM2.5_rolling_max_6h",
+    "reason": "VIF 过高: 501.3 > 10"
+  },
+  {
+    "feature": "PM10_lag_1h",
+    "reason": "VIF 过高: 329.4 > 10"
+  },
+  {
+    "feature": "AQI_rolling_min_6h",
+    "reason": "VIF 过高: 314.2 > 10"
+  },
+  {
+    "feature": "PM2.5_rolling_mean_12h",
+    "reason": "VIF 过高: 219.3 > 10"
+  },
+  {
+    "feature": "apparent_temp",
+    "reason": "VIF 过高: 211.6 > 10"
+  },
+  {
+    "feature": "AQI_lag_3h",
+    "reason": "VIF 过高: 125.7 > 10"
+  },
+  {
+    "feature": "PM2.5_rolling_max_24h",
+    "reason": "VIF 过高: 104.3 > 10"
+  },
+  {
+    "feature": "AQI_rolling_max_24h",
+    "reason": "VIF 过高: 76.7 > 10"
+  },
+  {
+    "feature": "wind_gusts_10m",
+    "reason": "VIF 过高: 71.8 > 10"
+  },
+  {
+    "feature": "PM10",
+    "reason": "VIF 过高: 67.6 > 10"
+  },
+  {
+    "feature": "AQI_rolling_min_12h",
+    "reason": "VIF 过高: 48.6 > 10"
+  },
+  {
+    "feature": "镇江_AQI",
+    "reason": "VIF 过高: 45.6 > 10"
+  },
+  {
+    "feature": "泰州_AQI",
+    "reason": "VIF 过高: 26.7 > 10"
+  },
+  {
+    "feature": "镇江_aqi_lag_3h",
+    "reason": "VIF 过高: 23.5 > 10"
+  },
+  {
+    "feature": "temperature_2m_lag_1h",
+    "reason": "VIF 过高: 22.1 > 10"
+  },
+  {
+    "feature": "PM10_lag_3h",
+    "reason": "VIF 过高: 20.9 > 10"
+  },
+  {
+    "feature": "surface_pressure_lag_1h",
+    "reason": "VIF 过高: 15.6 > 10"
+  },
+  {
+    "feature": "wind_speed_10m",
+    "reason": "VIF 过高: 14.4 > 10"
+  },
+  {
+    "feature": "PM2.5_rolling_std_12h",
+    "reason": "VIF 过高: 14.1 > 10"
+  },
+  {
+    "feature": "PM2.5_lag_1h",
+    "reason": "VIF 过高: 11.3 > 10"
+  }
+]

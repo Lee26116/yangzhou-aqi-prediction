@@ -1,0 +1,48 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+*.egg-info/
+dist/
+build/
+
+# Data files (too large for git)
+data/raw/
+data/processed/
+*.csv
+!data/features/*.csv
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Environment
+.env
+.env.local
+
+# Models (keep only v4)
+models/xgboost_model.pkl
+models/xgboost_model.json
+models/xgboost_model_v2.pkl
+models/xgboost_model_v3*.pkl
+models/feature_importance_v2.csv
+models/feature_importance_v3*.csv
