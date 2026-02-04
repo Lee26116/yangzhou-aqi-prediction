@@ -20,17 +20,17 @@ from src.config import (
 )
 
 
-def load_model():
-    """加载训练好的模型（优先使用v2版本）"""
-    # 优先使用 v2 模型（不含其他城市同期AQI）
-    model_path = MODELS_DIR / "xgboost_model_v2.pkl"
+def load_model(horizon='1h'):
+    """加载训练好的模型（使用v4版本）
+
+    Args:
+        horizon: 预测时间跨度，可选 '1h', '6h', '12h', '24h'
+    """
+    # 使用 v4 模型（方法论正确 + 可解释性优先）
+    model_path = MODELS_DIR / f"xgboost_model_v4_{horizon}.pkl"
 
     if not model_path.exists():
-        # 回退到旧模型
-        model_path = MODELS_DIR / "xgboost_model.pkl"
-
-    if not model_path.exists():
-        print(f"❌ 模型文件不存在")
+        print(f"❌ 模型文件不存在: {model_path}")
         return None
 
     print(f"   📦 加载模型: {model_path.name}")
@@ -41,20 +41,22 @@ def load_model():
     return model
 
 
-def get_recent_data(hours=72):
+def get_recent_data(hours=72, horizon='1h'):
     """
     获取最近的数据用于预测
 
     Args:
         hours: 获取最近多少小时的数据
+        horizon: 预测时间跨度，用于选择对应的特征文件
 
     Returns:
         DataFrame
     """
-    # 优先使用 v2 特征文件（不含其他城市同期AQI）
-    input_file = FEATURES_DATA_DIR / "yangzhou_features_v2_selected.csv"
+    # 使用 v4 特征文件（方法论正确 + 可解释性优先）
+    input_file = FEATURES_DATA_DIR / f"yangzhou_features_v4_{horizon}.csv"
     if not input_file.exists():
-        input_file = FEATURES_DATA_DIR / "yangzhou_features_selected.csv"
+        # 回退到通用特征文件
+        input_file = FEATURES_DATA_DIR / "yangzhou_features_v4_1h.csv"
     if not input_file.exists():
         input_file = FEATURES_DATA_DIR / "yangzhou_features.csv"
 
@@ -274,13 +276,13 @@ def generate_dashboard_data():
     """
     print("📊 生成 Dashboard 数据...")
 
-    # 加载模型
-    model = load_model()
+    # 加载 1h 预测模型（最准确）
+    model = load_model(horizon='1h')
     if model is None:
         return
 
     # 获取最近数据
-    recent_data = get_recent_data(hours=72)
+    recent_data = get_recent_data(hours=72, horizon='1h')
     if recent_data is None:
         return
 
