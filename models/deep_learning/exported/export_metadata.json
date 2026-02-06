@@ -1,0 +1,8 @@
+{
+  "input_size": 47,
+  "sequence_length": 48,
+  "opset_version": 17,
+  "model_file": "model.onnx",
+  "source_epoch": 23,
+  "source_val_loss": 12.443429629007975
+}

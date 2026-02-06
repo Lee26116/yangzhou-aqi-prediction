@@ -1,332 +1,235 @@
 {
-  "update_time": "2026-02-04T10:10:42.165056+08:00",
-  "update_time_display": "2026-02-04 10:10:42 (北京时间)",
+  "update_time": "2026-02-06T09:32:10.104525+08:00",
+  "update_time_display": "2026-02-06 09:32:10 (北京时间)",
   "timezone": "Asia/Shanghai (UTC+8)",
   "realtime": {
-    "aqi": 160,
-    "pm25": 160,
-    "pm10": 75,
-    "temperature": 7,
-    "humidity": 65,
-    "time": "2026-02-03T22:00:00+08:00",
-    "dominant_pollutant": "pm25"
+    "aqi": 57,
+    "pm25": 13,
+    "pm10": 57,
+    "temperature": 4,
+    "humidity": 80,
+    "time": "2026-02-06T09:00:00+08:00",
+    "dominant_pollutant": "pm10"
   },
   "predictions": [
     {
-      "datetime": "2026-02-04T11:00:00+08:00",
+      "datetime": "2026-02-06T10:00:00+08:00",
       "hour": 1,
-      "predicted_aqi": 151.8,
-      "level": "中度污染",
-      "color": "red",
-      "lower_bound": 131.8,
-      "upper_bound": 171.8
+      "predicted_aqi": 59.1,
+      "level": "良",
+      "color": "yellow",
+      "lower_bound": 51.3,
+      "upper_bound": 66.9
     },
     {
-      "datetime": "2026-02-04T12:00:00+08:00",
+      "datetime": "2026-02-06T11:00:00+08:00",
       "hour": 2,
-      "predicted_aqi": 152.5,
-      "level": "中度污染",
-      "color": "red",
-      "lower_bound": 132.3,
-      "upper_bound": 172.7
+      "predicted_aqi": 61.4,
+      "level": "良",
+      "color": "yellow",
+      "lower_bound": 53.3,
+      "upper_bound": 69.5
     },
     {
-      "datetime": "2026-02-04T13:00:00+08:00",
+      "datetime": "2026-02-06T12:00:00+08:00",
       "hour": 3,
-      "predicted_aqi": 147.2,
-      "level": "轻度污染",
-      "color": "orange",
-      "lower_bound": 127.6,
-      "upper_bound": 166.8
+      "predicted_aqi": 70.7,
+      "level": "良",
+      "color": "yellow",
+      "lower_bound": 61.3,
+      "upper_bound": 80.1
     },
     {
-      "datetime": "2026-02-04T14:00:00+08:00",
+      "datetime": "2026-02-06T13:00:00+08:00",
       "hour": 4,
-      "predicted_aqi": 140.3,
-      "level": "轻度污染",
-      "color": "orange",
-      "lower_bound": 121.5,
-      "upper_bound": 159.1
+      "predicted_aqi": 72.1,
+      "level": "良",
+      "color": "yellow",
+      "lower_bound": 62.4,
+      "upper_bound": 81.8
     },
     {
-      "datetime": "2026-02-04T15:00:00+08:00",
+      "datetime": "2026-02-06T14:00:00+08:00",
       "hour": 5,
-      "predicted_aqi": 135.2,
-      "level": "轻度污染",
-      "color": "orange",
-      "lower_bound": 117.0,
-      "upper_bound": 153.4
+      "predicted_aqi": 74.7,
+      "level": "良",
+      "color": "yellow",
+      "lower_bound": 64.6,
+      "upper_bound": 84.8
     },
     {
-      "datetime": "2026-02-04T16:00:00+08:00",
+      "datetime": "2026-02-06T15:00:00+08:00",
       "hour": 6,
-      "predicted_aqi": 133.6,
-      "level": "轻度污染",
-      "color": "orange",
-      "lower_bound": 115.5,
-      "upper_bound": 151.7
+      "predicted_aqi": 77.1,
+      "level": "良",
+      "color": "yellow",
+      "lower_bound": 66.7,
+      "upper_bound": 87.5
     },
     {
-      "datetime": "2026-02-04T17:00:00+08:00",
+      "datetime": "2026-02-06T16:00:00+08:00",
       "hour": 7,
-      "predicted_aqi": 145.7,
-      "level": "轻度污染",
-      "color": "orange",
-      "lower_bound": 125.9,
-      "upper_bound": 165.5
+      "predicted_aqi": 75.9,
+      "level": "良",
+      "color": "yellow",
+      "lower_bound": 65.6,
+      "upper_bound": 86.2
     },
     {
-      "datetime": "2026-02-04T18:00:00+08:00",
+      "datetime": "2026-02-06T17:00:00+08:00",
       "hour": 8,
-      "predicted_aqi": 145.9,
-      "level": "轻度污染",
-      "color": "orange",
-      "lower_bound": 126.0,
-      "upper_bound": 165.8
+      "predicted_aqi": 77.6,
+      "level": "良",
+      "color": "yellow",
+      "lower_bound": 67.0,
+      "upper_bound": 88.2
     },
     {
-      "datetime": "2026-02-04T19:00:00+08:00",
+      "datetime": "2026-02-06T18:00:00+08:00",
       "hour": 9,
-      "predicted_aqi": 141.4,
-      "level": "轻度污染",
-      "color": "orange",
-      "lower_bound": 122.0,
-      "upper_bound": 160.8
+      "predicted_aqi": 75.7,
+      "level": "良",
+      "color": "yellow",
+      "lower_bound": 65.3,
+      "upper_bound": 86.1
     },
     {
-      "datetime": "2026-02-04T20:00:00+08:00",
+      "datetime": "2026-02-06T19:00:00+08:00",
       "hour": 10,
-      "predicted_aqi": 134.1,
-      "level": "轻度污染",
-      "color": "orange",
-      "lower_bound": 115.6,
-      "upper_bound": 152.6
+      "predicted_aqi": 77.3,
+      "level": "良",
+      "color": "yellow",
+      "lower_bound": 66.6,
+      "upper_bound": 88.0
     },
     {
-      "datetime": "2026-02-04T21:00:00+08:00",
+      "datetime": "2026-02-06T20:00:00+08:00",
       "hour": 11,
-      "predicted_aqi": 138.8,
-      "level": "轻度污染",
-      "color": "orange",
-      "lower_bound": 119.6,
-      "upper_bound": 158.0
+      "predicted_aqi": 77.5,
+      "level": "良",
+      "color": "yellow",
+      "lower_bound": 66.8,
+      "upper_bound": 88.2
     },
     {
-      "datetime": "2026-02-04T22:00:00+08:00",
+      "datetime": "2026-02-06T21:00:00+08:00",
       "hour": 12,
-      "predicted_aqi": 133.6,
-      "level": "轻度污染",
-      "color": "orange",
-      "lower_bound": 115.0,
-      "upper_bound": 152.2
+      "predicted_aqi": 77.6,
+      "level": "良",
+      "color": "yellow",
+      "lower_bound": 66.8,
+      "upper_bound": 88.4
     },
     {
-      "datetime": "2026-02-04T23:00:00+08:00",
+      "datetime": "2026-02-06T22:00:00+08:00",
       "hour": 13,
-      "predicted_aqi": 132.5,
-      "level": "轻度污染",
-      "color": "orange",
-      "lower_bound": 114.0,
-      "upper_bound": 151.0
+      "predicted_aqi": 71.7,
+      "level": "良",
+      "color": "yellow",
+      "lower_bound": 61.7,
+      "upper_bound": 81.7
     },
     {
-      "datetime": "2026-02-05T00:00:00+08:00",
+      "datetime": "2026-02-06T23:00:00+08:00",
       "hour": 14,
-      "predicted_aqi": 138.5,
-      "level": "轻度污染",
-      "color": "orange",
-      "lower_bound": 119.0,
-      "upper_bound": 158.0
+      "predicted_aqi": 80.2,
+      "level": "良",
+      "color": "yellow",
+      "lower_bound": 68.9,
+      "upper_bound": 91.5
     },
     {
-      "datetime": "2026-02-05T01:00:00+08:00",
+      "datetime": "2026-02-07T00:00:00+08:00",
       "hour": 15,
-      "predicted_aqi": 134.9,
-      "level": "轻度污染",
-      "color": "orange",
-      "lower_bound": 115.8,
-      "upper_bound": 154.0
+      "predicted_aqi": 77.1,
+      "level": "良",
+      "color": "yellow",
+      "lower_bound": 66.2,
+      "upper_bound": 88.0
     },
     {
-      "datetime": "2026-02-05T02:00:00+08:00",
+      "datetime": "2026-02-07T01:00:00+08:00",
       "hour": 16,
-      "predicted_aqi": 123.3,
-      "level": "轻度污染",
-      "color": "orange",
-      "lower_bound": 105.8,
-      "upper_bound": 140.8
+      "predicted_aqi": 78.3,
+      "level": "良",
+      "color": "yellow",
+      "lower_bound": 67.2,
+      "upper_bound": 89.4
     },
     {
-      "datetime": "2026-02-05T03:00:00+08:00",
+      "datetime": "2026-02-07T02:00:00+08:00",
       "hour": 17,
-      "predicted_aqi": 122.9,
-      "level": "轻度污染",
-      "color": "orange",
-      "lower_bound": 105.4,
-      "upper_bound": 140.4
+      "predicted_aqi": 71.9,
+      "level": "良",
+      "color": "yellow",
+      "lower_bound": 61.6,
+      "upper_bound": 82.2
     },
     {
-      "datetime": "2026-02-05T04:00:00+08:00",
+      "datetime": "2026-02-07T03:00:00+08:00",
       "hour": 18,
-      "predicted_aqi": 122.9,
-      "level": "轻度污染",
-      "color": "orange",
-      "lower_bound": 105.3,
-      "upper_bound": 140.5
+      "predicted_aqi": 73.1,
+      "level": "良",
+      "color": "yellow",
+      "lower_bound": 62.6,
+      "upper_bound": 83.6
     },
     {
-      "datetime": "2026-02-05T05:00:00+08:00",
+      "datetime": "2026-02-07T04:00:00+08:00",
       "hour": 19,
-      "predicted_aqi": 125.0,
-      "level": "轻度污染",
-      "color": "orange",
-      "lower_bound": 107.0,
-      "upper_bound": 143.0
+      "predicted_aqi": 73.3,
+      "level": "良",
+      "color": "yellow",
+      "lower_bound": 62.8,
+      "upper_bound": 83.8
     },
     {
-      "datetime": "2026-02-05T06:00:00+08:00",
+      "datetime": "2026-02-07T05:00:00+08:00",
       "hour": 20,
-      "predicted_aqi": 136.1,
-      "level": "轻度污染",
-      "color": "orange",
-      "lower_bound": 116.4,
-      "upper_bound": 155.8
+      "predicted_aqi": 70.1,
+      "level": "良",
+      "color": "yellow",
+      "lower_bound": 60.0,
+      "upper_bound": 80.2
     },
     {
-      "datetime": "2026-02-05T07:00:00+08:00",
+      "datetime": "2026-02-07T06:00:00+08:00",
       "hour": 21,
-      "predicted_aqi": 139.3,
-      "level": "轻度污染",
-      "color": "orange",
-      "lower_bound": 119.1,
-      "upper_bound": 159.5
+      "predicted_aqi": 74.5,
+      "level": "良",
+      "color": "yellow",
+      "lower_bound": 63.7,
+      "upper_bound": 85.3
     },
     {
-      "datetime": "2026-02-05T08:00:00+08:00",
+      "datetime": "2026-02-07T07:00:00+08:00",
       "hour": 22,
-      "predicted_aqi": 138.1,
-      "level": "轻度污染",
-      "color": "orange",
-      "lower_bound": 118.0,
-      "upper_bound": 158.2
+      "predicted_aqi": 81.0,
+      "level": "良",
+      "color": "yellow",
+      "lower_bound": 69.2,
+      "upper_bound": 92.8
     },
     {
-      "datetime": "2026-02-05T09:00:00+08:00",
+      "datetime": "2026-02-07T08:00:00+08:00",
       "hour": 23,
-      "predicted_aqi": 145.5,
-      "level": "轻度污染",
-      "color": "orange",
-      "lower_bound": 124.2,
-      "upper_bound": 166.8
+      "predicted_aqi": 80.0,
+      "level": "良",
+      "color": "yellow",
+      "lower_bound": 68.3,
+      "upper_bound": 91.7
     },
     {
-      "datetime": "2026-02-05T10:00:00+08:00",
+      "datetime": "2026-02-07T09:00:00+08:00",
       "hour": 24,
-      "predicted_aqi": 131.9,
-      "level": "轻度污染",
-      "color": "orange",
-      "lower_bound": 112.5,
-      "upper_bound": 151.3
+      "predicted_aqi": 79.3,
+      "level": "良",
+      "color": "yellow",
+      "lower_bound": 67.6,
+      "upper_bound": 91.0
     }
   ],
   "historical": {
-    "last_24h": [
-      {
-        "datetime": "2026-02-01 07:00:00",
-        "AQI": 59.0
-      },
-      {
-        "datetime": "2026-02-01 08:00:00",
-        "AQI": 63.0
-      },
-      {
-        "datetime": "2026-02-01 09:00:00",
-        "AQI": 71.0
-      },
-      {
-        "datetime": "2026-02-01 10:00:00",
-        "AQI": 73.0
-      },
-      {
-        "datetime": "2026-02-01 11:00:00",
-        "AQI": 80.0
-      },
-      {
-        "datetime": "2026-02-01 12:00:00",
-        "AQI": 88.0
-      },
-      {
-        "datetime": "2026-02-01 13:00:00",
-        "AQI": 91.0
-      },
-      {
-        "datetime": "2026-02-01 14:00:00",
-        "AQI": 89.0
-      },
-      {
-        "datetime": "2026-02-01 15:00:00",
-        "AQI": 84.0
-      },
-      {
-        "datetime": "2026-02-01 16:00:00",
-        "AQI": 76.0
-      },
-      {
-        "datetime": "2026-02-01 17:00:00",
-        "AQI": 71.0
-      },
-      {
-        "datetime": "2026-02-01 18:00:00",
-        "AQI": 68.0
-      },
-      {
-        "datetime": "2026-02-01 19:00:00",
-        "AQI": 69.0
-      },
-      {
-        "datetime": "2026-02-01 20:00:00",
-        "AQI": 78.0
-      },
-      {
-        "datetime": "2026-02-01 21:00:00",
-        "AQI": 88.0
-      },
-      {
-        "datetime": "2026-02-01 22:00:00",
-        "AQI": 84.0
-      },
-      {
-        "datetime": "2026-02-01 23:00:00",
-        "AQI": 71.0
-      },
-      {
-        "datetime": "2026-02-02 00:00:00",
-        "AQI": 63.0
-      },
-      {
-        "datetime": "2026-02-02 01:00:00",
-        "AQI": 60.0
-      },
-      {
-        "datetime": "2026-02-02 02:00:00",
-        "AQI": 60.0
-      },
-      {
-        "datetime": "2026-02-02 03:00:00",
-        "AQI": 64.0
-      },
-      {
-        "datetime": "2026-02-02 04:00:00",
-        "AQI": 70.0
-      },
-      {
-        "datetime": "2026-02-02 05:00:00",
-        "AQI": 76.0
-      },
-      {
-        "datetime": "2026-02-02 06:00:00",
-        "AQI": 76.0
-      }
-    ]
+    "last_24h": []
   }
 }

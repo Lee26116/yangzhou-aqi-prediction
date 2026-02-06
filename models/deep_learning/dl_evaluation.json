@@ -1,0 +1,83 @@
+{
+  "dl_metrics": {
+    "1h": {
+      "MAE": 11.37,
+      "RMSE": 17.59,
+      "R2": 0.8015,
+      "MAPE": 17.7,
+      "n_samples": 158
+    },
+    "6h": {
+      "MAE": 15.74,
+      "RMSE": 23.1,
+      "R2": 0.6639,
+      "MAPE": 25.19,
+      "n_samples": 158
+    },
+    "12h": {
+      "MAE": 20.7,
+      "RMSE": 28.95,
+      "R2": 0.4702,
+      "MAPE": 34.11,
+      "n_samples": 158
+    },
+    "24h": {
+      "MAE": 27.47,
+      "RMSE": 36.12,
+      "R2": 0.1715,
+      "MAPE": 49.12,
+      "n_samples": 158
+    }
+  },
+  "comparison": {
+    "horizons": {
+      "1h": {
+        "LSTM_Attention": {
+          "MAE": 11.37,
+          "RMSE": 17.59,
+          "R2": 0.8015,
+          "MAPE": 17.7,
+          "n_samples": 158
+        },
+        "XGBoost": null,
+        "improvement": {}
+      },
+      "6h": {
+        "LSTM_Attention": {
+          "MAE": 15.74,
+          "RMSE": 23.1,
+          "R2": 0.6639,
+          "MAPE": 25.19,
+          "n_samples": 158
+        },
+        "XGBoost": null,
+        "improvement": {}
+      },
+      "12h": {
+        "LSTM_Attention": {
+          "MAE": 20.7,
+          "RMSE": 28.95,
+          "R2": 0.4702,
+          "MAPE": 34.11,
+          "n_samples": 158
+        },
+        "XGBoost": null,
+        "improvement": {}
+      },
+      "24h": {
+        "LSTM_Attention": {
+          "MAE": 27.47,
+          "RMSE": 36.12,
+          "R2": 0.1715,
+          "MAPE": 49.12,
+          "n_samples": 158
+        },
+        "XGBoost": null,
+        "improvement": {}
+      }
+    },
+    "summary": {}
+  },
+  "best_epoch": 23,
+  "best_val_loss": 12.443429629007975
+}

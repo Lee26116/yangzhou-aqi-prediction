@@ -343,6 +343,13 @@
             }
         }
 
+        
+        /* 模型切换 */
+        .dl-only { display: none; }
+        body.dl-mode .dl-only { display: block; }
+        body.dl-mode .grid.dl-only { display: grid; }
+        body.dl-mode button.dl-only { display: inline-block; }
+        body.dl-mode .ml-only { display: none; }
         .tab-content { display: none; }
         .tab-content.active { display: block; }
     </style>
@@ -361,6 +368,11 @@
                 </div>
             </div>
             <div class="flex items-center gap-2 md:gap-4 text-xs md:text-sm text-gray-400 flex-shrink-0">
+                <!-- 模型切换按钮 -->
+                <div id="modelSwitch" class="flex rounded-lg overflow-hidden border border-gray-700" style="font-size: 12px;">
+                    <button id="btn-xgboost" class="px-3 py-1 bg-blue-600 text-white transition-all" onclick="switchModel('xgboost')">机器学习</button>
+                    <button id="btn-dl" class="px-3 py-1 bg-transparent text-gray-400 transition-all hover:bg-gray-700" onclick="switchModel('dl')">深度学习</button>
+                </div>
                 <span id="updateTime" class="hidden sm:inline">更新: --</span>
                 <span class="status-dot status-good"></span>
             </div>
@@ -377,6 +389,7 @@
             <button class="tab-btn" data-tab="baseline">基线对比</button>
             <button class="tab-btn" data-tab="validation">历史验证</button>
             <button class="tab-btn" data-tab="explainability">模型解释</button>
+            <button class="tab-btn dl-only" data-tab="deeplearning">深度学习</button>
             <button class="tab-btn" data-tab="methodology">方法论</button>
             <button class="tab-btn" data-tab="limitations">局限性</button>
         </div>
@@ -423,7 +436,7 @@
 
                     <!-- Prediction Chart -->
                     <div class="glass-card p-6 lg:col-span-3">
-                        <h3 class="section-title">未来 24 小时预测 <span class="text-sm font-normal text-gray-500">(北京时间)</span></h3>
+                        <h3 class="section-title">未来 24 小时预测 <span class="text-sm font-normal text-gray-500">(北京时间)</span> <span id="modelBadge" class="text-xs px-2 py-0.5 rounded-full ml-2" style="background: rgba(59,130,246,0.2); color: #60a5fa;">机器学习 · XGBoost</span></h3>
                         <div id="predictionChart" class="chart-container" style="height: 350px;"></div>
                     </div>
 
@@ -444,7 +457,7 @@
                             <h3 class="section-title mb-0">方法论概述</h3>
                             <button onclick="document.querySelector('[data-tab=methodology]').click()" class="text-sm text-blue-400 hover:text-blue-300">查看详情 →</button>
                         </div>
-                        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 ml-only">
                             <div class="p-4 rounded-xl" style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.2);">
                                 <div class="text-blue-400 text-2xl mb-2">📥</div>
                                 <div class="font-medium">数据采集</div>
@@ -466,45 +479,52 @@
                                 <div class="text-sm text-gray-400 mt-1">MAE=6.03, R²=0.86（方法论正确版本）</div>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Model Performance Summary -->
-                    <div class="glass-card p-6 lg:col-span-2">
-                        <h3 class="section-title">核心技术亮点</h3>
-                        <div class="space-y-3">
-                            <div class="flex items-start gap-3">
-                                <span class="text-green-400">✓</span>
-                                <div>
-                                    <div class="font-medium">多源数据融合</div>
-                                    <div class="text-sm text-gray-400">整合 WAQI、Open-Meteo、高德等 5 个数据源</div>
-                                </div>
+                        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 dl-only">
+                            <div class="p-4 rounded-xl" style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.2);">
+                                <div class="text-blue-400 text-2xl mb-2">📥</div>
+                                <div class="font-medium">数据采集</div>
+                                <div class="text-sm text-gray-400 mt-1">5城市 AQI+PM2.5+PM10，气象17变量，小时级</div>
                             </div>
-                            <div class="flex items-start gap-3">
-                                <span class="text-green-400">✓</span>
-                                <div>
-                                    <div class="font-medium">时序特征工程</div>
-                                    <div class="text-sm text-gray-400">滞后特征、滚动统计、周期编码等 127 个候选特征</div>
-                                </div>
+                            <div class="p-4 rounded-xl" style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.2);">
+                                <div class="text-green-400 text-2xl mb-2">⚙️</div>
+                                <div class="font-medium">DL 特征工程</div>
+                                <div class="text-sm text-gray-400 mt-1">47 维特征：污染物+气象+时间编码+空间滞后+风向感知</div>
                             </div>
-                            <div class="flex items-start gap-3">
-                                <span class="text-green-400">✓</span>
-                                <div>
-                                    <div class="font-medium">严格评估体系</div>
-                                    <div class="text-sm text-gray-400">基线对比、消融实验、时序交叉验证</div>
-                                </div>
+                            <div class="p-4 rounded-xl" style="background: rgba(139, 92, 246, 0.1); border: 1px solid rgba(139, 92, 246, 0.2);">
+                                <div class="text-purple-400 text-2xl mb-2">🧠</div>
+                                <div class="font-medium">LSTM+Attention</div>
+                                <div class="text-sm text-gray-400 mt-1">132K 参数，48h 滑动窗口，ONNX 推理 &lt;1ms</div>
                             </div>
-                            <div class="flex items-start gap-3">
-                                <span class="text-green-400">✓</span>
-                                <div>
-                                    <div class="font-medium">可解释性分析</div>
-                                    <div class="text-sm text-gray-400">SHAP 特征重要性，明确预测依据</div>
-                                </div>
+                            <div class="p-4 rounded-xl" style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.2);">
+                                <div class="text-yellow-400 text-2xl mb-2">📊</div>
+                                <div class="font-medium">模型性能 (1h)</div>
+                                <div class="text-sm text-gray-400 mt-1">MAE=11.37, R²=0.80（深度学习版本）</div>
                             </div>
                         </div>
                     </div>
 
+                    <!-- Model Performance Summary -->
+                    <div class="glass-card p-6 lg:col-span-2 ml-only">
+                        <h3 class="section-title">核心技术亮点</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-start gap-3"><span class="text-green-400">✓</span><div><div class="font-medium">多源数据融合</div><div class="text-sm text-gray-400">整合 WAQI、Open-Meteo、高德等 5 个数据源</div></div></div>
+                            <div class="flex items-start gap-3"><span class="text-green-400">✓</span><div><div class="font-medium">时序特征工程</div><div class="text-sm text-gray-400">滞后特征、滚动统计、周期编码等 127 个候选特征</div></div></div>
+                            <div class="flex items-start gap-3"><span class="text-green-400">✓</span><div><div class="font-medium">严格评估体系</div><div class="text-sm text-gray-400">基线对比、消融实验、时序交叉验证</div></div></div>
+                            <div class="flex items-start gap-3"><span class="text-green-400">✓</span><div><div class="font-medium">可解释性分析</div><div class="text-sm text-gray-400">SHAP 特征重要性，明确预测依据</div></div></div>
+                        </div>
+                    </div>
+                    <div class="glass-card p-6 lg:col-span-2 dl-only">
+                        <h3 class="section-title">核心技术亮点</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-start gap-3"><span class="text-purple-400">✓</span><div><div class="font-medium">Bi-LSTM 时序编码</div><div class="text-sm text-gray-400">双向 LSTM 同时捕捉前向和后向时序依赖</div></div></div>
+                            <div class="flex items-start gap-3"><span class="text-purple-400">✓</span><div><div class="font-medium">Multi-Head Attention</div><div class="text-sm text-gray-400">4 头注意力机制自动学习关键时间步的权重</div></div></div>
+                            <div class="flex items-start gap-3"><span class="text-purple-400">✓</span><div><div class="font-medium">空间特征融合</div><div class="text-sm text-gray-400">上风向城市（南京/镇江/泰州/南通）AQI 空间滞后 + 风向感知加权</div></div></div>
+                            <div class="flex items-start gap-3"><span class="text-purple-400">✓</span><div><div class="font-medium">ONNX 高效推理</div><div class="text-sm text-gray-400">推理延迟 &lt;1ms，模型仅 0.52MB，适合实时部署</div></div></div>
+                        </div>
+                    </div>
+
                     <!-- Data Leakage Explanation -->
-                    <div class="glass-card p-6 lg:col-span-3">
+                    <div class="glass-card p-6 lg:col-span-3 ml-only">
                         <h3 class="section-title">关于特征工程的说明：为什么使用历史 AQI 不是数据泄漏？</h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
@@ -548,29 +568,24 @@
                     </div>
 
                     <!-- Quick Stats -->
-                    <div class="glass-card p-6">
+                    <div class="glass-card p-6 ml-only">
                         <h3 class="section-title">数据统计</h3>
                         <div class="space-y-4">
-                            <div class="flex justify-between items-center">
-                                <span class="text-gray-400">训练数据量</span>
-                                <span class="font-medium">9,164 条</span>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-gray-400">数据时间跨度</span>
-                                <span class="font-medium">~13 个月</span>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-gray-400">特征数量</span>
-                                <span class="font-medium">25 个</span>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-gray-400">预测准确率 (1h)</span>
-                                <span class="font-medium text-green-400">R² = 0.86</span>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-gray-400">平均误差 (1h)</span>
-                                <span class="font-medium text-blue-400">MAE = 6.03</span>
-                            </div>
+                            <div class="flex justify-between items-center"><span class="text-gray-400">训练数据量</span><span class="font-medium">9,164 条</span></div>
+                            <div class="flex justify-between items-center"><span class="text-gray-400">数据时间跨度</span><span class="font-medium">~13 个月</span></div>
+                            <div class="flex justify-between items-center"><span class="text-gray-400">特征数量</span><span class="font-medium">25 个</span></div>
+                            <div class="flex justify-between items-center"><span class="text-gray-400">预测准确率 (1h)</span><span class="font-medium text-green-400">R² = 0.86</span></div>
+                            <div class="flex justify-between items-center"><span class="text-gray-400">平均误差 (1h)</span><span class="font-medium text-blue-400">MAE = 6.03</span></div>
+                        </div>
+                    </div>
+                    <div class="glass-card p-6 dl-only">
+                        <h3 class="section-title">数据统计</h3>
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center"><span class="text-gray-400">训练序列</span><span class="font-medium">1,262 条</span></div>
+                            <div class="flex justify-between items-center"><span class="text-gray-400">输入窗口</span><span class="font-medium">48h × 47 特征</span></div>
+                            <div class="flex justify-between items-center"><span class="text-gray-400">模型参数</span><span class="font-medium">132,676</span></div>
+                            <div class="flex justify-between items-center"><span class="text-gray-400">预测准确率 (1h)</span><span class="font-medium text-purple-400">R² = 0.80</span></div>
+                            <div class="flex justify-between items-center"><span class="text-gray-400">平均误差 (1h)</span><span class="font-medium text-purple-400">MAE = 11.37</span></div>
                         </div>
                     </div>
 
@@ -661,43 +676,37 @@
                     </div>
 
                     <!-- Pipeline Flow -->
-                    <div class="glass-card p-6">
+                    <div class="glass-card p-6 ml-only">
                         <h3 class="section-title">数据流程</h3>
-                        <div class="pipeline-step">
-                            <div class="pipeline-icon bg-blue-500/20 text-blue-400">📥</div>
-                            <div>
-                                <div class="font-medium">数据采集</div>
-                                <div class="text-sm text-gray-500">从多个数据源获取原始数据</div>
-                            </div>
-                        </div>
-                        <div class="pipeline-step">
-                            <div class="pipeline-icon bg-green-500/20 text-green-400">🧹</div>
-                            <div>
-                                <div class="font-medium">数据清洗</div>
-                                <div class="text-sm text-gray-500">处理缺失值、异常值、时间对齐</div>
-                            </div>
-                        </div>
-                        <div class="pipeline-step">
-                            <div class="pipeline-icon bg-yellow-500/20 text-yellow-400">🔀</div>
-                            <div>
-                                <div class="font-medium">数据合并</div>
-                                <div class="text-sm text-gray-500">多源数据按时间戳合并</div>
-                            </div>
-                        </div>
-                        <div class="pipeline-step">
-                            <div class="pipeline-icon bg-purple-500/20 text-purple-400">⚙️</div>
-                            <div>
-                                <div class="font-medium">特征工程</div>
-                                <div class="text-sm text-gray-500">构建滞后、滚动、交互特征</div>
-                            </div>
-                        </div>
-                        <div class="pipeline-step">
-                            <div class="pipeline-icon bg-red-500/20 text-red-400">🤖</div>
-                            <div>
-                                <div class="font-medium">模型预测</div>
-                                <div class="text-sm text-gray-500">XGBoost 模型实时预测</div>
-                            </div>
-                        </div>
+                        <div class="pipeline-step"><div class="pipeline-icon bg-blue-500/20 text-blue-400">📥</div><div><div class="font-medium">数据采集</div><div class="text-sm text-gray-500">从多个数据源获取原始数据</div></div></div>
+                        <div class="pipeline-step"><div class="pipeline-icon bg-green-500/20 text-green-400">🧹</div><div><div class="font-medium">数据清洗</div><div class="text-sm text-gray-500">处理缺失值、异常值、时间对齐</div></div></div>
+                        <div class="pipeline-step"><div class="pipeline-icon bg-yellow-500/20 text-yellow-400">🔀</div><div><div class="font-medium">数据合并</div><div class="text-sm text-gray-500">多源数据按时间戳合并</div></div></div>
+                        <div class="pipeline-step"><div class="pipeline-icon bg-purple-500/20 text-purple-400">⚙️</div><div><div class="font-medium">特征工程</div><div class="text-sm text-gray-500">构建滞后、滚动、交互特征</div></div></div>
+                        <div class="pipeline-step"><div class="pipeline-icon bg-red-500/20 text-red-400">🤖</div><div><div class="font-medium">模型预测</div><div class="text-sm text-gray-500">XGBoost 模型实时预测</div></div></div>
+                    </div>
+                    <div class="glass-card p-6 dl-only">
+                        <h3 class="section-title">深度学习数据管道</h3>
+                        <div class="pipeline-step"><div class="pipeline-icon bg-blue-500/20 text-blue-400">📥</div><div><div class="font-medium">多城市数据采集</div><div class="text-sm text-gray-500">扬州+南京+镇江+泰州+南通 AQI/PM2.5/PM10 (WAQI API) + Open-Meteo 气象 17 变量</div></div></div>
+                        <div class="pipeline-step"><div class="pipeline-icon bg-green-500/20 text-green-400">🧹</div><div><div class="font-medium">数据清洗 & 多源合并</div><div class="text-sm text-gray-500">异常值检测 + 缺失插值 + 5 城市数据按时间戳对齐 → 合并 PM2.5/PM10 列</div></div></div>
+                        <div class="pipeline-step"><div class="pipeline-icon bg-yellow-500/20 text-yellow-400">⚙️</div><div><div class="font-medium">DL 特征工程 (47 维)</div><div class="text-sm text-gray-500">空间滞后(南京lag1-12h等14个) + 风向感知加权(2) + 区域统计(3) + 三角时间编码(9)</div></div></div>
+                        <div class="pipeline-step"><div class="pipeline-icon bg-cyan-500/20 text-cyan-400">📐</div><div><div class="font-medium">序列构建 & 归一化</div><div class="text-sm text-gray-500">48h 滑动窗口(stride=6防重叠) → StandardScaler fit on train → 时序 80/10/10 分割 → 1578 条序列</div></div></div>
+                        <div class="pipeline-step"><div class="pipeline-icon bg-purple-500/20 text-purple-400">🧠</div><div><div class="font-medium">LSTM+Attention 训练</div><div class="text-sm text-gray-500">BiLSTM(64)+4头Attention → AdamW+CosineAnnealingLR → 加权Huber Loss → Early Stopping(patience=40)</div></div></div>
+                        <div class="pipeline-step"><div class="pipeline-icon bg-orange-500/20 text-orange-400">📦</div><div><div class="font-medium">模型评估 & ONNX 导出</div><div class="text-sm text-gray-500">测试集逐 Horizon 评估(MAE/RMSE/R²/MAPE) → torch.onnx.export → onnxruntime 验证一致性</div></div></div>
+                        <div class="pipeline-step"><div class="pipeline-icon bg-red-500/20 text-red-400">🔮</div><div><div class="font-medium">MC Dropout 推理</div><div class="text-sm text-gray-500">ONNX Runtime 确定性推理(&lt;1ms) + PyTorch MC Dropout 50 次采样生成 95% 置信区间</div></div></div>
+                    </div>
+                    <div class="glass-card p-6 dl-only">
+                        <h3 class="section-title">与机器学习管道对比</h3>
+                        <table class="data-table">
+                            <thead><tr><th>环节</th><th>机器学习 (XGBoost)</th><th>深度学习 (LSTM+Attn)</th></tr></thead>
+                            <tbody>
+                                <tr><td>数据范围</td><td>扬州 + 4 城 AQI</td><td>5 城 AQI/PM2.5/PM10 + 气象 17 变量</td></tr>
+                                <tr><td>特征工程</td><td>127 候选 → 20 精选 (lag/rolling/交叉)</td><td>47 维 (空间滞后+风向感知+时间编码)</td></tr>
+                                <tr><td>输入形式</td><td>单行向量 (1, 20)</td><td>时间序列 (48, 47)</td></tr>
+                                <tr><td>训练样本</td><td>9,164 条独立样本</td><td>1,262 条序列 (stride=6)</td></tr>
+                                <tr><td>模型</td><td>XGBoost × 4 独立模型</td><td>单模型 4 输出头</td></tr>
+                                <tr><td>不确定性</td><td>分位数回归</td><td>MC Dropout (50 次采样)</td></tr>
+                            </tbody>
+                        </table>
                     </div>
 
                     <!-- Data Cleaning Details -->
@@ -784,7 +793,7 @@
 
             <!-- Tab 3: Feature Analysis -->
             <div id="tab-features" class="tab-content">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 ml-only">
                     <!-- Feature Importance -->
                     <div class="glass-card p-6">
                         <h3 class="section-title">特征重要性排名 (Top 20)</h3>
@@ -979,11 +988,89 @@
                         </table>
                     </div>
                 </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 dl-only">
+                    <div class="glass-card p-6 lg:col-span-2">
+                        <h3 class="section-title">DL 特征体系 (47 维)</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                            <div class="p-4 rounded-xl" style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.2);">
+                                <h4 class="font-medium text-blue-400 mb-3">扬州污染物 (6)</h4>
+                                <ul class="text-xs text-gray-500 space-y-1"><li>AQI, PM2.5, PM10</li><li>NO2, CO, SO2</li></ul>
+                            </div>
+                            <div class="p-4 rounded-xl" style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.2);">
+                                <h4 class="font-medium text-green-400 mb-3">气象变量 (11)</h4>
+                                <ul class="text-xs text-gray-500 space-y-1"><li>温度、湿度、气压、露点</li><li>风速、风向(u/v)、阵风</li><li>降水、云量、边界层高度</li></ul>
+                            </div>
+                            <div class="p-4 rounded-xl" style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.2);">
+                                <h4 class="font-medium text-yellow-400 mb-3">时间编码 (9)</h4>
+                                <ul class="text-xs text-gray-500 space-y-1"><li>hour_sin/cos, month_sin/cos</li><li>dow_sin/cos</li><li>is_weekend, is_holiday, is_heating</li></ul>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                            <div class="p-4 rounded-xl" style="background: rgba(139, 92, 246, 0.1); border: 1px solid rgba(139, 92, 246, 0.2);">
+                                <h4 class="font-medium text-purple-400 mb-2">上风向 AQI (4)</h4>
+                                <div class="text-xs text-gray-500">南京、镇江、泰州、南通原始 AQI</div>
+                            </div>
+                            <div class="p-4 rounded-xl" style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.2);">
+                                <h4 class="font-medium text-red-400 mb-2">空间滞后 (14)</h4>
+                                <div class="text-xs text-gray-500">南京 AQI lag 1/3/6/12h，镇江/泰州 lag 1/3/6h，南通 lag 1/3h，南京 PM2.5 lag 3/6h</div>
+                            </div>
+                            <div class="p-4 rounded-xl" style="background: rgba(6, 182, 212, 0.1); border: 1px solid rgba(6, 182, 212, 0.2);">
+                                <h4 class="font-medium text-cyan-400 mb-2">区域统计 (3)</h4>
+                                <div class="text-xs text-gray-500">regional_aqi_mean/std/max</div>
+                            </div>
+                            <div class="p-4 rounded-xl" style="background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.2);">
+                                <h4 class="font-medium text-emerald-400 mb-2">风向感知 (2)</h4>
+                                <div class="text-xs text-gray-500">upwind_aqi, upwind_pm25 (基于实时风向加权)</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-card p-6">
+                        <h3 class="section-title">特征设计理念</h3>
+                        <div class="p-4 rounded-xl mb-4" style="background: rgba(139, 92, 246, 0.1); border: 1px solid rgba(139, 92, 246, 0.2);">
+                            <p class="text-sm text-gray-400">与 XGBoost 不同，LSTM 模型<strong class="text-white">不需要显式的滞后/滚动特征</strong>。48 小时的序列输入让模型自行学习时序模式。DL 特征工程重点放在：<strong class="text-purple-300">空间维度</strong>（上风向城市空间滞后 + 风向感知加权）和<strong class="text-purple-300">周期编码</strong>（三角函数编码避免跳变），这些是 LSTM 难以从原始数据自动提取的。</p>
+                        </div>
+                        <h4 class="text-sm font-medium mb-2 text-gray-300">与 XGBoost 特征对比</h4>
+                        <table class="data-table">
+                            <thead><tr><th>维度</th><th>XGBoost (20 特征)</th><th>LSTM+Attn (47 特征)</th></tr></thead>
+                            <tbody>
+                                <tr><td>时间建模</td><td>AQI_lag_1h~24h, rolling_mean 等显式滞后</td><td>LSTM 从 48h 原始序列自动学习</td></tr>
+                                <tr><td>空间建模</td><td>上风向城市当前 AQI (4 个)</td><td>空间滞后 1~12h (14 个) + 风向加权 (2 个)</td></tr>
+                                <tr><td>气象变量</td><td>温度/湿度/风速/气压</td><td>17 变量含边界层高度/UV指数/阵风</td></tr>
+                                <tr><td>时间编码</td><td>hour, weekday, month (整数)</td><td>sin/cos 编码 (避免 23→0 跳变) + 供暖/假日</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="glass-card p-6">
+                        <h3 class="section-title">输入序列结构</h3>
+                        <div style="font-family: monospace; font-size: 12px; line-height: 1.8; color: var(--text-secondary); background: rgba(0,0,0,0.3); padding: 16px; border-radius: 12px;">
+                            <div style="color: #a78bfa;">输入张量 X: (batch, 48, 47)</div>
+                            <div>&nbsp;</div>
+                            <div>时间轴 (48 步 = 48 小时):</div>
+                            <div style="color: #60a5fa;">  t-48h → t-47h → ... → t-2h → t-1h → t</div>
+                            <div>&nbsp;</div>
+                            <div>特征轴 (47 维):</div>
+                            <div>  [AQI, PM2.5, PM10, NO2, CO, SO2,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#60a5fa">← 污染物 (6)</span></div>
+                            <div>   temp, humidity, pressure, ...,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#34d399">← 气象 (11)</span></div>
+                            <div>   hour_sin, hour_cos, ..., is_heating,&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#fbbf24">← 时间编码 (9)</span></div>
+                            <div>   nanjing_aqi, zhenjiang_aqi, ...,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#f87171">← 上风向 (4)</span></div>
+                            <div>   nanjing_aqi_lag1h, ..., nanjing_pm25_lag6h,<span style="color:#a78bfa">← 空间滞后 (14)</span></div>
+                            <div>   regional_mean/std/max,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#06b6d4">← 区域统计 (3)</span></div>
+                            <div>   upwind_aqi, upwind_pm25]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#22c55e">← 风向感知 (2)</span></div>
+                            <div>&nbsp;</div>
+                            <div style="color: #fbbf24;">目标 y: [AQI_1h, AQI_6h, AQI_12h, AQI_24h]</div>
+                        </div>
+                        <div class="grid grid-cols-3 gap-3 mt-4">
+                            <div class="text-center p-2 rounded-lg" style="background: rgba(139,92,246,0.1);"><div class="text-lg font-bold text-purple-400">1,578</div><div class="text-xs text-gray-500">总序列数</div></div>
+                            <div class="text-center p-2 rounded-lg" style="background: rgba(59,130,246,0.1);"><div class="text-lg font-bold text-blue-400">48 × 47</div><div class="text-xs text-gray-500">单样本维度</div></div>
+                            <div class="text-center p-2 rounded-lg" style="background: rgba(16,185,129,0.1);"><div class="text-lg font-bold text-green-400">80/10/10</div><div class="text-xs text-gray-500">训练/验证/测试</div></div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Tab 4: Model Details -->
             <div id="tab-model" class="tab-content">
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 ml-only">
                     <!-- Model Info -->
                     <div class="glass-card p-6">
                         <h3 class="section-title">模型配置</h3>
@@ -1146,76 +1233,212 @@
                         </div>
                     </div>
                 </div>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 dl-only">
+                    <div class="glass-card p-6 lg:col-span-2">
+                        <h3 class="section-title">模型架构</h3>
+                        <div style="font-family: monospace; font-size: 12px; line-height: 1.8; color: var(--text-secondary); background: rgba(0,0,0,0.3); padding: 16px; border-radius: 12px;">
+                            <div style="color: #60a5fa;">Input (batch, 48, 47)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# 48h × 47 特征</div>
+                            <div>  │</div>
+                            <div style="color: #a78bfa;">  ├─ Bidirectional LSTM (in=47, hidden=64, layers=1)</div>
+                            <div>  │&nbsp;&nbsp;&nbsp;&nbsp;前向 LSTM: 47→64&nbsp;&nbsp;后向 LSTM: 47→64</div>
+                            <div>  │&nbsp;&nbsp;&nbsp;&nbsp;输出拼接: (batch, 48, 128)</div>
+                            <div>  │</div>
+                            <div style="color: #f59e0b;">  ├─ Multi-Head Self-Attention (embed=128, heads=4)</div>
+                            <div>  │&nbsp;&nbsp;&nbsp;&nbsp;Q, K, V 各 128→128，每头 32 维</div>
+                            <div>  │&nbsp;&nbsp;&nbsp;&nbsp;输出: (batch, 48, 128) + attn_weights</div>
+                            <div>  │</div>
+                            <div style="color: #34d399;">  ├─ Residual + LayerNorm + Dropout(0.3)</div>
+                            <div>  │&nbsp;&nbsp;&nbsp;&nbsp;out = LayerNorm(lstm_out + attn_out)</div>
+                            <div>  │</div>
+                            <div>  ├─ Select last timestep → (batch, 128)</div>
+                            <div>  │</div>
+                            <div style="color: #f87171;">  └─ FC Decoder:</div>
+                            <div>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Linear(128→64) → ReLU → Dropout(0.3)</div>
+                            <div>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Linear(64→4)</div>
+                            <div>  │</div>
+                            <div style="color: #fbbf24;">Output: [AQI_1h, AQI_6h, AQI_12h, AQI_24h]</div>
+                        </div>
+                    </div>
+                    <div class="glass-card p-6">
+                        <h3 class="section-title">模型配置</h3>
+                        <div class="space-y-3">
+                            <div><div class="text-gray-500 text-xs">模型类型</div><div class="font-medium">LSTM + Multi-Head Attention</div></div>
+                            <div><div class="text-gray-500 text-xs">训练数据</div><div class="font-medium">2023-01 ~ 2026-02</div></div>
+                            <div><div class="text-gray-500 text-xs">输入维度</div><div class="font-medium">48 步 × 47 特征</div></div>
+                            <div><div class="text-gray-500 text-xs">总参数量</div><div class="font-medium">132,676</div></div>
+                            <div><div class="text-gray-500 text-xs">模型体积</div><div class="font-medium">0.52 MB (ONNX)</div></div>
+                            <div><div class="text-gray-500 text-xs">推理延迟</div><div class="font-medium">&lt; 1ms (ONNX Runtime)</div></div>
+                        </div>
+                    </div>
+                    <div class="glass-card p-6">
+                        <h3 class="section-title">超参数设置</h3>
+                        <table class="data-table"><tbody>
+                            <tr><td class="text-gray-500">hidden_size</td><td>64</td></tr>
+                            <tr><td class="text-gray-500">num_layers</td><td>1 (bidirectional)</td></tr>
+                            <tr><td class="text-gray-500">attention heads</td><td>4</td></tr>
+                            <tr><td class="text-gray-500">dropout</td><td>0.3</td></tr>
+                            <tr><td class="text-gray-500">learning_rate</td><td>0.001 (AdamW)</td></tr>
+                            <tr><td class="text-gray-500">weight_decay</td><td>1e-3</td></tr>
+                            <tr><td class="text-gray-500">batch_size</td><td>64</td></tr>
+                            <tr><td class="text-gray-500">noise_std</td><td>0.05 (高斯增强)</td></tr>
+                            <tr><td class="text-gray-500">scheduler</td><td>CosineAnnealingLR</td></tr>
+                            <tr><td class="text-gray-500">gradient clip</td><td>max_norm=1.0</td></tr>
+                        </tbody></table>
+                    </div>
+                    <div class="glass-card p-6">
+                        <h3 class="section-title">各 Horizon 性能</h3>
+                        <table class="data-table">
+                            <thead><tr><th>Horizon</th><th>MAE</th><th>RMSE</th><th>R²</th></tr></thead>
+                            <tbody>
+                                <tr style="background:rgba(139,92,246,0.15);"><td><strong>1h</strong></td><td><strong>11.37</strong></td><td>17.59</td><td><strong>0.80</strong></td></tr>
+                                <tr><td>6h</td><td>15.74</td><td>23.10</td><td>0.66</td></tr>
+                                <tr><td>12h</td><td>20.70</td><td>28.95</td><td>0.47</td></tr>
+                                <tr><td>24h</td><td>27.47</td><td>36.12</td><td>0.17</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="glass-card p-6 lg:col-span-3">
+                        <h3 class="section-title">训练策略</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                            <div class="p-4 rounded-xl" style="background: rgba(139, 92, 246, 0.1);">
+                                <h4 class="font-medium mb-2">加权 Huber Loss</h4>
+                                <p class="text-sm text-gray-400">权重 [1.0, 0.8, 0.6, 0.4]，短期预测优先。Huber 对异常值鲁棒，delta=1.0。</p>
+                            </div>
+                            <div class="p-4 rounded-xl" style="background: rgba(59, 130, 246, 0.1);">
+                                <h4 class="font-medium mb-2">正则化组合</h4>
+                                <p class="text-sm text-gray-400">Dropout(0.3) + WeightDecay(1e-3) + 高斯噪声增强(std=0.05) + 梯度裁剪(norm=1.0)</p>
+                            </div>
+                            <div class="p-4 rounded-xl" style="background: rgba(16, 185, 129, 0.1);">
+                                <h4 class="font-medium mb-2">学习率调度</h4>
+                                <p class="text-sm text-gray-400">CosineAnnealingLR: 从 0.001 余弦退火到 0。最佳模型在 Epoch 23。</p>
+                            </div>
+                            <div class="p-4 rounded-xl" style="background: rgba(245, 158, 11, 0.1);">
+                                <h4 class="font-medium mb-2">防过拟合设计</h4>
+                                <p class="text-sm text-gray-400">Stride=6 减少序列重叠(42/48→1578条) + Early Stopping(patience=40) + 噪声增强</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Tab 5: Baseline Comparison -->
             <div id="tab-baseline" class="tab-content">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    <!-- Comparison Table -->
-                    <div class="glass-card p-6">
-                        <h3 class="section-title">基线模型对比</h3>
+                <!-- ML 基线对比 -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 ml-only">
+                    <div class="glass-card p-6 lg:col-span-2">
+                        <h3 class="section-title">XGBoost v4 各预测时段性能</h3>
+                        <p class="text-sm text-gray-400 mb-4">XGBoost 模型在 4 个预测 Horizon 上的测试集表现</p>
                         <table class="data-table">
-                            <thead>
-                                <tr>
-                                    <th>模型</th>
-                                    <th>MAE</th>
-                                    <th>RMSE</th>
-                                    <th>R²</th>
-                                </tr>
-                            </thead>
-                            <tbody id="baselineTable">
-                                <tr>
-                                    <td>Naive (24h)</td>
-                                    <td>22.4</td>
-                                    <td>31.2</td>
-                                    <td>0.78</td>
-                                </tr>
-                                <tr>
-                                    <td>Moving Avg (24h)</td>
-                                    <td>19.8</td>
-                                    <td>27.5</td>
-                                    <td>0.82</td>
-                                </tr>
-                                <tr>
-                                    <td>Exp Smoothing</td>
-                                    <td>18.2</td>
-                                    <td>25.1</td>
-                                    <td>0.84</td>
-                                </tr>
-                                <tr>
-                                    <td>Linear (lag 1h)</td>
-                                    <td>15.3</td>
-                                    <td>21.8</td>
-                                    <td>0.88</td>
-                                </tr>
-                                <tr style="background: rgba(59, 130, 246, 0.1);">
-                                    <td><strong>XGBoost (我们的)</strong></td>
-                                    <td><strong>12.5</strong></td>
-                                    <td><strong>18.3</strong></td>
-                                    <td><strong>0.92</strong></td>
-                                </tr>
+                            <thead><tr><th>预测 Horizon</th><th>MAE</th><th>RMSE</th><th>R²</th><th>评价</th></tr></thead>
+                            <tbody>
+                                <tr style="background: rgba(16, 185, 129, 0.1);"><td><strong>1 小时</strong></td><td><strong>6.03</strong></td><td>9.84</td><td><strong>0.86</strong></td><td><span style="color:#10b981;">优秀</span> — 短期预测极为准确</td></tr>
+                                <tr style="background: rgba(59, 130, 246, 0.05);"><td><strong>6 小时</strong></td><td>11.41</td><td>17.06</td><td>0.71</td><td><span style="color:#3b82f6;">良好</span> — 仍有较强预测力</td></tr>
+                                <tr style="background: rgba(245, 158, 11, 0.05);"><td><strong>12 小时</strong></td><td>17.72</td><td>26.25</td><td>0.30</td><td><span style="color:#f59e0b;">一般</span> — 解释力有限</td></tr>
+                                <tr style="background: rgba(239, 68, 68, 0.05);"><td><strong>24 小时</strong></td><td>23.24</td><td>33.79</td><td>-0.35</td><td><span style="color:#ef4444;">较差</span> — 不如历史均值</td></tr>
                             </tbody>
                         </table>
                     </div>
-
-                    <!-- Comparison Chart -->
+                    <div class="glass-card p-6">
+                        <h3 class="section-title">基线模型对比 (1h 预测)</h3>
+                        <table class="data-table">
+                            <thead><tr><th>模型</th><th>MAE</th><th>RMSE</th><th>R²</th></tr></thead>
+                            <tbody id="baselineTable">
+                                <tr><td>Naive (24h)</td><td>22.4</td><td>31.2</td><td>0.78</td></tr>
+                                <tr><td>Moving Avg (24h)</td><td>19.8</td><td>27.5</td><td>0.82</td></tr>
+                                <tr><td>Exp Smoothing</td><td>18.2</td><td>25.1</td><td>0.84</td></tr>
+                                <tr><td>Linear (lag 1h)</td><td>15.3</td><td>21.8</td><td>0.88</td></tr>
+                                <tr style="background: rgba(59, 130, 246, 0.1);"><td><strong>XGBoost (v4)</strong></td><td><strong>12.5</strong></td><td><strong>18.3</strong></td><td><strong>0.92</strong></td></tr>
+                            </tbody>
+                        </table>
+                    </div>
                     <div class="glass-card p-6">
                         <h3 class="section-title">MAE 对比</h3>
                         <div id="baselineChart" class="chart-container"></div>
                     </div>
-
-                    <!-- Ablation Study -->
                     <div class="glass-card p-6 lg:col-span-2">
                         <h3 class="section-title">消融实验结果</h3>
                         <p class="text-gray-400 text-sm mb-4">通过移除不同类别的特征，评估其对模型性能的贡献</p>
                         <div id="ablationChart" class="chart-container" style="height: 350px;"></div>
                     </div>
                 </div>
+
+                <!-- DL 基线对比 -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 dl-only">
+                    <div class="glass-card p-6 lg:col-span-2">
+                        <h3 class="section-title">机器学习 vs 深度学习 逐 Horizon 对比</h3>
+                        <p class="text-sm text-gray-400 mb-4">同一测试集上的性能对比，评估两种方法在不同预测时间跨度上的优劣</p>
+                        <table class="data-table">
+                            <thead><tr><th>Horizon</th><th colspan="3" style="color:#60a5fa;">机器学习 (XGBoost)</th><th colspan="3" style="color:#a78bfa;">深度学习 (LSTM+Attn)</th><th>胜出</th></tr>
+                            <tr><th></th><th>MAE</th><th>RMSE</th><th>R²</th><th>MAE</th><th>RMSE</th><th>R²</th><th></th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>1h</strong></td><td class="text-blue-400"><strong>6.03</strong></td><td>9.84</td><td class="text-blue-400"><strong>0.86</strong></td><td>11.37</td><td>17.59</td><td>0.80</td><td style="color:#60a5fa;">ML</td></tr>
+                                <tr><td><strong>6h</strong></td><td class="text-blue-400"><strong>11.41</strong></td><td>17.06</td><td class="text-blue-400"><strong>0.71</strong></td><td>15.74</td><td>23.10</td><td>0.66</td><td style="color:#60a5fa;">ML</td></tr>
+                                <tr><td><strong>12h</strong></td><td>17.72</td><td>26.25</td><td>0.30</td><td>20.70</td><td>28.95</td><td>0.47</td><td style="color:#a78bfa;">DL (R²)</td></tr>
+                                <tr><td><strong>24h</strong></td><td>23.24</td><td>33.79</td><td>-0.35</td><td>27.47</td><td>36.12</td><td class="text-purple-400"><strong>0.17</strong></td><td style="color:#a78bfa;">DL (R²)</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="glass-card p-6">
+                        <h3 class="section-title">XGBoost vs LSTM+Attention</h3>
+                        <table class="data-table">
+                            <thead><tr><th>预测范围</th><th>模型</th><th>MAE</th><th>RMSE</th><th>R²</th></tr></thead>
+                            <tbody id="dlComparisonTable1">
+                                <tr><td colspan="5" style="color: var(--text-secondary); text-align: center;">等待加载...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="glass-card p-6">
+                        <h3 class="section-title">分析结论</h3>
+                        <div class="space-y-3">
+                            <div class="p-3 rounded-lg" style="background: rgba(59, 130, 246, 0.1);">
+                                <div class="text-sm font-medium text-blue-400">ML 优势：短期预测 (1h~6h)</div>
+                                <div class="text-xs text-gray-400 mt-1">XGBoost 的显式 lag 特征 (AQI_lag_1h) 对短期惯性建模极其高效，DL 难以超越</div>
+                            </div>
+                            <div class="p-3 rounded-lg" style="background: rgba(139, 92, 246, 0.1);">
+                                <div class="text-sm font-medium text-purple-400">DL 优势：长期 R² (12h~24h)</div>
+                                <div class="text-xs text-gray-400 mt-1">LSTM 自动学习复杂时序模式 + 空间传输效应，24h R² 从 -0.35 提升到 0.17</div>
+                            </div>
+                            <div class="p-3 rounded-lg" style="background: rgba(245, 158, 11, 0.1);">
+                                <div class="text-sm font-medium text-yellow-400">互补策略</div>
+                                <div class="text-xs text-gray-400 mt-1">最优方案：短期(1-6h)用XGBoost，中长期(12-24h)参考LSTM+Attention的R²优势</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Tab 6: Historical Validation -->
             <div id="tab-validation" class="tab-content">
-                <div class="grid grid-cols-1 gap-6">
+                <div class="grid grid-cols-1 gap-6 ml-only">
+                    <!-- 各 Horizon 性能汇总 -->
+                    <div class="glass-card p-6">
+                        <h3 class="section-title">XGBoost v4 各预测时段验证结果</h3>
+                        <p class="text-sm text-gray-400 mb-4">在时间序列交叉验证测试集上评估 4 个预测 Horizon 的性能指标</p>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                            <div class="p-4 rounded-lg text-center" style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.2);">
+                                <div class="text-2xl font-bold text-green-400">0.86</div>
+                                <div class="text-xs text-gray-400 mt-1">1h R²</div>
+                                <div class="text-xs text-green-400">MAE: 6.03</div>
+                            </div>
+                            <div class="p-4 rounded-lg text-center" style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.2);">
+                                <div class="text-2xl font-bold text-blue-400">0.71</div>
+                                <div class="text-xs text-gray-400 mt-1">6h R²</div>
+                                <div class="text-xs text-blue-400">MAE: 11.41</div>
+                            </div>
+                            <div class="p-4 rounded-lg text-center" style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.2);">
+                                <div class="text-2xl font-bold text-yellow-400">0.30</div>
+                                <div class="text-xs text-gray-400 mt-1">12h R²</div>
+                                <div class="text-xs text-yellow-400">MAE: 17.72</div>
+                            </div>
+                            <div class="p-4 rounded-lg text-center" style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.2);">
+                                <div class="text-2xl font-bold text-red-400">-0.35</div>
+                                <div class="text-xs text-gray-400 mt-1">24h R²</div>
+                                <div class="text-xs text-red-400">MAE: 23.24</div>
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-500">结论：XGBoost 在短期（1-6h）预测表现优秀，但在长期（12-24h）预测中解释力大幅下降。24h R²为负说明模型不如简单历史均值。</p>
+                    </div>
+
                     <!-- Prediction vs Actual -->
                     <div class="glass-card p-6">
                         <h3 class="section-title">预测值 vs 实际值对比（1小时预测模型）</h3>
@@ -1254,11 +1477,52 @@
                         </div>
                     </div>
                 </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 dl-only">
+                    <div class="glass-card p-6 lg:col-span-2">
+                        <h3 class="section-title">LSTM+Attention 测试集评估</h3>
+                        <p class="text-sm text-gray-400 mb-4">在 158 条时序不重叠的测试样本上评估，覆盖约 1 个月数据。</p>
+                        <table class="data-table">
+                            <thead><tr><th>预测 Horizon</th><th>MAE</th><th>RMSE</th><th>R²</th><th>MAPE</th><th>vs XGBoost R²</th></tr></thead>
+                            <tbody>
+                                <tr style="background: rgba(139, 92, 246, 0.15);"><td><strong>1 小时</strong></td><td><strong>11.37</strong></td><td>17.59</td><td><strong>0.80</strong></td><td>17.7%</td><td>0.86 (ML胜)</td></tr>
+                                <tr><td>6 小时</td><td>15.74</td><td>23.10</td><td>0.66</td><td>25.2%</td><td>0.71 (ML胜)</td></tr>
+                                <tr><td>12 小时</td><td>20.70</td><td>28.95</td><td><strong>0.47</strong></td><td>34.1%</td><td>0.30 (DL胜)</td></tr>
+                                <tr><td>24 小时</td><td>27.47</td><td>36.12</td><td><strong>0.17</strong></td><td>49.1%</td><td>-0.35 (DL胜)</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="glass-card p-6">
+                        <h3 class="section-title">训练曲线</h3>
+                        <div id="dlValidationTrainingChart" class="chart-container" style="height: 280px;"></div>
+                        <p class="text-xs text-gray-500 mt-2" id="dlValidationTrainingInfo">最佳模型: Epoch 23</p>
+                    </div>
+                    <div class="glass-card p-6">
+                        <h3 class="section-title">各 Horizon R² 对比</h3>
+                        <div id="dlValidationR2Chart" class="chart-container" style="height: 280px;"></div>
+                    </div>
+                    <div class="glass-card p-6 lg:col-span-2">
+                        <h3 class="section-title">关键观察</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="p-3 rounded-lg" style="background: rgba(16, 185, 129, 0.1);">
+                                <div class="text-sm"><strong class="text-green-400">1h 预测：R²=0.80</strong></div>
+                                <div class="text-xs text-gray-400 mt-1">短期预测可靠，LSTM 成功捕捉时序惯性和空间传输效应。但仍不及 XGBoost (0.86)，因其缺乏显式 lag 特征。</div>
+                            </div>
+                            <div class="p-3 rounded-lg" style="background: rgba(139, 92, 246, 0.1);">
+                                <div class="text-sm"><strong class="text-purple-400">12h/24h：DL R² 领先</strong></div>
+                                <div class="text-xs text-gray-400 mt-1">24h R²=0.17 vs XGBoost的-0.35，说明 LSTM+Attention 的时序模式学习在长期预测上有优势。</div>
+                            </div>
+                            <div class="p-3 rounded-lg" style="background: rgba(245, 158, 11, 0.1);">
+                                <div class="text-sm"><strong class="text-yellow-400">MC Dropout 不确定性</strong></div>
+                                <div class="text-xs text-gray-400 mt-1">50 次前向传播估计 95% CI。1h 置信区间较窄(模型确信)，24h 区间显著增大(不确定性高)。</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Tab 7: Model Explainability -->
             <div id="tab-explainability" class="tab-content">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 ml-only">
 
                     <!-- Overview -->
                     <div class="glass-card p-6 lg:col-span-2">
@@ -1576,11 +1840,66 @@
                     </div>
 
                 </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 dl-only">
+                    <div class="glass-card p-6 lg:col-span-2">
+                        <h3 class="section-title">Attention 机制可解释性</h3>
+                        <p class="text-gray-400 mb-4">LSTM+Attention 模型通过 <strong class="text-white">Multi-Head Attention 权重</strong>提供可解释性。4 个注意力头各自学习不同的时间依赖模式，每个头为 48 个历史时间步分配注意力权重。</p>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="p-4 rounded-xl" style="background: rgba(139, 92, 246, 0.1); border: 1px solid rgba(139, 92, 246, 0.2);">
+                                <div class="font-medium text-purple-400 mb-2">短期惯性模式</div>
+                                <p class="text-xs text-gray-400">注意力集中在最近 1-6 小时：空气质量变化具有强惯性，当前AQI与近几小时高度相关。对应 AQI 的自相关特性。</p>
+                            </div>
+                            <div class="p-4 rounded-xl" style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.2);">
+                                <div class="font-medium text-blue-400 mb-2">日周期模式</div>
+                                <p class="text-xs text-gray-400">~24 小时前出现注意力峰值：交通高峰、工业生产、气象条件呈日周期变化，模型学会利用前一天同时段数据。</p>
+                            </div>
+                            <div class="p-4 rounded-xl" style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.2);">
+                                <div class="font-medium text-green-400 mb-2">空间传输信号</div>
+                                <p class="text-xs text-gray-400">特征中的空间滞后(南京lag3-12h)使模型能感知上风向城市3-12小时前的污染状态，对应大气传输时间。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-card p-6">
+                        <h3 class="section-title">Attention 权重分布</h3>
+                        <div id="attentionHeatmapExplain" class="chart-container" style="height: 300px;"></div>
+                        <p class="text-xs text-gray-500 mt-2">最后时间步对历史 48 个时间步的平均注意力权重（4 头平均）</p>
+                    </div>
+                    <div class="glass-card p-6">
+                        <h3 class="section-title">可解释性方法对比</h3>
+                        <table class="data-table">
+                            <thead><tr><th>维度</th><th style="color:#60a5fa">SHAP (XGBoost)</th><th style="color:#a78bfa">Attention (LSTM)</th></tr></thead>
+                            <tbody>
+                                <tr><td>解释对象</td><td>每个<strong>特征</strong>的贡献</td><td>每个<strong>时间步</strong>的重要性</td></tr>
+                                <tr><td>解释粒度</td><td>"PM10=85 贡献 +4.8"</td><td>"3h前数据贡献 15%"</td></tr>
+                                <tr><td>理论基础</td><td>Shapley value (博弈论)</td><td>Attention weight (端到端学习)</td></tr>
+                                <tr><td>计算成本</td><td>较高 (需多次推理)</td><td>零额外成本 (训练副产品)</td></tr>
+                                <tr><td>因果性</td><td>非因果 (相关性)</td><td>非因果 (相关性)</td></tr>
+                            </tbody>
+                        </table>
+                        <div class="p-3 mt-3 rounded-lg" style="background: rgba(16, 185, 129, 0.1);">
+                            <div class="text-xs text-gray-400"><strong class="text-green-400">互补性：</strong>SHAP 告诉你"什么特征重要"，Attention 告诉你"什么时间重要"。结合使用可以得到更完整的预测解释。</div>
+                        </div>
+                    </div>
+                    <div class="glass-card p-6 lg:col-span-2">
+                        <h3 class="section-title">MC Dropout 不确定性量化</h3>
+                        <p class="text-gray-400 text-sm mb-4">除 Attention 可解释性外，MC Dropout 提供了另一个维度的解释：<strong class="text-white">模型对预测的确信程度</strong>。</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="p-4 rounded-xl" style="background: rgba(139, 92, 246, 0.1);">
+                                <h4 class="font-medium mb-2">工作原理</h4>
+                                <p class="text-xs text-gray-400">在推理时保持 Dropout(0.3) 激活，运行 50 次前向传播。每次 Dropout 随机屏蔽不同的神经元，产生略有不同的预测。取第 2.5% 和 97.5% 分位数作为 95% 置信区间。</p>
+                            </div>
+                            <div class="p-4 rounded-xl" style="background: rgba(59, 130, 246, 0.1);">
+                                <h4 class="font-medium mb-2">物理意义</h4>
+                                <p class="text-xs text-gray-400">置信区间窄 = 模型确信（各 Dropout 路径给出相似结果）。置信区间宽 = 模型不确定（特征信号弱或处于分布外数据）。对决策者来说，"不确定"的预测比"精确但错误"的预测更有价值。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Tab 8: Methodology -->
             <div id="tab-methodology" class="tab-content">
-                <div class="glass-card p-8">
+                <div class="glass-card p-8 ml-only">
                     <h2 class="text-2xl font-bold mb-8">扬州空气质量预测方法论</h2>
 
                     <div class="methodology-section">
@@ -1626,94 +1945,200 @@
                         4. <strong>可解释性价值</strong>：每个特征都有明确的物理意义，模型的预测依据可以被环境专家理解和验证。</p>
                     </div>
                 </div>
+                <div class="glass-card p-8 dl-only">
+                    <h2 class="text-2xl font-bold mb-8">LSTM+Attention 深度学习方法论</h2>
+                    <div class="methodology-section"><h3>1. 摘要</h3><p>本模块构建了基于 LSTM+Attention 的深度学习 AQI 预测模型。使用 48 小时滑动窗口输入 47 维特征（包含空间滞后和风向感知），同时预测 1h/6h/12h/24h 四个时间跨度。<strong>1 小时预测</strong> MAE=11.37、R²=0.80。</p></div>
+                    <div class="methodology-section"><h3>2. 模型架构</h3><p><strong>编码器：</strong>Bidirectional LSTM (hidden=64, 1 layer) 将 48 步序列编码为 128 维向量序列。<br><strong>注意力层：</strong>4 头 Multi-Head Self-Attention 学习时间步间的依赖关系，配合残差连接和 LayerNorm。<br><strong>解码器：</strong>取最后时间步的 context vector，通过 FC(128→64→4) 输出 4 个 horizon 的 AQI 预测。</p></div>
+                    <div class="methodology-section"><h3>3. 特征设计</h3><p><strong>核心创新：</strong>不使用传统的 lag/rolling 特征（LSTM 自行学习），而是重点构建<strong>空间特征</strong>。上风向城市（南京/镇江/泰州/南通）的 AQI 空间滞后、区域统计量、以及基于实时风向的加权 AQI，帮助模型理解跨区域污染传输。</p></div>
+                    <div class="methodology-section"><h3>4. 训练策略</h3><p><strong>数据划分：</strong>时序 80/10/10 分割，滑动窗口步长=6（减少样本重叠导致的过拟合）。<br><strong>损失函数：</strong>加权 Huber Loss，权重 [1.0, 0.8, 0.6, 0.4]（短期优先）。<br><strong>正则化：</strong>Dropout(0.3) + Weight Decay(1e-3) + 高斯噪声增强(std=0.05) + 梯度裁剪(norm=1.0)。<br><strong>优化器：</strong>AdamW + CosineAnnealingLR，Early Stopping patience=40。</p></div>
+                    <div class="methodology-section"><h3>5. 与 XGBoost 的对比</h3><p><strong>XGBoost 优势：</strong>1h 预测更精确（MAE=6.03 vs 11.37），因为表格数据+显式 lag 特征对短期预测极有效。<br><strong>LSTM 优势：</strong>自动学习复杂时序模式，更好地利用空间信息，在中长期预测中潜力更大。两种模型各有所长，互为补充。</p></div>
+                </div>
             </div>
 
             <!-- Tab 8: Limitations -->
-            <div id="tab-limitations" class="tab-content">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    <!-- Uncontrollable Factors -->
+            <!-- Tab: Deep Learning -->
+            <div id="tab-deeplearning" class="tab-content">
+                <div class="grid grid-cols-1 gap-6 dl-only">
+                    <!-- 模型架构 -->
                     <div class="glass-card p-6">
-                        <h3 class="section-title">不可控因素</h3>
-
-                        <div class="limitation-card">
-                            <h4>🏭 工业排放突发事件</h4>
-                            <p>工厂意外排放、设备故障等突发事件无法预测，可能导致短时间内 AQI 剧烈上升。</p>
-                        </div>
-
-                        <div class="limitation-card">
-                            <h4>🚗 交通管制影响</h4>
-                            <p>临时交通管制（如重大活动、事故）会影响车辆排放，但这些信息难以提前获取。</p>
-                        </div>
-
-                        <div class="limitation-card">
-                            <h4>🌾 跨区域污染传输</h4>
-                            <p>周边城市的污染物传输会显著影响本地空气质量，但传输路径和时间受风向风速影响，存在较大不确定性。</p>
-                        </div>
-
-                        <div class="limitation-card">
-                            <h4>🔥 秸秆焚烧</h4>
-                            <p>农村秸秆焚烧是秋季 AQI 飙升的主要原因之一，但焚烧时间和地点难以预测。</p>
+                        <h3 class="section-title">LSTM+Attention 模型架构</h3>
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <div>
+                                <div style="font-family: monospace; font-size: 13px; line-height: 1.8; color: var(--text-secondary); background: rgba(0,0,0,0.3); padding: 20px; border-radius: 12px;">
+                                    <div style="color: #60a5fa;">Input (batch, 48, 47)</div>
+                                    <div>&nbsp;&nbsp;→ LSTM Encoder (hidden=64, layers=1, bidirectional)</div>
+                                    <div>&nbsp;&nbsp;→ Output (batch, 48, 128)</div>
+                                    <div style="color: #a78bfa;">&nbsp;&nbsp;→ Multi-Head Self-Attention (heads=4)</div>
+                                    <div>&nbsp;&nbsp;→ Residual Connection + LayerNorm</div>
+                                    <div>&nbsp;&nbsp;→ Context Vector (batch, 128)</div>
+                                    <div style="color: #34d399;">&nbsp;&nbsp;→ FC: 128→64→ReLU→Dropout→4</div>
+                                    <div style="color: #fbbf24;">Output: [AQI_1h, AQI_6h, AQI_12h, AQI_24h]</div>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-semibold mb-3" style="color: var(--accent-blue);">核心设计</h4>
+                                <ul style="color: var(--text-secondary); font-size: 14px; line-height: 2;">
+                                    <li>• 双向LSTM捕捉前后文时序依赖</li>
+                                    <li>• Multi-Head Attention学习时间步重要性</li>
+                                    <li>• 残差连接防止梯度消失</li>
+                                    <li>• 多horizon同时预测 (1h/6h/12h/24h)</li>
+                                    <li>• 加权Huber Loss: 短期预测权重更高</li>
+                                    <li>• 48小时滑动窗口输入 (步长=6h)</li>
+                                    <li>• 空间特征: 上风向城市AQI滞后+风向感知</li>
+                                    <li>• 高斯噪声增强 (std=0.05) 防过拟合</li>
+                                    <li>• 参数量: 132K, ONNX推理 &lt;1ms</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Proxy Variables -->
+                    <!-- 训练曲线 -->
+                    <div class="glass-card p-6">
+                        <h3 class="section-title">训练曲线</h3>
+                        <div id="trainingCurvesChart" class="chart-container" style="height: 350px;"></div>
+                        <p class="text-xs text-gray-500 mt-2" id="trainingInfo">等待加载训练数据...</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <!-- Attention 热力图 -->
+                        <div class="glass-card p-6">
+                            <h3 class="section-title">Attention 权重分布</h3>
+                            <div id="attentionHeatmap" class="chart-container" style="height: 300px;"></div>
+                            <p class="text-xs text-gray-500 mt-2">最后时间步对历史各时间步的注意力权重</p>
+                        </div>
+
+                        <!-- 模型对比 -->
+                        <div class="glass-card p-6">
+                            <h3 class="section-title">XGBoost vs LSTM+Attention</h3>
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>预测范围</th>
+                                        <th>模型</th>
+                                        <th>MAE</th>
+                                        <th>RMSE</th>
+                                        <th>R²</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="dlComparisonTable2">
+                                    <tr><td colspan="5" style="color: var(--text-secondary); text-align: center;">等待加载...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <div id="tab-limitations" class="tab-content">
+                <!-- ML 局限性 -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 ml-only">
+                    <div class="glass-card p-6">
+                        <h3 class="section-title">XGBoost 模型局限性</h3>
+                        <div class="limitation-card">
+                            <h4>📊 依赖手工特征工程</h4>
+                            <p>模型性能高度依赖人工设计的 127 个特征（lag、滚动统计等）。特征选择的质量直接决定预测上限，难以自动发现复杂的非线性时序模式。</p>
+                        </div>
+                        <div class="limitation-card">
+                            <h4>🔗 无法建模长程依赖</h4>
+                            <p>XGBoost 将每个时间点作为独立样本，通过 lag 特征间接表达时序。无法像 RNN/Attention 那样直接建模长时间跨度的依赖关系。</p>
+                        </div>
+                        <div class="limitation-card">
+                            <h4>📉 长期预测衰退严重</h4>
+                            <p>24h 预测 R²=-0.35，甚至不如简单基线。因为 lag 特征在远期失效，模型缺乏对未来气象变化的感知能力。</p>
+                        </div>
+                        <div class="limitation-card">
+                            <h4>🌐 空间信息利用有限</h4>
+                            <p>仅使用上风向城市的当前 AQI 作为特征，缺乏对污染物传输时间和路径的精细建模。</p>
+                        </div>
+                    </div>
                     <div class="glass-card p-6">
                         <h3 class="section-title">代理变量说明</h3>
                         <p class="text-gray-400 text-sm mb-4">由于部分影响因素无法直接观测，我们使用代理变量来近似：</p>
-
                         <table class="data-table">
-                            <thead>
-                                <tr>
-                                    <th>代理变量</th>
-                                    <th>近似因素</th>
-                                    <th>计算方式</th>
-                                </tr>
-                            </thead>
+                            <thead><tr><th>代理变量</th><th>近似因素</th><th>计算方式</th></tr></thead>
                             <tbody>
-                                <tr>
-                                    <td>日温差</td>
-                                    <td>逆温层</td>
-                                    <td>当天最高温-最低温</td>
-                                </tr>
-                                <tr>
-                                    <td>秋季标记</td>
-                                    <td>秸秆焚烧</td>
-                                    <td>9-11月为1，其他为0</td>
-                                </tr>
-                                <tr>
-                                    <td>春节标记</td>
-                                    <td>烟花燃放</td>
-                                    <td>春节前后15天</td>
-                                </tr>
-                                <tr>
-                                    <td>供暖季标记</td>
-                                    <td>供暖排放</td>
-                                    <td>11月-3月为1</td>
-                                </tr>
+                                <tr><td>日温差</td><td>逆温层</td><td>当天最高温-最低温</td></tr>
+                                <tr><td>秋季标记</td><td>秸秆焚烧</td><td>9-11月为1，其他为0</td></tr>
+                                <tr><td>春节标记</td><td>烟花燃放</td><td>春节前后15天</td></tr>
+                                <tr><td>供暖季标记</td><td>供暖排放</td><td>11月-3月为1</td></tr>
                             </tbody>
                         </table>
                     </div>
-
-                    <!-- Model Failure Scenarios -->
                     <div class="glass-card p-6">
-                        <h3 class="section-title">模型失效场景</h3>
+                        <h3 class="section-title">共同不可控因素</h3>
                         <ul class="space-y-3 text-gray-400">
-                            <li>• <strong>极端天气事件</strong>：沙尘暴、持续雾霾等极端情况，历史数据稀少，模型难以学习</li>
-                            <li>• <strong>政策变化</strong>：新的环保政策实施后，历史模式可能不再适用</li>
-                            <li>• <strong>数据源异常</strong>：监测站故障、数据传输延迟会影响实时预测</li>
-                            <li>• <strong>长期预测</strong>：超过 24 小时的预测准确率会显著下降</li>
+                            <li>• <strong>工业排放突发事件</strong>：工厂意外排放无法预测</li>
+                            <li>• <strong>秸秆焚烧</strong>：焚烧时间和地点难以预测</li>
+                            <li>• <strong>极端天气</strong>：沙尘暴、持续雾霾等历史数据稀少</li>
+                            <li>• <strong>政策变化</strong>：新环保政策实施后历史模式失效</li>
                         </ul>
                     </div>
-
-                    <!-- Improvement Directions -->
                     <div class="glass-card p-6">
                         <h3 class="section-title">改进方向</h3>
                         <ul class="space-y-3 text-gray-400">
                             <li>• 引入卫星遥感数据，监测区域性污染分布</li>
                             <li>• 集成实时交通数据，提高对交通排放的预测</li>
-                            <li>• 使用深度学习模型（LSTM、Transformer）处理长时间依赖</li>
-                            <li>• 构建集成模型，结合多种算法的优势</li>
-                            <li>• 引入因果推断方法，提高模型可解释性</li>
+                            <li>• 使用深度学习模型处理长时间依赖</li>
+                            <li>• 构建 XGBoost + DL 集成模型</li>
+                            <li>• 引入因果推断方法，提高可解释性</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- DL 局限性 -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 dl-only">
+                    <div class="glass-card p-6">
+                        <h3 class="section-title">LSTM+Attention 模型局限性</h3>
+                        <div class="limitation-card">
+                            <h4>📉 训练数据量不足</h4>
+                            <p>仅 1,262 条训练序列（stride=6 去重后），132K 参数的模型相对于数据量偏大。深度学习通常需要更多数据才能充分发挥优势。</p>
+                        </div>
+                        <div class="limitation-card">
+                            <h4>🔢 短期预测不如 XGBoost</h4>
+                            <p>1h MAE=11.37 vs XGBoost 的 6.03。核心原因：XGBoost 使用显式 lag 特征（AQI_lag_1h）相当于直接告诉模型"1小时前的AQI"，而 LSTM 需要从 48h 原始序列中自行学习这一模式。在小数据量+表格数据场景，精心设计特征的传统 ML 通常优于 DL。</p>
+                        </div>
+                        <div class="limitation-card">
+                            <h4>🌤️ 缺乏天气预报数据</h4>
+                            <p>模型只能利用历史观测气象数据，无法获取未来天气预报。这是 12h/24h 预测性能瓶颈的主要原因——模型不知道未来是否会下雨或起风。</p>
+                        </div>
+                        <div class="limitation-card">
+                            <h4>⚡ 序列重叠与泛化</h4>
+                            <p>即使使用 stride=6，相邻序列仍有 42/48 步重叠。模型可能过度依赖局部模式，在新的气象条件下泛化能力受限。</p>
+                        </div>
+                    </div>
+                    <div class="glass-card p-6">
+                        <h3 class="section-title">DL vs ML 差距分析</h3>
+                        <table class="data-table">
+                            <thead><tr><th>维度</th><th>XGBoost</th><th>LSTM+Attn</th></tr></thead>
+                            <tbody>
+                                <tr><td>训练样本</td><td>9,164 条</td><td>1,262 条</td></tr>
+                                <tr><td>特征设计</td><td>127 候选 → 20 精选</td><td>47 维原始输入</td></tr>
+                                <tr><td>时序建模</td><td>显式 lag/rolling</td><td>隐式学习</td></tr>
+                                <tr><td>1h MAE</td><td class="text-blue-400">6.03</td><td class="text-purple-400">11.37</td></tr>
+                                <tr><td>1h R²</td><td class="text-blue-400">0.86</td><td class="text-purple-400">0.80</td></tr>
+                                <tr><td>不确定性</td><td>分位数回归</td><td>MC Dropout</td></tr>
+                            </tbody>
+                        </table>
+                        <p class="text-xs text-gray-500 mt-3">DL 在小数据量场景下预测精度不如 ML，但在时序模式学习和空间特征融合方面有独特优势。</p>
+                    </div>
+                    <div class="glass-card p-6">
+                        <h3 class="section-title">共同不可控因素</h3>
+                        <ul class="space-y-3 text-gray-400">
+                            <li>• <strong>工业排放突发事件</strong>：工厂意外排放无法预测</li>
+                            <li>• <strong>秸秆焚烧</strong>：焚烧时间和地点难以预测</li>
+                            <li>• <strong>极端天气</strong>：沙尘暴、持续雾霾等历史数据稀少</li>
+                            <li>• <strong>政策变化</strong>：新环保政策实施后历史模式失效</li>
+                        </ul>
+                    </div>
+                    <div class="glass-card p-6">
+                        <h3 class="section-title">DL 改进方向</h3>
+                        <ul class="space-y-3 text-gray-400">
+                            <li>• <strong>引入天气预报数据</strong>：接入 GFS/ECMWF 未来 72h 天气预报</li>
+                            <li>• <strong>增加训练数据</strong>：收集 3-5 年历史数据，提升序列数量至 5000+</li>
+                            <li>• <strong>Transformer 架构</strong>：用 Temporal Fusion Transformer 替代 LSTM</li>
+                            <li>• <strong>集成学习</strong>：XGBoost 短期 + LSTM 中长期混合预测</li>
+                            <li>• <strong>迁移学习</strong>：利用其他城市数据预训练，再微调到扬州</li>
                         </ul>
                     </div>
                 </div>
@@ -1748,19 +2173,67 @@
                     initPredictionChart();
                     break;
                 case 'features':
-                    initFeatureImportanceChart();
-                    initFeatureCategoryChart();
+                    if (currentModel === 'xgboost') {
+                        setTimeout(() => {
+                            if (charts.featureImportance) { charts.featureImportance.resize(); }
+                            else { initFeatureImportanceChart(); }
+                            if (charts.featureCategory) { charts.featureCategory.resize(); }
+                            else { initFeatureCategoryChart(); }
+                        }, 50);
+                    }
                     break;
                 case 'model':
-                    initCVResultsChart();
+                    if (currentModel === 'xgboost') {
+                        setTimeout(() => {
+                            if (charts.cvResults) { charts.cvResults.resize(); }
+                            else { initCVResultsChart(); }
+                        }, 50);
+                    }
                     break;
                 case 'baseline':
-                    initBaselineChart();
-                    initAblationChart();
+                    if (currentModel === 'xgboost') {
+                        setTimeout(() => {
+                            if (charts.baseline) { charts.baseline.resize(); }
+                            else { initBaselineChart(); }
+                            if (charts.ablation) { charts.ablation.resize(); }
+                            else { initAblationChart(); }
+                        }, 50);
+                    } else if (dlData.comparison) {
+                        setTimeout(() => renderDLComparison(dlData.comparison), 50);
+                    }
                     break;
                 case 'validation':
-                    initValidationChart();
-                    initErrorDistChart();
+                    if (currentModel === 'xgboost') {
+                        // ML模式：初始化或resize ML图表
+                        setTimeout(() => {
+                            if (charts.validation) {
+                                charts.validation.resize();
+                            } else {
+                                initValidationChart();
+                            }
+                            if (charts.errorDist) {
+                                charts.errorDist.resize();
+                            } else {
+                                initErrorDistChart();
+                            }
+                        }, 50);
+                    } else {
+                        setTimeout(() => renderDLValidationCharts(dlData.trainingCurves), 50);
+                    }
+                    break;
+                case 'deeplearning':
+                    if (currentModel === 'dl') {
+                        setTimeout(() => {
+                            if (dlData.trainingCurves) renderTrainingCurves(dlData.trainingCurves);
+                            if (dlData.attentionSamples) renderAttentionHeatmap(dlData.attentionSamples);
+                            if (dlData.comparison) renderDLComparison(dlData.comparison);
+                        }, 50);
+                    }
+                    break;
+                case 'explainability':
+                    if (currentModel === 'dl' && dlData.attentionSamples) {
+                        setTimeout(() => renderAttentionHeatmapExplain(dlData.attentionSamples), 50);
+                    }
                     break;
             }
         }
@@ -2304,20 +2777,26 @@
             if (!charts.prediction) return;
 
             const hours = predictions.map(p => {
-                // 直接从 ISO 字符串提取小时（北京时间），避免浏览器时区转换
                 const hour = p.datetime.split('T')[1].split(':')[0];
                 return hour + ':00';
             });
             const values = predictions.map(p => p.predicted_aqi);
-            const lower = predictions.map(p => p.lower_bound);
-            const upper = predictions.map(p => p.upper_bound);
+            const hasCI = predictions[0] && predictions[0].lower_bound != null;
+            const lower = hasCI ? predictions.map(p => p.lower_bound) : values.map(() => undefined);
+            const upper = hasCI ? predictions.map(p => p.upper_bound) : values.map(() => undefined);
+
+            const isDL = currentModel === 'dl';
+            const lineColor = isDL ? '#a78bfa' : '#3b82f6';
+            const bandColor = isDL ? 'rgba(139, 92, 246, 0.15)' : 'rgba(59, 130, 246, 0.15)';
+            const ciLabel = isDL ? '95% CI (MC Dropout)' : '95% 置信区间';
 
             charts.prediction.setOption({
                 xAxis: { data: hours },
+                legend: { data: hasCI ? ['预测值', ciLabel] : ['预测值'], textStyle: { color: '#a0a0b0' } },
                 series: [
-                    { name: '置信上界', data: upper },
-                    { name: '置信下界', data: lower },
-                    { name: '预测值', data: values }
+                    { name: ciLabel, data: upper, lineStyle: { opacity: 0 }, areaStyle: hasCI ? { color: bandColor } : { opacity: 0 } },
+                    { name: '置信下界', data: lower, lineStyle: { opacity: 0 }, areaStyle: hasCI ? { color: '#0a0a0f' } : { opacity: 0 } },
+                    { name: '预测值', data: values, lineStyle: { color: lineColor, width: 3 }, itemStyle: { color: lineColor } }
                 ]
             });
         }
@@ -2445,6 +2924,323 @@
             });
         }
 
+        // ==================== 深度学习相关 ====================
+
+        let currentModel = 'xgboost';
+        let dlData = {
+            overview: null,
+            comparison: null,
+            trainingCurves: null,
+            attentionSamples: null
+        };
+
+        // 模型切换
+        function switchModel(model) {
+            currentModel = model;
+            const btnXgb = document.getElementById('btn-xgboost');
+            const btnDl = document.getElementById('btn-dl');
+            const badge = document.getElementById('modelBadge');
+
+            if (model === 'xgboost') {
+                document.body.classList.remove('dl-mode');
+                btnXgb.className = 'px-3 py-1 bg-blue-600 text-white transition-all';
+                btnDl.className = 'px-3 py-1 bg-transparent text-gray-400 transition-all hover:bg-gray-700';
+                if (badge) { badge.textContent = '机器学习 · XGBoost'; badge.style.background = 'rgba(59,130,246,0.2)'; badge.style.color = '#60a5fa'; }
+                if (globalData.overview) updateOverview(globalData.overview);
+                // 切回ML时，resize所有已存在的ML图表（因为ml-only容器重新可见）
+                setTimeout(() => {
+                    Object.values(charts).forEach(c => { if (c && c.resize) c.resize(); });
+                    // 触发当前可见 tab 的图表初始化
+                    const activeTab = document.querySelector('.tab-content.active');
+                    if (activeTab) initChartsForTab(activeTab.id.replace('tab-', ''));
+                }, 150);
+            } else {
+                document.body.classList.add('dl-mode');
+                btnDl.className = 'px-3 py-1 bg-purple-600 text-white transition-all';
+                btnXgb.className = 'px-3 py-1 bg-transparent text-gray-400 transition-all hover:bg-gray-700';
+                if (badge) { badge.textContent = '深度学习 · LSTM+Attention'; badge.style.background = 'rgba(139,92,246,0.2)'; badge.style.color = '#a78bfa'; }
+                if (dlData.overview) {
+                    updateOverview(dlData.overview);
+                } else {
+                    loadDLOverview();
+                }
+                // 触发当前可见 tab 的 DL 图表渲染
+                setTimeout(() => {
+                    const activeTab = document.querySelector('.tab-content.active');
+                    if (!activeTab) return;
+                    const tabId = activeTab.id.replace('tab-', '');
+                    if (tabId === 'deeplearning') {
+                        if (dlData.trainingCurves) renderTrainingCurves(dlData.trainingCurves);
+                        if (dlData.attentionSamples) renderAttentionHeatmap(dlData.attentionSamples);
+                        if (dlData.comparison) renderDLComparison(dlData.comparison);
+                    }
+                    if (tabId === 'explainability' && dlData.attentionSamples) {
+                        renderAttentionHeatmapExplain(dlData.attentionSamples);
+                    }
+                    if (tabId === 'validation') {
+                        renderDLValidationCharts(dlData.trainingCurves);
+                    }
+                    if (tabId === 'baseline' && dlData.comparison) {
+                        renderDLComparison(dlData.comparison);
+                    }
+                }, 150);
+            }
+        }
+
+        async function loadDLOverview() {
+            try {
+                const res = await fetch('data/dl_overview.json');
+                if (res.ok) {
+                    dlData.overview = await res.json();
+                    if (currentModel === 'dl') updateOverview(dlData.overview);
+                }
+            } catch (e) {
+                console.log('DL overview not available:', e);
+            }
+        }
+
+        async function loadDLData() {
+            // 只加载数据，不立即渲染图表（因为容器可能 display:none）
+            // 图表渲染由 switchModel() 或 tab 切换触发
+
+            // 训练曲线
+            try {
+                const res = await fetch('data/training_curves.json');
+                if (res.ok) { dlData.trainingCurves = await res.json(); }
+            } catch (e) { console.log('Training curves not available'); }
+
+            // Attention 样本
+            try {
+                const res = await fetch('data/attention_samples.json');
+                if (res.ok) { dlData.attentionSamples = await res.json(); }
+            } catch (e) { console.log('Attention data not available'); }
+
+            // 模型对比
+            try {
+                const res = await fetch('data/model_comparison.json');
+                if (res.ok) {
+                    dlData.comparison = await res.json();
+                }
+            } catch (e) { console.log('Comparison data not available'); }
+        }
+
+        // DL 图表实例（用于 resize）
+        let dlCharts = {};
+
+        function resizeDLCharts() {
+            setTimeout(() => {
+                Object.values(dlCharts).forEach(c => { if (c && c.resize) c.resize(); });
+            }, 100);
+        }
+
+        // 全局 DL 图表 resize 监听（只注册一次，避免累积）
+        window.addEventListener('resize', () => {
+            Object.values(dlCharts).forEach(c => { if (c && c.resize) c.resize(); });
+        });
+
+        function renderAttentionHeatmapExplain(data) {
+            const container = document.getElementById('attentionHeatmapExplain');
+            if (!container || !data || !data.samples || data.samples.length === 0) return;
+            if (dlCharts.attnExplain) { dlCharts.attnExplain.dispose(); }
+            const chart = echarts.init(container);
+            dlCharts.attnExplain = chart;
+            const sample = data.samples[0];
+            const attn = sample.attention_last_step || [];
+            const labels = data.time_labels || attn.map((_, i) => 't-' + (attn.length - i));
+            chart.setOption({
+                backgroundColor: 'transparent',
+                tooltip: { formatter: p => labels[p.dataIndex] + ': ' + (p.value * 100).toFixed(1) + '%' },
+                grid: { top: 10, right: 20, bottom: 30, left: 50 },
+                xAxis: { type: 'category', data: labels, axisLabel: { color: '#666', fontSize: 10, interval: 5 }, axisLine: { lineStyle: { color: '#333' } } },
+                yAxis: { type: 'value', name: 'Attention', axisLabel: { color: '#666' }, splitLine: { lineStyle: { color: 'rgba(255,255,255,0.05)' } } },
+                series: [{ type: 'bar', data: attn, itemStyle: { color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{ offset: 0, color: '#8b5cf6' }, { offset: 1, color: '#3b82f6' }]) } }]
+            });
+        }
+
+        function renderDLValidationCharts(trainingData) {
+            // 训练曲线（验证页面副本）
+            const tc = document.getElementById('dlValidationTrainingChart');
+            if (tc && trainingData && trainingData.epochs) {
+                if (dlCharts.valTraining) dlCharts.valTraining.dispose();
+                const chart = echarts.init(tc);
+                dlCharts.valTraining = chart;
+                chart.setOption({
+                    backgroundColor: 'transparent',
+                    tooltip: { trigger: 'axis' },
+                    legend: { data: ['训练Loss', '验证Loss'], textStyle: { color: '#a0a0b0', fontSize: 11 }, top: 0 },
+                    grid: { top: 35, right: 15, bottom: 25, left: 45 },
+                    xAxis: { type: 'category', data: trainingData.epochs, name: 'Epoch', axisLabel: { color: '#666' }, axisLine: { lineStyle: { color: '#333' } } },
+                    yAxis: { type: 'value', name: 'Loss', axisLabel: { color: '#666' }, splitLine: { lineStyle: { color: 'rgba(255,255,255,0.05)' } } },
+                    series: [
+                        { name: '训练Loss', type: 'line', data: trainingData.train_loss, smooth: true, lineStyle: { color: '#3b82f6', width: 2 }, showSymbol: false },
+                        { name: '验证Loss', type: 'line', data: trainingData.val_loss, smooth: true, lineStyle: { color: '#ef4444', width: 2 }, showSymbol: false,
+                          markPoint: trainingData.best_epoch ? { data: [{ coord: [trainingData.best_epoch - 1, trainingData.best_val_loss], symbol: 'pin', symbolSize: 35 }], itemStyle: { color: '#10b981' } } : undefined }
+                    ]
+                });
+            }
+
+            // R² 对比柱状图
+            const rc = document.getElementById('dlValidationR2Chart');
+            if (rc) {
+                if (dlCharts.valR2) dlCharts.valR2.dispose();
+                const chart = echarts.init(rc);
+                dlCharts.valR2 = chart;
+                chart.setOption({
+                    backgroundColor: 'transparent',
+                    tooltip: { trigger: 'axis' },
+                    legend: { data: ['XGBoost', 'LSTM+Attn'], textStyle: { color: '#a0a0b0', fontSize: 11 }, top: 0 },
+                    grid: { top: 35, right: 15, bottom: 25, left: 45 },
+                    xAxis: { type: 'category', data: ['1h', '6h', '12h', '24h'], axisLabel: { color: '#aaa' }, axisLine: { lineStyle: { color: '#333' } } },
+                    yAxis: { type: 'value', name: 'R²', axisLabel: { color: '#666' }, splitLine: { lineStyle: { color: 'rgba(255,255,255,0.05)' } } },
+                    series: [
+                        { name: 'XGBoost', type: 'bar', data: [0.86, 0.71, 0.30, -0.35], itemStyle: { color: '#3b82f6' }, barWidth: '30%' },
+                        { name: 'LSTM+Attn', type: 'bar', data: [0.80, 0.66, 0.47, 0.17], itemStyle: { color: '#a78bfa' }, barWidth: '30%' }
+                    ]
+                });
+            }
+        }
+
+        function renderTrainingCurves(data) {
+            const container = document.getElementById('trainingCurvesChart');
+            if (!container || !data || !data.epochs) return;
+
+            if (dlCharts.training) { dlCharts.training.dispose(); }
+            const chart = echarts.init(container);
+            dlCharts.training = chart;
+            chart.setOption({
+                backgroundColor: 'transparent',
+                tooltip: { trigger: 'axis' },
+                legend: {
+                    data: ['训练Loss', '验证Loss'],
+                    textStyle: { color: '#a0a0b0' },
+                    top: 0
+                },
+                grid: { top: 40, right: 20, bottom: 30, left: 50 },
+                xAxis: {
+                    type: 'category',
+                    data: data.epochs,
+                    name: 'Epoch',
+                    axisLabel: { color: '#666' },
+                    axisLine: { lineStyle: { color: '#333' } }
+                },
+                yAxis: {
+                    type: 'value',
+                    name: 'Loss',
+                    axisLabel: { color: '#666' },
+                    splitLine: { lineStyle: { color: 'rgba(255,255,255,0.05)' } }
+                },
+                series: [
+                    {
+                        name: '训练Loss',
+                        type: 'line',
+                        data: data.train_loss,
+                        smooth: true,
+                        lineStyle: { color: '#3b82f6', width: 2 },
+                        itemStyle: { color: '#3b82f6' },
+                        showSymbol: false
+                    },
+                    {
+                        name: '验证Loss',
+                        type: 'line',
+                        data: data.val_loss,
+                        smooth: true,
+                        lineStyle: { color: '#ef4444', width: 2 },
+                        itemStyle: { color: '#ef4444' },
+                        showSymbol: false,
+                        markPoint: data.best_epoch ? {
+                            data: [{ coord: [data.best_epoch - 1, data.best_val_loss], name: 'Best', symbol: 'pin', symbolSize: 40 }],
+                            itemStyle: { color: '#10b981' }
+                        } : undefined
+                    }
+                ]
+            });
+
+            const info = document.getElementById('trainingInfo');
+            if (info && data.best_epoch) {
+                info.textContent = `最佳模型: Epoch ${data.best_epoch}, 验证Loss: ${data.best_val_loss?.toFixed(4) || '--'}`;
+            }
+        }
+
+        function renderAttentionHeatmap(data) {
+            const container = document.getElementById('attentionHeatmap');
+            if (!container || !data || !data.samples || data.samples.length === 0) return;
+
+            if (dlCharts.attention) { dlCharts.attention.dispose(); }
+            const chart = echarts.init(container);
+            dlCharts.attention = chart;
+            const sample = data.samples[0];
+            const attn = sample.attention_last_step || [];
+            const labels = data.time_labels || attn.map((_, i) => `t-${attn.length - i}`);
+
+            chart.setOption({
+                backgroundColor: 'transparent',
+                tooltip: {
+                    formatter: p => `${labels[p.dataIndex]}: ${(p.value * 100).toFixed(1)}%`
+                },
+                grid: { top: 10, right: 20, bottom: 30, left: 50 },
+                xAxis: {
+                    type: 'category',
+                    data: labels,
+                    axisLabel: { color: '#666', fontSize: 10, interval: 5 },
+                    axisLine: { lineStyle: { color: '#333' } }
+                },
+                yAxis: {
+                    type: 'value',
+                    name: 'Attention',
+                    axisLabel: { color: '#666' },
+                    splitLine: { lineStyle: { color: 'rgba(255,255,255,0.05)' } }
+                },
+                series: [{
+                    type: 'bar',
+                    data: attn,
+                    itemStyle: {
+                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                            { offset: 0, color: '#8b5cf6' },
+                            { offset: 1, color: '#3b82f6' }
+                        ])
+                    }
+                }]
+            });
+        }
+
+        function renderDLComparison(data) {
+            if (!data || !data.horizons) return;
+            // 填充两个对比表（baseline和deeplearning tab各一个）
+            ['dlComparisonTable1', 'dlComparisonTable2'].forEach(id => {
+                const tbody = document.getElementById(id);
+                if (!tbody) return;
+                _fillComparisonTable(tbody, data);
+            });
+        }
+        function _fillComparisonTable(tbody, data) {
+
+            let html = '';
+            for (const [horizon, info] of Object.entries(data.horizons)) {
+                const dl = info.LSTM_Attention || {};
+                const xgb = info.XGBoost || {};
+                const imp = info.improvement || {};
+                const winner = imp.winner || '';
+                const xgbWin = winner === 'XGBoost';
+                const dlWin = winner === 'LSTM+Attention';
+                html += `<tr>
+                    <td rowspan="2" style="font-weight:600;">${horizon}</td>
+                    <td style="color: #60a5fa;">${xgbWin ? '🏆 ' : ''}XGBoost</td>
+                    <td${xgbWin && xgb.MAE < dl.MAE ? ' style="color:#10b981;font-weight:600;"' : ''}>${xgb.MAE != null ? xgb.MAE : '--'}</td>
+                    <td>${xgb.RMSE != null ? xgb.RMSE : '--'}</td>
+                    <td${xgbWin ? ' style="color:#10b981;font-weight:600;"' : ''}>${xgb.R2 != null ? xgb.R2 : '--'}</td>
+                </tr>
+                <tr>
+                    <td style="color: #a78bfa;">${dlWin ? '🏆 ' : ''}LSTM+Attn</td>
+                    <td${dlWin && dl.MAE < xgb.MAE ? ' style="color:#10b981;font-weight:600;"' : ''}>${dl.MAE != null ? dl.MAE : '--'}</td>
+                    <td>${dl.RMSE != null ? dl.RMSE : '--'}</td>
+                    <td${dlWin ? ' style="color:#10b981;font-weight:600;"' : ''}>${dl.R2 != null ? dl.R2 : '--'}</td>
+                </tr>`;
+            }
+            tbody.innerHTML = html || '<tr><td colspan="5" style="color: var(--text-secondary); text-align: center;">训练后可查看</td></tr>';
+        }
+
+        // updateBaselineDLRow 已移除 — 对比数据通过 renderDLComparison 填充到 dlComparisonTable1/2
+
         // Initialize
         document.addEventListener('DOMContentLoaded', async () => {
             await loadAllData();
@@ -2454,6 +3250,10 @@
             if (globalData.overview && globalData.overview.predictions) {
                 updatePredictionChartWithData(globalData.overview.predictions);
             }
+
+            // 加载深度学习数据
+            loadDLData();
+            loadDLOverview();
         });
     </script>
 </body>

@@ -68,6 +68,17 @@ def main():
         ("步骤 10: 生成预测数据", project_root / "src/modeling/predict.py"),
     ]
 
+    # 深度学习步骤
+    dl_steps = [
+        ("DL 步骤 1: 特征工程", project_root / "deep_learning/data/build_dl_features.py"),
+        ("DL 步骤 2: 序列生成", project_root / "deep_learning/data/sequence_builder.py"),
+        ("DL 步骤 3: 模型训练", project_root / "deep_learning/training/train.py"),
+        ("DL 步骤 4: 模型评估", project_root / "deep_learning/evaluation/evaluate.py"),
+        ("DL 步骤 5: ONNX 导出", project_root / "deep_learning/export/export_onnx.py"),
+        ("DL 步骤 6: Dashboard 数据", project_root / "deep_learning/dashboard/generate_dashboard_data.py"),
+        ("DL 步骤 7: 性能基准", project_root / "deep_learning/benchmark.py"),
+    ]
+
     total_start = time.time()
     results = []
 
@@ -85,6 +96,22 @@ def main():
         for step_name, module_path in optional_steps:
             success = run_step(step_name, module_path)
             results.append((step_name, success))
+
+    # 运行深度学习步骤（仅需必要步骤1-8成功，可选步骤失败不阻塞）
+    required_ok = all(r[1] for r in results[:len(steps)])
+    if required_ok:
+        print("\n" + "=" * 60)
+        print("  深度学习流水线")
+        print("=" * 60)
+        for step_name, module_path in dl_steps:
+            if module_path.exists():
+                success = run_step(step_name, module_path)
+                results.append((step_name, success))
+                if not success:
+                    print(f"\n⚠️ {step_name} 失败，停止后续DL步骤")
+                    break
+            else:
+                print(f"\n⚠️ 跳过 {step_name}: 文件不存在")
 
     # 总结
     total_elapsed = time.time() - total_start

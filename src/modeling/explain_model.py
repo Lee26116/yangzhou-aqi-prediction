@@ -38,6 +38,48 @@ def load_model():
     return model
 
 
+def _patch_shap_xgboost_compat():
+    """修复 XGBoost 3.x + SHAP 兼容性问题
+    XGBoost 3.x 将 base_score 存为 '[5.97E1]' 格式（UBJSON），SHAP float() 无法解析
+    通过 monkey-patch XGBTreeModelLoader.__init__ 在 UBJSON 解码后修复"""
+    try:
+        import shap.explainers._tree as tree_mod
+        _orig_init = tree_mod.XGBTreeModelLoader.__init__
+
+        if getattr(tree_mod.XGBTreeModelLoader, '_patched', False):
+            return
+
+        # 保存原始 decode_ubjson_buffer
+        _orig_decode = tree_mod.decode_ubjson_buffer
+
+        def _fix_bracket_values(obj):
+            """递归修复 dict 中 '[xxx]' 格式的字符串值"""
+            if isinstance(obj, dict):
+                for k, v in obj.items():
+                    if isinstance(v, str) and v.startswith('[') and v.endswith(']'):
+                        try:
+                            obj[k] = str(float(v.strip('[]')))
+                        except ValueError:
+                            pass
+                    elif isinstance(v, (dict, list)):
+                        _fix_bracket_values(v)
+            elif isinstance(obj, list):
+                for item in obj:
+                    if isinstance(item, (dict, list)):
+                        _fix_bracket_values(item)
+
+        def _patched_decode(fd):
+            result = _orig_decode(fd)
+            _fix_bracket_values(result)
+            return result
+
+        tree_mod.decode_ubjson_buffer = _patched_decode
+        tree_mod.XGBTreeModelLoader._patched = True
+        print("   🔧 已修复 XGBoost 3.x / SHAP 兼容性")
+    except Exception as e:
+        print(f"   ⚠️ SHAP 兼容性修复失败: {e}")
+
+
 def compute_shap_values(model, X, max_samples=1000):
     """
     计算 SHAP 值
@@ -55,6 +97,9 @@ def compute_shap_values(model, X, max_samples=1000):
         return None
 
     print("🔍 计算 SHAP 值...")
+
+    # 修复 XGBoost 3.x + SHAP 兼容性
+    _patch_shap_xgboost_compat()
 
     # 如果样本太多，随机采样
     if len(X) > max_samples:
@@ -211,7 +256,7 @@ def main():
     df['datetime'] = pd.to_datetime(df['datetime'])
 
     # 准备特征
-    feature_cols = [c for c in df.columns if c not in ['datetime', 'AQI', 'date']]
+    feature_cols = [c for c in df.columns if c not in ['datetime', 'AQI', 'AQI_target', 'date']]
     X = df[feature_cols].replace([np.inf, -np.inf], np.nan).dropna()
 
     print(f"📖 读取数据: {len(X)} 行, {len(feature_cols)} 个特征")

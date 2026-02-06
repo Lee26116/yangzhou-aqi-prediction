@@ -94,7 +94,7 @@ def prepare_prediction_features(df, model):
         feature_cols = list(model.feature_names_in_)
     else:
         # 从数据中推断
-        feature_cols = [c for c in df.columns if c not in ['datetime', 'AQI', 'date']]
+        feature_cols = [c for c in df.columns if c not in ['datetime', 'AQI', 'AQI_target', 'date']]
 
     # 检查缺失的特征
     missing_cols = [c for c in feature_cols if c not in df.columns]
@@ -131,8 +131,8 @@ def predict_next_hours(model, recent_data, hours_ahead=24, realtime_aqi=None):
 
     print(f"   📍 当前中国时间: {current_time.strftime('%Y-%m-%d %H:%M')} (UTC+8)")
 
-    # 准备特征列
-    feature_cols = [c for c in recent_data.columns if c not in ['datetime', 'AQI', 'date']]
+    # 准备特征列（排除目标变量和非特征列）
+    feature_cols = [c for c in recent_data.columns if c not in ['datetime', 'AQI', 'AQI_target', 'date']]
 
     # 使用滚动预测方式
     # 获取最近的历史数据用于构建特征
@@ -320,7 +320,7 @@ def generate_dashboard_data():
     # 生成历史验证数据
     if 'AQI' in recent_data.columns:
         # 使用历史数据进行回测
-        feature_cols = [c for c in recent_data.columns if c not in ['datetime', 'AQI', 'date']]
+        feature_cols = [c for c in recent_data.columns if c not in ['datetime', 'AQI', 'AQI_target', 'date']]
         X = recent_data[feature_cols].replace([np.inf, -np.inf], np.nan)
 
         # 只对非空行进行预测

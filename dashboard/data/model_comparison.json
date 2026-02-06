@@ -1,0 +1,85 @@
+{
+  "horizons": {
+    "1h": {
+      "LSTM_Attention": {
+        "MAE": 11.37,
+        "RMSE": 17.59,
+        "R2": 0.8015,
+        "MAPE": 17.7,
+        "n_samples": 158
+      },
+      "XGBoost": {
+        "MAE": 6.03,
+        "RMSE": 9.84,
+        "R2": 0.86
+      },
+      "improvement": {
+        "MAE": "-88.6%",
+        "R2_diff": -0.0585,
+        "winner": "XGBoost"
+      }
+    },
+    "6h": {
+      "LSTM_Attention": {
+        "MAE": 15.74,
+        "RMSE": 23.1,
+        "R2": 0.6639,
+        "MAPE": 25.19,
+        "n_samples": 158
+      },
+      "XGBoost": {
+        "MAE": 11.41,
+        "RMSE": 17.06,
+        "R2": 0.71
+      },
+      "improvement": {
+        "MAE": "-37.9%",
+        "R2_diff": -0.0461,
+        "winner": "XGBoost"
+      }
+    },
+    "12h": {
+      "LSTM_Attention": {
+        "MAE": 20.7,
+        "RMSE": 28.95,
+        "R2": 0.4702,
+        "MAPE": 34.11,
+        "n_samples": 158
+      },
+      "XGBoost": {
+        "MAE": 17.72,
+        "RMSE": 26.25,
+        "R2": 0.30
+      },
+      "improvement": {
+        "MAE": "-16.8%",
+        "R2_diff": 0.1702,
+        "winner": "LSTM+Attention"
+      }
+    },
+    "24h": {
+      "LSTM_Attention": {
+        "MAE": 27.47,
+        "RMSE": 36.12,
+        "R2": 0.1715,
+        "MAPE": 49.12,
+        "n_samples": 158
+      },
+      "XGBoost": {
+        "MAE": 23.24,
+        "RMSE": 33.79,
+        "R2": -0.35
+      },
+      "improvement": {
+        "MAE": "-18.2%",
+        "R2_diff": 0.5215,
+        "winner": "LSTM+Attention"
+      }
+    }
+  },
+  "summary": {
+    "short_term_winner": "XGBoost",
+    "long_term_winner": "LSTM+Attention",
+    "note": "XGBoost在1h和6h短期预测中凭借显式lag特征表现更好；LSTM+Attention在12h和24h长期预测中凭借时序模式学习能力显著超越XGBoost"
+  }
+}

@@ -1,107 +1,107 @@
 {
-  "timestamp": "2026-02-03T17:13:52.261814",
-  "data_rows": 9164,
+  "timestamp": "2026-02-05T17:04:29.471817",
+  "data_rows": 9188,
   "feature_count": 20,
   "baseline_results": {
     "Naive_24h": {
-      "MAE": 23.03,
-      "RMSE": 33.09,
-      "R2": 0.04,
-      "MAPE": 45.56
+      "MAE": 23.0,
+      "RMSE": 33.06,
+      "R2": 0.0415,
+      "MAPE": 45.54
     },
     "MovingAvg_24h": {
-      "MAE": 15.59,
-      "RMSE": 22.01,
-      "R2": 0.5757,
-      "MAPE": 29.99
+      "MAE": 15.57,
+      "RMSE": 21.99,
+      "R2": 0.5762,
+      "MAPE": 30.01
     },
     "ExpSmoothing": {
-      "MAE": 10.5,
-      "RMSE": 15.54,
-      "R2": 0.7884,
-      "MAPE": 19.36
+      "MAE": 10.49,
+      "RMSE": 15.53,
+      "R2": 0.7886,
+      "MAPE": 19.38
     }
   },
   "main_model": {
     "type": "XGBoost",
     "cv_folds": 5,
     "metrics": {
-      "MAE": 7.64,
-      "RMSE": 10.33,
-      "R2": 0.8186,
-      "MAPE": 16.65
+      "MAE": 6.73,
+      "RMSE": 9.85,
+      "R2": 0.8449,
+      "MAPE": 13.32
     },
     "cv_results": [
       {
-        "MAE": 9.89,
-        "RMSE": 13.09,
-        "R2": 0.8054,
-        "MAPE": 14.7
+        "MAE": 8.87,
+        "RMSE": 13.3,
+        "R2": 0.7988,
+        "MAPE": 12.58
       },
       {
-        "MAE": 11.19,
-        "RMSE": 13.83,
-        "R2": 0.5974,
-        "MAPE": 31.94
+        "MAE": 6.88,
+        "RMSE": 10.08,
+        "R2": 0.7921,
+        "MAPE": 15.33
       },
       {
-        "MAE": 4.8,
-        "RMSE": 6.65,
-        "R2": 0.8682,
-        "MAPE": 14.39
+        "MAE": 5.05,
+        "RMSE": 7.0,
+        "R2": 0.839,
+        "MAPE": 14.91
       },
       {
-        "MAE": 4.62,
-        "RMSE": 6.77,
-        "R2": 0.9034,
-        "MAPE": 11.83
+        "MAE": 5.11,
+        "RMSE": 7.46,
+        "R2": 0.8774,
+        "MAPE": 13.27
       },
       {
-        "MAE": 7.69,
-        "RMSE": 11.32,
-        "R2": 0.9188,
-        "MAPE": 10.39
+        "MAE": 7.75,
+        "RMSE": 11.39,
+        "R2": 0.9172,
+        "MAPE": 10.53
       }
     ]
   },
   "ablation_study": {
     "完整模型": {
       "features_used": 20,
-      "MAE": 7.6,
-      "RMSE": 10.1,
-      "R2": 0.8388
+      "MAE": 6.99,
+      "RMSE": 9.94,
+      "R2": 0.8421
     },
     "去除滞后特征": {
       "features_removed": 2,
       "features_used": 18,
-      "MAE": 7.92,
-      "RMSE": 10.55,
-      "R2": 0.8232,
-      "MAE_increase": 0.32
+      "MAE": 6.94,
+      "RMSE": 9.78,
+      "R2": 0.8461,
+      "MAE_increase": -0.05
     },
     "去除滚动特征": {
       "features_removed": 4,
       "features_used": 16,
-      "MAE": 8.78,
-      "RMSE": 11.35,
-      "R2": 0.7823,
-      "MAE_increase": 1.18
+      "MAE": 7.24,
+      "RMSE": 10.11,
+      "R2": 0.8297,
+      "MAE_increase": 0.25
     },
     "去除气象特征": {
       "features_removed": 4,
       "features_used": 16,
-      "MAE": 7.36,
-      "RMSE": 9.98,
-      "R2": 0.8443,
-      "MAE_increase": -0.24
+      "MAE": 6.78,
+      "RMSE": 9.72,
+      "R2": 0.8482,
+      "MAE_increase": -0.21
     },
     "去除变化率特征": {
-      "features_removed": 9,
-      "features_used": 11,
-      "MAE": 12.56,
-      "RMSE": 16.56,
-      "R2": 0.5399,
-      "MAE_increase": 4.96
+      "features_removed": 8,
+      "features_used": 12,
+      "MAE": 8.96,
+      "RMSE": 12.75,
+      "R2": 0.7096,
+      "MAE_increase": 1.97
     }
   }
 }

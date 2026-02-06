@@ -131,6 +131,8 @@ def clean_weather_data(df):
         'surface_pressure': (900, 1100),  # hPa
         'precipitation': (0, 200),  # mm
         'cloud_cover': (0, 100),  # 百分比
+        'boundary_layer_height': (0, 5000),  # 米
+        'uv_index': (0, 15),  # UV 指数
     }
 
     # 处理异常值

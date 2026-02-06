@@ -1,82 +1,82 @@
 [
   {
-    "feature":"南京_AQI",
-    "importance":0.5311787724
+    "feature":"泰州_PM2.5",
+    "importance":0.422996074
   },
   {
-    "feature":"南通_AQI",
-    "importance":0.1264158636
+    "feature":"南京_PM10",
+    "importance":0.2984010577
   },
   {
     "feature":"AQI_change_24h",
-    "importance":0.0530305058
+    "importance":0.0898328573
   },
   {
     "feature":"AQI_change_6h",
-    "importance":0.0486848913
+    "importance":0.041527763
   },
   {
-    "feature":"PM2.5_change_6h",
-    "importance":0.0433708131
-  },
-  {
-    "feature":"PM2.5_rolling_std_24h",
-    "importance":0.0227161124
+    "feature":"南通_AQI",
+    "importance":0.0328088216
   },
   {
     "feature":"AQI_rolling_std_12h",
-    "importance":0.0219877288
+    "importance":0.0179420412
   },
   {
     "feature":"AQI_pct_change_6h",
-    "importance":0.021194743
+    "importance":0.0114149954
   },
   {
-    "feature":"AQI_pct_change_24h",
-    "importance":0.0188765246
+    "feature":"AQI_change_3h",
+    "importance":0.0112631796
   },
   {
-    "feature":"PM10_lag_48h",
-    "importance":0.0153396027
-  },
-  {
-    "feature":"PM2.5_change_3h",
-    "importance":0.0149142556
-  },
-  {
-    "feature":"AQI_pct_change_3h",
-    "importance":0.013828841
+    "feature":"PM2.5_rolling_std_24h",
+    "importance":0.0103061674
   },
   {
     "feature":"wind_v",
-    "importance":0.0129125165
+    "importance":0.0097134821
   },
   {
-    "feature":"AQI_change_1h",
-    "importance":0.0094691217
+    "feature":"PM10_lag_48h",
+    "importance":0.0088623427
   },
   {
-    "feature":"wind_u",
-    "importance":0.0093778372
+    "feature":"AQI_pct_change_3h",
+    "importance":0.0078373309
   },
   {
-    "feature":"temperature_2m_change_24h",
-    "importance":0.0092283376
-  },
-  {
-    "feature":"dew_point_2m",
-    "importance":0.0074995593
-  },
-  {
-    "feature":"PM2.5_rolling_std_6h",
-    "importance":0.0071354192
+    "feature":"PM2.5_change_3h",
+    "importance":0.0060360511
   },
   {
     "feature":"AQI_rolling_std_6h",
-    "importance":0.0068909605
+    "importance":0.0059119058
   },
   {
-    "feature":"wind_speed_10m_lag_3h",
-    "importance":0.0059476187
+    "feature":"AQI_change_1h",
+    "importance":0.0056422846
+  },
+  {
+    "feature":"dew_point_2m",
+    "importance":0.0054844152
+  },
+  {
+    "feature":"temperature_2m_change_24h",
+    "importance":0.0050854906
+  },
+  {
+    "feature":"PM2.5_rolling_std_6h",
+    "importance":0.0038245141
+  },
+  {
+    "feature":"wind_speed_10m_lag_6h",
+    "importance":0.0030475222
+  },
+  {
+    "feature":"wind_speed_10m",
+    "importance":0.0020617933
   }
 ]

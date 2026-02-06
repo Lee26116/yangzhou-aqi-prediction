@@ -1,0 +1,23 @@
+{
+  "inference": {
+    "avg_ms": 0.5,
+    "p95_ms": 0.35,
+    "max_ms": 13.58,
+    "passed": 1
+  },
+  "memory": {
+    "current_mb": 0.0,
+    "peak_mb": 0.0,
+    "passed": true
+  },
+  "model_size": {
+    "onnx": {
+      "size_mb": 0.52,
+      "passed": true
+    },
+    "pytorch": {
+      "size_mb": 1.54,
+      "passed": true
+    }
+  }
+}

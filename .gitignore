@@ -39,10 +39,18 @@ logs/
 .env
 .env.local
 
-# Models (keep only v4)
+# Models (keep only v4 and DL)
 models/xgboost_model.pkl
 models/xgboost_model.json
 models/xgboost_model_v2.pkl
 models/xgboost_model_v3*.pkl
 models/feature_importance_v2.csv
 models/feature_importance_v3*.csv
+models/shap_values.pkl
+
+# DL training sequences (can be regenerated, ~14MB)
+data/features/dl_sequences/*.npy
+data/features/dl_features/*.csv
+
+# One-time scripts
+dashboard/transform_dashboard.py

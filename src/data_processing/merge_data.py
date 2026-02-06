@@ -110,8 +110,8 @@ def merge_all_data():
     upwind_aqi, upwind_weather = load_upwind_cities_data()
 
     if upwind_aqi is not None:
-        # 只保留 AQI 列
-        aqi_cols = [c for c in upwind_aqi.columns if 'AQI' in c or c == 'datetime']
+        # 保留 AQI、PM2.5、PM10 列
+        aqi_cols = [c for c in upwind_aqi.columns if 'AQI' in c or 'PM2.5' in c or 'PM10' in c or c == 'datetime']
         if aqi_cols:
             merged_df = merged_df.merge(upwind_aqi[aqi_cols], on='datetime', how='left')
             print(f"   添加上风向城市 AQI 后: {len(merged_df)} 行")

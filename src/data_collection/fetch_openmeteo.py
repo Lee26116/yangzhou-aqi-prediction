@@ -35,7 +35,9 @@ WEATHER_PARAMS = [
     "snowfall",
     "visibility",
     "wind_gusts_10m",
-    "soil_temperature_0cm"
+    "soil_temperature_0cm",
+    "boundary_layer_height",
+    "uv_index"
 ]
 
 
