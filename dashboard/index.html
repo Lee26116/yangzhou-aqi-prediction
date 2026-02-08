@@ -344,12 +344,12 @@
         }
 
         
-        /* 模型切换 */
-        .dl-only { display: none; }
-        body.dl-mode .dl-only { display: block; }
-        body.dl-mode .grid.dl-only { display: grid; }
-        body.dl-mode button.dl-only { display: inline-block; }
-        body.dl-mode .ml-only { display: none; }
+        /* 模型切换 — !important 确保优先级高于 Tailwind 动态生成的 utility class */
+        .dl-only { display: none !important; }
+        body.dl-mode .dl-only { display: block !important; }
+        body.dl-mode .grid.dl-only { display: grid !important; }
+        body.dl-mode button.dl-only { display: inline-block !important; }
+        body.dl-mode .ml-only { display: none !important; }
         .tab-content { display: none; }
         .tab-content.active { display: block; }
     </style>
@@ -446,7 +446,8 @@
                             <span class="text-green-400 text-2xl">✓</span>
                             <div>
                                 <div class="font-medium text-green-400">真实数据声明</div>
-                                <div class="text-sm text-gray-400">本系统所有数据均来自公开数据源的真实观测数据：WAQI 实时空气质量监测、Open-Meteo 气象观测、高德地图天气服务。预测结果基于真实历史数据训练的机器学习模型生成，非模拟数据。</div>
+                                <div class="text-sm text-gray-400 ml-only">本系统所有数据均来自公开数据源的真实观测数据：WAQI 实时空气质量监测、Open-Meteo 气象观测、高德地图天气服务。预测结果基于真实历史数据训练的机器学习模型生成，非模拟数据。</div>
+                                <div class="text-sm text-gray-400 dl-only">本系统所有数据均来自公开数据源的真实观测数据：WAQI 实时空气质量监测、Open-Meteo 气象观测、高德地图天气服务。预测结果基于真实历史数据训练的深度学习模型生成，非模拟数据。</div>
                             </div>
                         </div>
                     </div>

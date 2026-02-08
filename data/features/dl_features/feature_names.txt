@@ -13,6 +13,7 @@ precipitation
 cloud_cover
 dew_point
 boundary_layer_height
+uv_index
 wind_gusts
 hour_sin
 hour_cos
